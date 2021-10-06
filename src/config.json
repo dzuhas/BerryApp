@@ -1,0 +1,84 @@
+{
+    "settings": {
+        "logo": "logo.png",
+        "company": "Nazwa firmy",
+        "homeText": "Tekst powitalny z pierwszej strony",
+        "contactText": "Tekst nad formularzem kontaktowym",
+        "contact": [
+            {
+                "position": "CTO, co-founder",
+                "name": "Maria Ziomek",
+                "phone": "123-456-789",
+                "email": "mail@mail.com",
+                "www": "website.com"
+            },
+            {
+                "position": "CTO, co-founder",
+                "name": "Maria Ziomek",
+                "phone": "123-456-789",
+                "email": "mail@mail.com",
+                "www": "website.com"
+            }
+        ],
+        "social": [
+            {
+                "type": "fb",
+                "link": "https://facebook.com"
+            },
+            {
+                "type": "insta",
+                "link": "https://instagram.com"
+            }
+        ]
+    },
+    "assets": {
+        "pdfs": [
+            {
+                "id": 1,
+                "title": "Nazwa jaka ma się wyświetlać",
+                "filename": "Nazwa pliku.pdf"
+            },
+            {
+                "id": 2,
+                "title": "Drugi plik",
+                "filename": "Nazwa pliku.pdf"
+            }
+        ],
+        "videos": [
+            {
+                "id": 1,
+                "title": "Nazwa jaka ma się wyświetlać",
+                "filename": "Nazwa pliku.mp4",
+                "poster": "Miniaturka (nazwa pliku)"
+            }
+        ],
+        "images": [
+            {
+                "id": 1,
+                "title": "Podpis zdjęcia",
+                "filename": "image1.jpg"
+            }
+        ],
+        "websites": [
+            {
+                "title": "Opis co jest na stronie",
+                "link": "https://berrylife.pl"
+            }
+        ]
+    },
+    "products": [
+        {
+            "id": 1,
+            "title": "Nazwa jaka ma się wyświetlać",
+            "description": "Jakiś opis produktu",
+            "images": ["image1.jpg", "image2.jpg", "image3.jpg"],
+            "pdfs": [
+                {
+                    "id": 1,
+                    "title": "Nazwa pdfa przypisanego do produktu",
+                    "filename":"Nazwa pliku.pdf"
+                }
+            ]
+        }
+    ]
+}
