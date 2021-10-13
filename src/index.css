@@ -1,7 +1,41 @@
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  margin: auto;
-  max-width: 38rem;
-  padding: 2rem;
   background-color: #1876d2;
+}
+
+.newBoxVideo {
+  background-color: green;
+}
+
+.produktyMain {
+  display: none;
+}
+
+.filmyMain {
+  display: none;
+}
+
+.wspolpracaMain {
+  display: none;
+}
+
+.kontaktMain {
+  display: none;
+}
+
+.pngPdf {
+  height: 115px;
+  width: 101px;
+  align-content: center;
+}
+
+.pdfMain {
+  display: flex;
+}
+
+.newBoxPdf {
+  background-color: grey;
+  width: 201px;
+  height: 180px;
+  margin-right: 75px;
 }
