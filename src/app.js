@@ -63,12 +63,40 @@ const asyncGetCall = async () => {
         //tworzenie diva z jpg.png
         var elem = document.createElement("img");
         elem.setAttribute("src", "./assets/documents/Pdf.png");
-        elem.className='pngPdf'
+        elem.className = 'pngPdf';
         document.getElementById(newBox).appendChild(elem);
 
         // tak stworzone divy z zawartoscia umieszczam w elemencie newbox w divie pdf
         document.getElementById(newBox).appendChild(newDivPdf);
-        document.getElementById(newBox).appendChild(newDivPdfFile);
+        const clickPdf = document.getElementById(newBox).appendChild(newDivPdfFile);
+        console.log(clickPdf)
+        document.getElementById(newBox).addEventListener("click", e => {
+
+          document.getElementById("pdf").appendChild(clickPdf);
+          clickPdf.className = "pupPdf"
+          clickPdf.id = nameFilePdf;
+          var myDiv = document.getElementById(nameFilePdf);
+
+          // create the button object and add the text to it
+          var button = document.createElement("BUTTON");
+          button.innerHTML = "Wróć";
+          button.id = "buttonPdf"
+
+          // add the button to the div
+          myDiv.appendChild(button);
+
+          document.getElementById("buttonPdf").addEventListener("click", e => {
+            const killAllPdf = document.getElementById(nameFilePdf);
+            while (killAllPdf.firstChild) {
+              killAllPdf.removeChild(killAllPdf.firstChild);
+            }
+            var killPdf = document.getElementById(nameFilePdf);
+            killPdf.remove()
+          })
+
+
+        })
+
       }
       addElement()
     })
@@ -119,3 +147,4 @@ const asyncGetCall = async () => {
 
 
 asyncGetCall()
+

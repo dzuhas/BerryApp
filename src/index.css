@@ -39,3 +39,10 @@ body {
   height: 180px;
   margin-right: 75px;
 }
+
+.pupPdf {
+  position: absolute;
+  height: 500px;
+  width: 500px;
+  background-color: red;
+}
