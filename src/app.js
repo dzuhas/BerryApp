@@ -54,11 +54,13 @@ const asyncGetCall = async () => {
 
         //tworzę divy z nazwa Pdfa i nazwa pliku z Pdfem
         newDivPdf = document.createElement("div");
+        
         newDivPdfFile = document.createElement("div");
 
         //w stworzonych divach umieszczam wartosci wyjete z petli
         newDivPdf.innerHTML = namePdf;
         newDivPdfFile.innerHTML = nameFilePdf;
+        console.log(nameFilePdf)
 
         //tworzenie diva z jpg.png
         var elem = document.createElement("img");
@@ -70,32 +72,7 @@ const asyncGetCall = async () => {
         document.getElementById(newBox).appendChild(newDivPdf);
         const clickPdf = document.getElementById(newBox).appendChild(newDivPdfFile);
         console.log(clickPdf)
-        document.getElementById(newBox).addEventListener("click", e => {
 
-          document.getElementById("pdf").appendChild(clickPdf);
-          clickPdf.className = "pupPdf"
-          clickPdf.id = nameFilePdf;
-          var myDiv = document.getElementById(nameFilePdf);
-
-          // create the button object and add the text to it
-          var button = document.createElement("BUTTON");
-          button.innerHTML = "Wróć";
-          button.id = "buttonPdf"
-
-          // add the button to the div
-          myDiv.appendChild(button);
-
-          document.getElementById("buttonPdf").addEventListener("click", e => {
-            const killAllPdf = document.getElementById(nameFilePdf);
-            while (killAllPdf.firstChild) {
-              killAllPdf.removeChild(killAllPdf.firstChild);
-            }
-            var killPdf = document.getElementById(nameFilePdf);
-            killPdf.remove()
-          })
-
-
-        })
 
       }
       addElement()
@@ -136,7 +113,17 @@ const asyncGetCall = async () => {
       addElement2()
     })
 
+    let pdfListener = document.querySelectorAll(".newBoxPdf")
+    console.log(pdfListener)
 
+    pdfListener.forEach(function(item, index, array){
+      item.addEventListener("click", e => {
+        console.log(e.target.id)
+        //var idPdfFile = document.getElementsByClassName(newBoxPdf)[0].id;
+        //console.log(nameFilePdf)
+      })
+    })
+    
     // enter you logic when the fetch is successful
 
   } catch (error) {
@@ -147,4 +134,20 @@ const asyncGetCall = async () => {
 
 
 asyncGetCall()
+
+document.getElementById("buttonPdf").addEventListener("click", e => {
+  const killAllPdf = document.getElementById(nameFilePdf);
+  while (killAllPdf.firstChild) {
+    killAllPdf.removeChild(killAllPdf.firstChild);
+  }
+  var killPdf = document.getElementById(nameFilePdf);
+  killPdf.remove()
+})
+
+
+
+
+
+
+
 
