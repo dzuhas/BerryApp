@@ -1,41 +1,28 @@
-function addElement() {
+let nameFilePdf
 
-  // tworze diva
-  Box = document.createElement("div");
-  // umieszczam go w DOM
-  document.getElementById('pdf').appendChild(Box);
-  //nadaje mu id
-  Box.id = newBox;
-  Box.className = 'newBoxPdf';
-
-  //tworzę divy z nazwa Pdfa i nazwa pliku z Pdfem
-  newDivPdf = document.createElement("div");
-  newDivPdfFile = document.createElement("div");
-  //w stworzonych divach umieszczam wartosci wyjete z petli
-  newDivPdf.innerHTML = namePdf;
-  newDivPdfFile.innerHTML = nameFilePdf;
-
-
-  // tak stworzone divy z zawartoscia umieszczam w elemencie newbox w divie pdf
-  document.getElementById(newBox).appendChild(newDivPdf);
-  document.getElementById(newBox).appendChild(newDivPdfFile);
-}
 
 //Downoload data from config.json and put to "company name" place
 const asyncGetCall = async () => {
   try {
+    let nameFilePdf
+
     //Pobieranie danych z pliku config
     const response = await fetch('config.json');
     const data = await response.json();
+
+
     //pobranie i wypisanie nazwy firmy
     const company = data.settings.company
     document.getElementById("company").innerHTML = company;
+
     //wyciagniecie tablicy z pdfami
     const pdfList = data.assets.pdfs
+
     //petla wyciagająca dane z listy pdfów
     const pdflistObjects = pdfList.forEach(function (item, index, array) {
       const namePdf = item.title;
-      const nameFilePdf = item.filename;
+      let nameFilePdf = item.filename;
+
       //do nazwy newbox dodaje indeks
       let newBox = "newbox" + index
 
@@ -54,7 +41,7 @@ const asyncGetCall = async () => {
 
         //tworzę divy z nazwa Pdfa i nazwa pliku z Pdfem
         newDivPdf = document.createElement("div");
-        
+
         newDivPdfFile = document.createElement("div");
 
         //w stworzonych divach umieszczam wartosci wyjete z petli
@@ -65,18 +52,27 @@ const asyncGetCall = async () => {
         //tworzenie diva z jpg.png
         var elem = document.createElement("img");
         elem.setAttribute("src", "./assets/documents/Pdf.png");
-        elem.className = 'pngPdf';
+        elem.className = 'pngPdf clickPdfClass';
         document.getElementById(newBox).appendChild(elem);
 
         // tak stworzone divy z zawartoscia umieszczam w elemencie newbox w divie pdf
         document.getElementById(newBox).appendChild(newDivPdf);
+        newDivPdf.className = 'clickPdfClass';
+
         const clickPdf = document.getElementById(newBox).appendChild(newDivPdfFile);
         console.log(clickPdf)
 
 
       }
       addElement()
+      console.log(nameFilePdf)
+
+
+
     })
+    console.log(nameFilePdf)
+
+
     const videoList = data.assets.videos
 
     //petla wyciagająca dane z listy video
@@ -111,19 +107,24 @@ const asyncGetCall = async () => {
 
       }
       addElement2()
+
+
     })
 
-    let pdfListener = document.querySelectorAll(".newBoxPdf")
+    let pdfListener = document.querySelectorAll(".clickPdfClass")
     console.log(pdfListener)
-
-    pdfListener.forEach(function(item, index, array){
+    
+    pdfListener.forEach(function (item, index, array) {
       item.addEventListener("click", e => {
-        console.log(e.target.id)
+        console.log("dzialaa")
+    
+    
+    
         //var idPdfFile = document.getElementsByClassName(newBoxPdf)[0].id;
         //console.log(nameFilePdf)
       })
     })
-    
+
     // enter you logic when the fetch is successful
 
   } catch (error) {
@@ -134,6 +135,8 @@ const asyncGetCall = async () => {
 
 
 asyncGetCall()
+
+
 
 document.getElementById("buttonPdf").addEventListener("click", e => {
   const killAllPdf = document.getElementById(nameFilePdf);

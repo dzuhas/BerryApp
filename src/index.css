@@ -33,6 +33,10 @@ body {
   display: flex;
 }
 
+.clickPdfClass {
+  color: blue;
+}
+
 .newBoxPdf {
   background-color: grey;
   width: 201px;
