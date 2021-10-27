@@ -37,6 +37,10 @@ body {
   color: blue;
 }
 
+.newDivPdfFile {
+  display: none;
+}
+
 .newBoxPdf {
   background-color: grey;
   width: 201px;

@@ -4,6 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <title>BerrylifeApp</title>
+  <script src="../node_modules/pdfjs-dist/build/pdf.js"></script>
+  <script src="../node_modules/pdfjs-dist/build/pdf.worker.js"></script>
   <link rel="stylesheet" href="index.css">
 </head>
 
@@ -42,12 +44,17 @@
     <button id="next">Next</button>
     <span id="npages">not yet</span>
     <button id="buttonPdf">Wróć</button>
+    <canvas id="myCanvas"></canvas>
     <div>
       <canvas id="cnv"></canvas>
     </div>
 
   </div>
-  <script src="app.js"></script>
+  
+  <script type="module" src="app.js"></script>
+  <script src="../node_modules/pdfjs-dist/build/pdf.js"></script>
+  <script src="../node_modules/pdfjs-dist/build/pdf.worker.js"></script>
+
 </body>
 
 </html>

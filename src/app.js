@@ -1,8 +1,7 @@
-let nameFilePdf
-
-
+//import  { pdfExport } from './pdfReader.js'
+//console.log(pdfExport) ;
 //Downoload data from config.json and put to "company name" place
-const asyncGetCall = async () => {
+const asyncGetCall66 = async () => {
   try {
     let nameFilePdf
 
@@ -30,7 +29,7 @@ const asyncGetCall = async () => {
       function addElement() {
 
         // tworze diva
-        Box = document.createElement("div");
+        let Box = document.createElement("div");
 
         // umieszczam go w DOM
         document.getElementById('pdf').appendChild(Box);
@@ -40,9 +39,9 @@ const asyncGetCall = async () => {
         Box.className = 'newBoxPdf';
 
         //tworzę divy z nazwa Pdfa i nazwa pliku z Pdfem
-        newDivPdf = document.createElement("div");
+        let newDivPdf = document.createElement("div");
 
-        newDivPdfFile = document.createElement("div");
+        let newDivPdfFile = document.createElement("div");
 
         //w stworzonych divach umieszczam wartosci wyjete z petli
         newDivPdf.innerHTML = namePdf;
@@ -60,6 +59,8 @@ const asyncGetCall = async () => {
         newDivPdf.className = 'clickPdfClass';
 
         const clickPdf = document.getElementById(newBox).appendChild(newDivPdfFile);
+        newDivPdfFile.className = 'newDivPdfFile';
+
         console.log(clickPdf)
 
 
@@ -73,53 +74,53 @@ const asyncGetCall = async () => {
     console.log(nameFilePdf)
 
 
-    const videoList = data.assets.videos
+    // const videoList = data.assets.videos
 
-    //petla wyciagająca dane z listy video
-    videoList.forEach(function (item, index, array) {
-      const nameVideo = item.title;
-      const nameFileVideos = item.filename;
-      const posterVideos = item.poster;
-      let newBoxVideo = "newboxVideo" + index
+    // //petla wyciagająca dane z listy video
+    // videoList.forEach(function (item, index, array) {
+    //   const nameVideo = item.title;
+    //   const nameFileVideos = item.filename;
+    //   const posterVideos = item.poster;
+    //   let newBoxVideo = "newboxVideo" + index
 
-      function addElement2() {
-        Box = document.createElement("div");
-        // umieszczam go w DOM
-        document.getElementById('filmy').appendChild(Box);
-        Box.id = newBoxVideo;
-        Box.className = 'newBoxVideo';
+    //   function addElement2() {
+    //     Box = document.createElement("div");
+    //     // umieszczam go w DOM
+    //     document.getElementById('filmy').appendChild(Box);
+    //     Box.id = newBoxVideo;
+    //     Box.className = 'newBoxVideo';
 
-        newDivVideo = document.createElement("div");
-        newDivVideoFile = document.createElement("div");
-        newDivPoster = document.createElement("div");
+    //     newDivVideo = document.createElement("div");
+    //     newDivVideoFile = document.createElement("div");
+    //     newDivPoster = document.createElement("div");
 
-        newDivVideo.innerHTML = nameVideo;
-        newDivVideoFile.innerHTML = nameFileVideos;
-        newDivPoster.innerHTML = posterVideos;
+    //     newDivVideo.innerHTML = nameVideo;
+    //     newDivVideoFile.innerHTML = nameFileVideos;
+    //     newDivPoster.innerHTML = posterVideos;
 
-        // add the newly created element and it's content into the DOM - do sprawdzenia
+    //     // add the newly created element and it's content into the DOM - do sprawdzenia
 
-        document.getElementById(newBoxVideo).appendChild(newDivVideo);
-        document.getElementById(newBoxVideo).appendChild(newDivVideoFile);
-        document.getElementById(newBoxVideo).appendChild(newDivPoster);
-
-
-
-      }
-      addElement2()
+    //     document.getElementById(newBoxVideo).appendChild(newDivVideo);
+    //     document.getElementById(newBoxVideo).appendChild(newDivVideoFile);
+    //     document.getElementById(newBoxVideo).appendChild(newDivPoster);
 
 
-    })
+
+    //   }
+    //   addElement2()
+
+
+    // })
 
     let pdfListener = document.querySelectorAll(".clickPdfClass")
     console.log(pdfListener)
-    
+
     pdfListener.forEach(function (item, index, array) {
       item.addEventListener("click", e => {
         console.log("dzialaa")
-    
-    
-    
+
+
+
         //var idPdfFile = document.getElementsByClassName(newBoxPdf)[0].id;
         //console.log(nameFilePdf)
       })
@@ -134,7 +135,7 @@ const asyncGetCall = async () => {
 }
 
 
-asyncGetCall()
+asyncGetCall66()
 
 
 
@@ -148,9 +149,42 @@ document.getElementById("buttonPdf").addEventListener("click", e => {
 })
 
 
+//import  pdfjsLib from 'pdfjs-dist';
 
+//const pdfjsLib = require('pdfjs-dist');
 
+//export const pdfExport = "gruby"
+console.log(pdfjsLib)
 
+var kamil = pdfjsLib.getDocument('kalendarz.pdf')
 
+ kamil.promise.then(function(pdf) {
+  // you can now use *pdf* here
+  console.log("ulala")
+  var pageNumber = 1;
+  pdf.getPage(pageNumber).then(function(page) {
+    console.log('Page loaded');
+    
+    var scale = 1.5;
+    var viewport = page.getViewport({scale: scale});
 
+    // Prepare canvas using PDF page dimensions
+    var canvas = document.getElementById('cnv');
+    var context = canvas.getContext('2d');
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
 
+    // Render PDF page into canvas context
+    var renderContext = {
+      canvasContext: context,
+      viewport: viewport
+    };
+    var renderTask = page.render(renderContext);
+    renderTask.promise.then(function () {
+      console.log('Page rendered');
+    });
+  });
+}, function (reason) {
+  // PDF loading error
+  console.error(reason);
+});
