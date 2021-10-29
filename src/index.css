@@ -49,8 +49,11 @@ body {
 }
 
 .pupPdf {
+  display: none;
   position: absolute;
-  height: 500px;
-  width: 500px;
   background-color: red;
+}
+
+.pupPdfOpen {
+  display: absolute;
 }
