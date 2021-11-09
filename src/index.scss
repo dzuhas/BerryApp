@@ -37,9 +37,12 @@ body {
 }
 .pdfMain{
   display: flex;
+ }
  
+ .pdfMainHidden{
+   display: none;
+ }
 
-}
 .clickPdfClass{
   color: blue;
 
@@ -57,11 +60,15 @@ body {
 }
 .pupPdf{
   display: none;
-  position: absolute;
+  //position: absolute;
   
   background-color: red;
 }
 .pupPdfOpen{
-  display: absolute;
+  display:block;
+  position: absolute;
 
+}
+.noneSens {
+color: #000;
 }

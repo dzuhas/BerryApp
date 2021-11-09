@@ -1,193 +1,61 @@
-function changePdfClass() {
-  let classPdf = document.getElementById('pdfPupop');
+var newBox
+var namePdf
+var numPage
+var numPages
+//var newDivPdfFile
+var nameFilePdf
+function andrzej() {
 
-  // removing class
-  classPdf.classList.remove('pupPdf');
-  classPdf.classList.add('pupPdfOpen');
+  let pdfListener = document.querySelectorAll(".clickPdfClass")
+  console.log(pdfListener)
 
-}
-//Downoload data from config.json and put to "company name" place
-const asyncGetCall66 = async () => {
-  try {
-    let nameFilePdf
+  pdfListener.forEach(function (item, index, array) {
+    item.addEventListener("click", e => {
 
-    //Pobieranie danych z pliku config
-    const response = await fetch('config.json');
-    const data = await response.json();
+      console.log(item)
+      let danek = item.lastChild;
+      console.log(danek)
 
+      let danekName = danek.innerHTML
+      console.log(danekName)
+      //console.log('src\assets\documents\')
 
-    //pobranie i wypisanie nazwy firmy
-    const company = data.settings.company
-    document.getElementById("company").innerHTML = company;
-
-    //wyciagniecie tablicy z pdfami
-    const pdfList = data.assets.pdfs
-
-    //petla wyciagająca dane z listy pdfów
-    const pdflistObjects = pdfList.forEach(function (item, index, array) {
-      const namePdf = item.title;
-      let nameFilePdf = item.filename;
-
-      //do nazwy newbox dodaje indeks
-      let newBox = "newbox" + index
-      let getPdfNameDiv = "getPdfNameDiv" + index
-
-      //funkcja tworząca odpowiednie divy
-      function addElement() {
-
-        // tworze diva
-        let Box = document.createElement("div");
-        let NewDivGetPdf = document.createElement("div")
-        // umieszczam go w DOM
-        document.getElementById('pdf').appendChild(Box);
-
-        //nadaje mu id
-        Box.id = newBox;
-        Box.className = 'newBoxPdf';
-
-        //tworzę divy z nazwa Pdfa i nazwa pliku z Pdfem
-        let newDivPdf = document.createElement("div");
-
-        let newDivPdfFile = document.createElement("div");
-
-        //w stworzonych divach umieszczam wartosci wyjete z petli
-        newDivPdf.innerHTML = namePdf;
-        newDivPdfFile.innerHTML = nameFilePdf;
-        console.log(nameFilePdf)
-
-        //tworzenie diva z jpg.png
-        var elem = document.createElement("img");
-        elem.setAttribute("src", "./assets/documents/Pdf.png");
-        elem.className = 'pngPdf clickPdfClass';
-        
-        document.getElementById(newBox).appendChild(elem);
-
-        // tak stworzone divy z zawartoscia umieszczam w elemencie newbox w divie pdf
-        document.getElementById(newBox).appendChild(newDivPdf);
-        newDivPdf.className = 'clickPdfClass';
-
-        const clickPdf = document.getElementsByClassName('pngPdf clickPdfClass')
-        console.log(clickPdf)
-        Array.from(clickPdf).forEach(function(item, index){
-          item.appendChild(newDivPdfFile);
-          console.log(item)
-          newDivPdfFile.className = 'newDivPdfFile'
-       });
-        // const mariusz = clickPdf.forEach(function (item, index, array){
-        //   item.appendChild(newDivPdfFile);
-        //   console.log(item)
-        //   newDivPdfFile.className = 'newDivPdfFile';
-        // })
-        //.clickPdf.appendChild(newDivPdfFile);
-        //newDivPdfFile.className = 'newDivPdfFile';
-
-        //console.log(clickPdf)
+      let sciezka = `assets/documents/`;
+      console.log(sciezka)
 
 
-      }
-      addElement()
-      console.log(nameFilePdf)
+      let kotek = sciezka.concat(danekName)
+      console.log(kotek)
 
+      console.log(pdfjsLib)
+      var numPages
+      //var kamil = pdfjsLib.getDocument(kotek)
+      //console.log(kamil)
+      let loadingTask = pdfjsLib.getDocument(kotek),
+        pdfDoc = null,
+        //canvas = document.querySelector('#cnv'),
+        //ctx = canvas.getContext('2d'),
+        //scale = 1.5,
+        numPage = 1;
 
+      console.log(numPage)
 
-    })
-    console.log(nameFilePdf)
-
-
-    // const videoList = data.assets.videos
-
-    // //petla wyciagająca dane z listy video
-    // videoList.forEach(function (item, index, array) {
-    //   const nameVideo = item.title;
-    //   const nameFileVideos = item.filename;
-    //   const posterVideos = item.poster;
-    //   let newBoxVideo = "newboxVideo" + index
-
-    //   function addElement2() {
-    //     Box = document.createElement("div");
-    //     // umieszczam go w DOM
-    //     document.getElementById('filmy').appendChild(Box);
-    //     Box.id = newBoxVideo;
-    //     Box.className = 'newBoxVideo';
-
-    //     newDivVideo = document.createElement("div");
-    //     newDivVideoFile = document.createElement("div");
-    //     newDivPoster = document.createElement("div");
-
-    //     newDivVideo.innerHTML = nameVideo;
-    //     newDivVideoFile.innerHTML = nameFileVideos;
-    //     newDivPoster.innerHTML = posterVideos;
-
-    //     // add the newly created element and it's content into the DOM - do sprawdzenia
-
-    //     document.getElementById(newBoxVideo).appendChild(newDivVideo);
-    //     document.getElementById(newBoxVideo).appendChild(newDivVideoFile);
-    //     document.getElementById(newBoxVideo).appendChild(newDivPoster);
-
-
-
-    //   }
-    //   addElement2()
-
-
-    // })
-
-    let pdfListener = document.querySelectorAll(".clickPdfClass")
-    console.log(pdfListener)
-    // tutaj trzeba zmienic ta funkcje tak zeby pobierala dane z miejsca klika a nie z wszystkich class
-    pdfListener.forEach(function (item, index, array) {
-      item.addEventListener("click", e => {
-
-        // console.log(button.closest(".i-am-in-the-dom"));
-        //trzeba uporzadkowac divy tak zeby moc zastosowac https://developer.mozilla.org/en-US/docs/Web/API/Element/closest
-        
-        //console.log(item)
-        let danek = item.childNodes[0];
-        let danekName = danek.innerHTML
-        console.log(danek)
-        console.log(danekName)
-        //console.log('src\assets\documents\')
-
-        let sciezka = `assets/documents/`;
-        console.log(sciezka)
-        //let parts = sciezka.split("/");
-
-        //console.log(parts)
-
-        let kotek = sciezka.concat(danekName)
-        console.log(kotek)
-
-
-        // const url = new URL("src\assets\documents\2.pdf");
-        // console.log(url.pathname); 
-
-        // let pdfDivL = document.querySelector(".newDivPdfFile")
-        // //console.log(pdfDivL)
-        // var newURL="http://www.example.com/index.html/homePage/aboutus/";
-        // console.log(newURL);
-        // var splitURL=newURL.toString().split("/");
-        // console.log(splitURL);
-        //let r2 = danek.closest(".newDivPdfFile");
-        //console.log(r2)
-
-        //let r1 = pdfDivL.closest(".newBoxPdf");
-        //console.log(pdfDivL.closest(danek));
-
-        //console.log(r1)
-        ////console.log(pdfDivL.innerHTML)
-
-        console.log(pdfjsLib)
-
-        var kamil = pdfjsLib.getDocument(kotek)
-        console.log(kamil)
-
-        kamil.promise.then(function (pdf) {
+      const ChangePage = () => {
+        loadingTask.promise.then(function (pdf) {
           // you can now use *pdf* here
           console.log("ulala")
+          numPages = pdf.numPages;
+          console.log(numPages)
+          //const numPage = pdf.numPage;
+          console.log(numPage)
+
           changePdfClass()
-          var pageNumber = 1;
-          pdf.getPage(pageNumber).then(function (page) {
+          //var pageNumber = 1;
+          pdf.getPage(numPage).then(function (page) {
             console.log('Page loaded');
+            console.log(page);
+
+            changePdfClass()
 
             var scale = 1.5;
             var viewport = page.getViewport({ scale: scale });
@@ -207,17 +75,170 @@ const asyncGetCall66 = async () => {
             renderTask.promise.then(function () {
               console.log('Page rendered');
             });
+            document.querySelector('#npages').innerHTML = numPage;
+
           });
         }, function (reason) {
           // PDF loading error
           console.error(reason);
-        });
+        })
+      };
+      ChangePage()
+      document.getElementById('next').addEventListener('click', () => {
+        console.log("1")
+        console.log(numPage)
+        console.log(numPages)
 
 
-        //var idPdfFile = document.getElementsByClassName(newBoxPdf)[0].id;
-        //console.log(nameFilePdf)
-      })
+        const isValidPage = numPage < numPages;
+        if (isValidPage) {
+          numPage += 1;
+          ChangePage();
+        }
+      });
+
+      document.getElementById('prev').addEventListener('click', () => {
+        console.log("2")
+        console.log(numPage)
+        console.log(numPages)
+
+        const isValidPage = numPage - 1 > 0;
+        if (isValidPage) {
+          numPage -= 1;
+          ChangePage();
+        }
+      });
     })
+  })
+}
+
+function addDiv() {
+  console.log(nameFilePdf)
+  let newDivPdfFile = document.createElement("div");
+  newDivPdfFile.innerHTML = nameFilePdf;
+
+  let clickPdf = document.getElementsByClassName('pngPdf clickPdfClass')
+  console.log(clickPdf)
+  Array.from(clickPdf).forEach(function (hun, index) {
+    const juziu = hun.appendChild(newDivPdfFile);
+    console.log(hun)
+
+    newDivPdfFile.className = 'newDivPdfFile'
+
+  });
+}
+// sprobowac wyciagnac funkcje  od  let pdfListener = document.querySelectorAll(".clickPdfClass") a potem zmienna kamil
+function addElement() {
+  //var nameFilePdf
+  // tworze diva
+  let Box = document.createElement("div");
+  //let NewDivGetPdf = document.createElement("div")
+  // umieszczam go w DOM
+  document.getElementById('pdf').appendChild(Box);
+
+  //nadaje mu id
+  Box.id = newBox;
+  Box.className = 'newBoxPdf';
+
+  //tworzę divy z nazwa Pdfa i nazwa pliku z Pdfem
+  let newDivPdf = document.createElement("div");
+
+  //let newDivPdfFile = document.createElement("div");
+
+  //w stworzonych divach umieszczam wartosci wyjete z petli
+  newDivPdf.innerHTML = namePdf;
+
+  //newDivPdfFile.innerHTML = nameFilePdf;
+  //console.log(nameFilePdf)
+  console.log(namePdf)
+  console.log(newDivPdf)
+
+  //tworzenie diva z jpg.png
+  var elem = document.createElement("img");
+  elem.setAttribute("src", "./assets/documents/Pdf.png");
+  elem.className = 'pngPdf clickPdfClass';
+
+  document.getElementById(newBox).appendChild(elem);
+
+  // tak stworzone divy z zawartoscia umieszczam w elemencie newbox w divie pdf
+  document.getElementById(newBox).appendChild(newDivPdf);
+  newDivPdf.className = 'nSens clickPdfClass';
+}
+
+
+function changePdfClass() {
+  let classPdf = document.getElementById('pdfPupop');
+
+  // removing class
+  classPdf.classList.remove('pupPdf');
+  classPdf.classList.add('pupPdfOpen');
+
+  let classPdf2 = document.getElementById('pdf');
+
+  classPdf2.classList.remove('pdfMain');
+  classPdf2.classList.add('pdfMainHidden');
+
+}
+function closePdf() {
+  console.log(numPages)
+  let classPdf = document.getElementById('pdfPupop');
+
+  // removing class
+  classPdf.classList.remove('pupPdfOpen');
+  classPdf.classList.add('pupPdf');
+
+  let classPdf2 = document.getElementById('pdf');
+
+  classPdf2.classList.remove('pdfMainHidden');
+  classPdf2.classList.add('pdfMain');
+
+}
+//Downoload data from config.json and put to "company name" place
+const asyncGetCall66 = async () => {
+  try {
+
+    //Pobieranie danych z pliku config
+    const response = await fetch('config.json');
+    const data = await response.json();
+
+
+    //pobranie i wypisanie nazwy firmy
+    const company = data.settings.company
+    document.getElementById("company").innerHTML = company;
+
+    //wyciagniecie tablicy z pdfami
+    const pdfList = data.assets.pdfs
+
+    //petla wyciagająca dane z listy pdfów
+    const pdflistObjects = pdfList.forEach(function (item, index, array) {
+
+      namePdf = item.title;
+      nameFilePdf = item.filename;
+
+      //do nazwy newbox dodaje indeks
+      newBox = "newbox" + index
+      //let getPdfNameDiv = "getPdfNameDiv" + index
+
+      //funkcja tworząca odpowiednie divy
+
+      addElement(namePdf, newBox)
+
+
+      let newDivPdfFile = document.createElement("div");
+      addDiv(nameFilePdf)
+
+      newDivPdfFile.innerHTML = nameFilePdf;
+      let clickPdf2 = document.getElementsByClassName('nSens clickPdfClass')
+      console.log(clickPdf2)
+      Array.from(clickPdf2).forEach(function (item, index) {
+        let zenon = item.appendChild(newDivPdfFile);
+
+        newDivPdfFile.className = 'newDivPdfFile'
+
+      });
+
+    })
+    andrzej()
 
     // enter you logic when the fetch is successful
 
@@ -231,7 +252,11 @@ const asyncGetCall66 = async () => {
 asyncGetCall66()
 
 
-
+document.getElementById("buttonPdf").addEventListener("click", e => {
+  numPages = 1
+  numPage = 1
+  closePdf()
+})
 
 
 
