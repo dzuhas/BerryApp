@@ -2,115 +2,10 @@ var newBox
 var namePdf
 var numPage
 var numPages
-//var newDivPdfFile
+var kotek
 var nameFilePdf
-function andrzej() {
+var loadingTask
 
-  let pdfListener = document.querySelectorAll(".clickPdfClass")
-  console.log(pdfListener)
-
-  pdfListener.forEach(function (item, index, array) {
-    item.addEventListener("click", e => {
-
-      console.log(item)
-      let danek = item.lastChild;
-      console.log(danek)
-
-      let danekName = danek.innerHTML
-      console.log(danekName)
-      //console.log('src\assets\documents\')
-
-      let sciezka = `assets/documents/`;
-      console.log(sciezka)
-
-
-      let kotek = sciezka.concat(danekName)
-      console.log(kotek)
-
-      console.log(pdfjsLib)
-      var numPages
-      //var kamil = pdfjsLib.getDocument(kotek)
-      //console.log(kamil)
-      let loadingTask = pdfjsLib.getDocument(kotek),
-        pdfDoc = null,
-        //canvas = document.querySelector('#cnv'),
-        //ctx = canvas.getContext('2d'),
-        //scale = 1.5,
-        numPage = 1;
-
-      console.log(numPage)
-
-      const ChangePage = () => {
-        loadingTask.promise.then(function (pdf) {
-          // you can now use *pdf* here
-          console.log("ulala")
-          numPages = pdf.numPages;
-          console.log(numPages)
-          //const numPage = pdf.numPage;
-          console.log(numPage)
-
-          changePdfClass()
-          //var pageNumber = 1;
-          pdf.getPage(numPage).then(function (page) {
-            console.log('Page loaded');
-            console.log(page);
-
-            changePdfClass()
-
-            var scale = 1.5;
-            var viewport = page.getViewport({ scale: scale });
-
-            // Prepare canvas using PDF page dimensions
-            var canvas = document.getElementById('cnv');
-            var context = canvas.getContext('2d');
-            canvas.height = viewport.height;
-            canvas.width = viewport.width;
-
-            // Render PDF page into canvas context
-            var renderContext = {
-              canvasContext: context,
-              viewport: viewport
-            };
-            var renderTask = page.render(renderContext);
-            renderTask.promise.then(function () {
-              console.log('Page rendered');
-            });
-            document.querySelector('#npages').innerHTML = numPage;
-
-          });
-        }, function (reason) {
-          // PDF loading error
-          console.error(reason);
-        })
-      };
-      ChangePage()
-      document.getElementById('next').addEventListener('click', () => {
-        console.log("1")
-        console.log(numPage)
-        console.log(numPages)
-
-
-        const isValidPage = numPage < numPages;
-        if (isValidPage) {
-          numPage += 1;
-          ChangePage();
-        }
-      });
-
-      document.getElementById('prev').addEventListener('click', () => {
-        console.log("2")
-        console.log(numPage)
-        console.log(numPages)
-
-        const isValidPage = numPage - 1 > 0;
-        if (isValidPage) {
-          numPage -= 1;
-          ChangePage();
-        }
-      });
-    })
-  })
-}
 
 function addDiv() {
   console.log(nameFilePdf)
@@ -129,7 +24,7 @@ function addDiv() {
 }
 // sprobowac wyciagnac funkcje  od  let pdfListener = document.querySelectorAll(".clickPdfClass") a potem zmienna kamil
 function addElement() {
-  //var nameFilePdf
+
   // tworze diva
   let Box = document.createElement("div");
   //let NewDivGetPdf = document.createElement("div")
@@ -165,7 +60,7 @@ function addElement() {
   newDivPdf.className = 'nSens clickPdfClass';
 }
 
-
+// ZMIANA KLASS ELEMENTU Z PDFAMI. Otwiera sie pdf = znika lista pdfów. 
 function changePdfClass() {
   let classPdf = document.getElementById('pdfPupop');
 
@@ -179,6 +74,8 @@ function changePdfClass() {
   classPdf2.classList.add('pdfMainHidden');
 
 }
+
+// ZAMKNIĘCIE DIVA Z OTWARTYM PDFEM za posrednictwem buttona "wróć"
 function closePdf() {
   console.log(numPages)
   let classPdf = document.getElementById('pdfPupop');
@@ -193,7 +90,7 @@ function closePdf() {
   classPdf2.classList.add('pdfMain');
 
 }
-//Downoload data from config.json and put to "company name" place
+//POBIERANIE DANYCH Z PLIKU CONFIG I TWORZENIE ODPOWIEDNIEJ ILOSCI ELEMENTÓW DIV (addElement). Nadanie elementom odpowiednich klas
 const asyncGetCall66 = async () => {
   try {
 
@@ -217,10 +114,9 @@ const asyncGetCall66 = async () => {
 
       //do nazwy newbox dodaje indeks
       newBox = "newbox" + index
-      //let getPdfNameDiv = "getPdfNameDiv" + index
 
       //funkcja tworząca odpowiednie divy
-
+      console.log("proba1")
       addElement(namePdf, newBox)
 
 
@@ -231,7 +127,6 @@ const asyncGetCall66 = async () => {
       let clickPdf2 = document.getElementsByClassName('nSens clickPdfClass')
       console.log(clickPdf2)
       Array.from(clickPdf2).forEach(function (item, index) {
-        let zenon = item.appendChild(newDivPdfFile);
 
         newDivPdfFile.className = 'newDivPdfFile'
 
@@ -250,30 +145,212 @@ const asyncGetCall66 = async () => {
 
 
 asyncGetCall66()
-
+function resetCurrentPDF() {
+  loadingTask = {
+    file: null,
+    countOfPages: 0,
+    numPage: 1,
+    numPages: 0
+  }
+}
 
 document.getElementById("buttonPdf").addEventListener("click", e => {
-  numPages = 1
-  numPage = 1
+  resetCurrentPDF()
   closePdf()
 })
 
+// FUNKCJA POBIERAJACA NAZWE PLIKU PDF Z KLIKNIETEGI DIVA + DOLACZANIE LOKALIZACJI 
+
+function andrzej() {
+
+  let pdfListener = document.querySelectorAll(".clickPdfClass")
+  console.log(pdfListener)
+
+  pdfListener.forEach(function (item, index, array) {
+    item.addEventListener("click", e => {
+      let danek = item.lastChild;
+      console.log(danek)
+
+      let danekName = danek.innerHTML
+      console.log(danekName)
+
+      let sciezka = `assets/documents/`;
+      console.log(sciezka)
 
 
-// document.getElementById("buttonPdf").addEventListener("click", e => {
-//   const killAllPdf = document.getElementById(nameFilePdf);
-//   while (killAllPdf.firstChild) {
-//     killAllPdf.removeChild(killAllPdf.firstChild);
-//   }
-//   var killPdf = document.getElementById(nameFilePdf);
-//   killPdf.remove()
-// })
-// function handleClick(evt) {
-//       console.log("kups2")
+      let kotek = sciezka.concat(danekName)
+      console.log(kotek)
+      bogdan(kotek)
+    })
+  })
+}
+
+// FUNKCJA ODCZYTUJACA PDFA Z LOKALIZACJI KOTEK
+
+function bogdan(kotek) {
+  // console.log(item)
+
+  console.log(kotek)
+
+  console.log(numPages)
+
+  //var numPages
+  //var kamil = pdfjsLib.getDocument(kotek)
+  //console.log(kamil)
 
 
-//   // if a click happens somewhere outside the dropdown, close it.
-//   if (!evt.target.closest(".clickPdfClass")) {
-//     console.log("kups")
-//   }
-// }
+  changePdfClass()
+
+  var loadingTask = pdfjsLib.getDocument(kotek),
+    pdfDoc = null,
+    canvas = document.querySelector('#cnv'),
+    ctx = canvas.getContext('2d'),
+    scale = 1.5,
+    numPage = 1,
+    numPages = 0
+
+  const GeneratePDF = numPage => {
+    console.log(numPage)
+    console.log(pdfDoc.numPages)
+
+    if (ctx) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.beginPath();
+    }
+    pdfDoc.getPage(numPage).then(page => {
+
+      let viewport = page.getViewport({ scale: scale });
+      canvas.height = viewport.height;
+      canvas.width = viewport.width;
+
+      let renderContext = {
+        canvasContext: ctx,
+        viewport: viewport
+      }
+
+      page.render(renderContext);
+    })
+    document.querySelector('#npages').innerHTML = numPage;
+  }
+  // const PrevPage = () => {
+  //   if (numPage === 1) {
+  //     return
+  //   }
+  //   numPage--;
+  //   GeneratePDF(numPage);
+  // }
+
+  // const NextPage = () => {
+  
+  //   const isValidPage = numPage < pdfDoc.numPages;
+	// if (isValidPage) {
+	// 	numPage += 1;
+	// 	GeneratePDF();
+	// }
+  // }
+
+
+  loadingTask.promise.then(pdfDoc_ => {
+    pdfDoc = pdfDoc_;
+    document.querySelector('#npages').innerHTML = pdfDoc.numPages;
+    GeneratePDF(numPage)
+  });
+
+  document.getElementById('prev').addEventListener('click', () => {
+    const isValidPage = numPage - 1 > 0;
+    if (isValidPage) {
+      numPage -= 1;
+      GeneratePDF(numPage);
+    }
+  });
+
+  document.getElementById('next').addEventListener('click', () => {
+    const isValidPage = numPage < pdfDoc.numPages;
+     console.log(numPage)
+     console.log(pdfDoc.numPages)
+
+
+    if (isValidPage) {
+      numPage += 1
+      GeneratePDF(numPage);
+      console.log("czemu to jest")
+
+    }
+    else
+    {
+      console.log("nie ma strony nastepnej")
+    }
+  });
+  //   loadingTask.promise.then(function (pdf) {
+  //     // you can now use *pdf* here
+  //     console.log("ulala")
+  //     numPages = pdf.numPages;
+  //     console.log(numPages)
+  //     //const numPage = pdf.numPage;
+  //     console.log(numPage)
+
+  //     changePdfClass()
+  //     //var pageNumber = 1;
+  //     function aurelia() {
+  //       pdf.getPage(numPage).then(function (page) {
+  //         console.log('Page loaded');
+  //         console.log(page);
+  //         console.log(numPage)
+
+  //         changePdfClass()
+
+  //         var scale = 1.5;
+  //         var viewport = page.getViewport({ scale: scale });
+
+  //         // Prepare canvas using PDF page dimensions
+  //         var canvas = document.getElementById('cnv');
+  //         var context = canvas.getContext('2d');
+  //         canvas.height = viewport.height;
+  //         canvas.width = viewport.width;
+
+  //         // Render PDF page into canvas context
+  //         var renderContext = {
+  //           canvasContext: context,
+  //           viewport: viewport
+  //         };
+  //         var renderTask = page.render(renderContext);
+  //         renderTask.promise.then(function () {
+  //           console.log('Page rendered');
+  //         });
+  //         document.querySelector('#npages').innerHTML = numPage;
+
+  //       })
+  //     };
+  //     aurelia()
+  //   }, function (reason) {
+  //     // PDF loading error
+  //     console.error(reason);
+  //   })
+
+  // //ChangePage()
+
+
+  // document.getElementById('prev').addEventListener('click', () => {
+  //   console.log("poczatek priv")
+  //   console.log(numPage)
+  //   console.log(numPages)
+
+  //   const isValidPage = numPage - 1 > 0;
+  //   if (isValidPage) {
+  //     numPage -= 1;
+  //     //bogdan();
+  //   }
+  // });
+  // document.getElementById('next').addEventListener('click', () => {
+  //   console.log("poczatek nexta")
+  //   console.log(numPage)
+  //   console.log(numPages)
+
+
+  //   const isValidPage = numPage < numPages;
+  //   if (isValidPage) {
+  //     numPage += 1;
+  //    //bogdan();
+
+
+}
