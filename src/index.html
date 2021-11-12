@@ -1,60 +1,43 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>BerrylifeApp</title>
+    <script src="../node_modules/pdfjs-dist/build/pdf.js"></script>
+    <script src="../node_modules/pdfjs-dist/build/pdf.worker.js"></script>
+    <link rel="stylesheet" href="index.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <title>BerrylifeApp</title>
-  <script src="../node_modules/pdfjs-dist/build/pdf.js"></script>
-  <script src="../node_modules/pdfjs-dist/build/pdf.worker.js"></script>
-  <link rel="stylesheet" href="index.css">
-</head>
-
-<body>
-
-  <div>
-    <p id="company">Welcome to your Electron application.</p>
-  </div>
-  <div id="menu">
-    <h1>Menu</h1>
-  </div>
-  <div id="mainContent">
-    <div id="pdf" class="pdfMain">
-
+  <body>
+    <div>
+      <p id="company">Welcome to your Electron application.</p>
     </div>
-
-    <div id="produkty" class="produktyMain">
-      bbbb
+    <div id="menu">
+      <h1>Menu</h1>
     </div>
+    <div id="mainContent">
+      <div id="pdf" class="pdfMain"></div>
 
-    <div id="filmy" class="filmyMain">
-      ccccc
-    </div>
+      <div id="produkty" class="produktyMain">bbbb</div>
 
-    <div id="wspolpraca" class="wspolpracaMain">
-      dddddd
-    </div>
+      <div id="filmy" class="filmyMain">ccccc</div>
 
-    <div id="kontakt" class="kontaktMain">
-      eeeeeeeeee
-    </div>
-    <div id="pdfPupop" class="pupPdf">
-      <button id="prev">Prev</button>
-      <button id="next">Next</button>
-      <span id="npages">not yet</span>
-      <button id="buttonPdf">Wróć</button>
-      <div>
-        <canvas id="cnv"></canvas>
+      <div id="wspolpraca" class="wspolpracaMain">dddddd</div>
+
+      <div id="kontakt" class="kontaktMain">eeeeeeeeee</div>
+      <div id="pdfPupop" class="pupPdf">
+        <button id="prev">Prev</button>
+        <button id="next">Next</button>
+        <span id="npages">not yet</span>
+        <button id="buttonPdf">Wróć</button>
+        <div>
+          <canvas id="cnv"></canvas>
+        </div>
       </div>
-  
     </div>
-    
-  </div>
 
-  
-  <script type="module" src="app.js"></script>
-  <script src="../node_modules/pdfjs-dist/build/pdf.js"></script>
-  <script src="../node_modules/pdfjs-dist/build/pdf.worker.js"></script>
-
-</body>
-
+    <script type="module" src="app.js" defer></script>
+    <script src="../node_modules/pdfjs-dist/build/pdf.js"></script>
+    <script src="../node_modules/pdfjs-dist/build/pdf.worker.js"></script>
+  </body>
 </html>
