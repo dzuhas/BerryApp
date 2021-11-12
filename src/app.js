@@ -5,7 +5,7 @@ var numPages
 var kotek
 var nameFilePdf
 var loadingTask
-
+var pdfDoc
 
 function addDiv() {
   console.log(nameFilePdf)
@@ -77,7 +77,6 @@ function changePdfClass() {
 
 // ZAMKNIĘCIE DIVA Z OTWARTYM PDFEM za posrednictwem buttona "wróć"
 function closePdf() {
-  console.log(numPages)
   let classPdf = document.getElementById('pdfPupop');
 
   // removing class
@@ -142,20 +141,16 @@ const asyncGetCall66 = async () => {
     console.log(error)
   }
 }
-
+ 
 
 asyncGetCall66()
-function resetCurrentPDF() {
-  loadingTask = {
-    file: null,
-    countOfPages: 0,
-    numPage: 1,
-    numPages: 0
-  }
+function resetCurrentPDF(pdfDoc) {
+  console.log(pdfDoc)
 }
 
 document.getElementById("buttonPdf").addEventListener("click", e => {
-  resetCurrentPDF()
+  
+  resetCurrentPDF(pdfDoc)
   closePdf()
 })
 
@@ -191,8 +186,6 @@ function bogdan(kotek) {
   // console.log(item)
 
   console.log(kotek)
-
-  console.log(numPages)
 
   //var numPages
   //var kamil = pdfjsLib.getDocument(kotek)
@@ -231,24 +224,13 @@ function bogdan(kotek) {
       page.render(renderContext);
     })
     document.querySelector('#npages').innerHTML = numPage;
+    
+    console.log(pdfDoc)
+
+    //pdfDoc.destroy();
+
   }
-  // const PrevPage = () => {
-  //   if (numPage === 1) {
-  //     return
-  //   }
-  //   numPage--;
-  //   GeneratePDF(numPage);
-  // }
-
-  // const NextPage = () => {
   
-  //   const isValidPage = numPage < pdfDoc.numPages;
-	// if (isValidPage) {
-	// 	numPage += 1;
-	// 	GeneratePDF();
-	// }
-  // }
-
 
   loadingTask.promise.then(pdfDoc_ => {
     pdfDoc = pdfDoc_;
@@ -281,6 +263,8 @@ function bogdan(kotek) {
       console.log("nie ma strony nastepnej")
     }
   });
+
+ 
   //   loadingTask.promise.then(function (pdf) {
   //     // you can now use *pdf* here
   //     console.log("ulala")
@@ -354,3 +338,4 @@ function bogdan(kotek) {
 
 
 }
+
