@@ -42,6 +42,16 @@
                 "id": 2,
                 "title": "Drugi plik",
                 "filename": "Nazwa pliku 2.pdf"
+            },
+            {
+                "id": 3,
+                "title": "Trzeci plik",
+                "filename": "3.pdf"
+            },
+            {
+                "id": 4,
+                "title": "Czwarty plik",
+                "filename": "4.pdf"
             }
         ],
         "videos": [
