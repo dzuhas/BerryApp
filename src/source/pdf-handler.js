@@ -6,6 +6,7 @@ import {
   nextButton,
   prevButton,
   setPage,
+  setPages
 } from "./view-handler.js";
 
 let state = {
@@ -24,7 +25,7 @@ export async function openPDF(filepath) {
   setCurrentPage(1);
   const pdfDocument = await pdfjsLib.getDocument(filepath).promise;
   createPDF(pdfDocument, getCurrentPage());
-
+  setPages(pdfDocument.numPages);
   const nextButtonHandler = () => {
     const nextPageNumber = getCurrentPage() + 1;
     if (nextPageNumber > pdfDocument.numPages) return;

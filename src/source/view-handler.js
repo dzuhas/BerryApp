@@ -5,7 +5,8 @@ const company = document.getElementById("company");
 
 export const nextButton = document.getElementById("next");
 export const prevButton = document.getElementById("prev");
-export const pageSpan = document.getElementById("npages");
+export const pageSpan = document.getElementById("npage");
+export const pagesSpan = document.getElementById("npages");
 export const backButton = document.getElementById("buttonPdf");
 
 export const canvas = document.querySelector("#cnv");
@@ -18,7 +19,9 @@ export function setCompanyName(name) {
 export function setPage(page) {
   pageSpan.innerHTML = page;
 }
-
+export function setPages(pages) {
+  pagesSpan.innerHTML = pages;
+}
 export function showPDFView() {
   togglePDF();
 }
