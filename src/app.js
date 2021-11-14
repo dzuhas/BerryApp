@@ -14,6 +14,9 @@ import { createList, setListListeners } from "./source/list-handler.js";
     createList(pdfs);
     setListListeners();
   } catch (error) {
+
     console.log(error);
   }
 })();
+
+ 
