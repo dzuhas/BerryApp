@@ -3,24 +3,36 @@ body {
   background-color: #1876d2;
 }
 
+.hidden {
+  display: none;
+}
+
 .newBoxVideo {
   background-color: green;
 }
 
 .produktyMain {
+  display: flex;
+}
+
+.produktyMainHidden {
   display: none;
 }
 
 .filmyMain {
+  display: flex;
+}
+
+.filmyMainHidden {
   display: none;
 }
 
 .wspolpracaMain {
-  display: none;
+  display: flex;
 }
 
 .kontaktMain {
-  display: none;
+  display: flex;
 }
 
 .pngPdf {

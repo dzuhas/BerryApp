@@ -12,19 +12,27 @@
     <div>
       <p id="company">Welcome to your Electron application.</p>
     </div>
+    <nav>
     <div id="menu">
-      <h1>Menu</h1>
+      <ul>
+        <li id="pdfMenu">PDFY</li>
+        <li id="produktyMenu">PRODUKTY</li>
+        <li id="filmyMenu">FILMY</li>
+        <li id="wspolpracaMenu">WSPÓŁPRACA</li>
+        <li id="kontaktMenu">KONTAKT</li>
+
     </div>
+  </nav>
     <div id="mainContent">
       <div id="pdf" class="pdfMain"></div>
 
-      <div id="produkty" class="produktyMain">bbbb</div>
+      <div id="produkty" class="hidden">bbbb</div>
 
-      <div id="filmy" class="filmyMain">ccccc</div>
+      <div id="filmy" class="hidden">ccccc</div>
 
-      <div id="wspolpraca" class="wspolpracaMain">dddddd</div>
+      <div id="wspolpraca" class="hidden">dddddd</div>
 
-      <div id="kontakt" class="kontaktMain">eeeeeeeeee</div>
+      <div id="kontakt" class="hidden">eeeeeeeeee</div>
       <div id="pdfPupop" class="pupPdf">
         <button id="prev">Prev</button>
         <button id="next">Next</button>
@@ -37,6 +45,7 @@
     </div>
 
     <script type="module" src="app.js" defer></script>
+
     <script src="../node_modules/pdfjs-dist/build/pdf.js"></script>
     <script src="../node_modules/pdfjs-dist/build/pdf.worker.js"></script>
   </body>
