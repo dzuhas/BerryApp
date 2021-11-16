@@ -2,6 +2,7 @@ const pdf = document.getElementById("pdfPupop");
 export const list = document.getElementById("pdf");
 
 const company = document.getElementById("company");
+const startText = document.getElementById("welcomeText");
 
 export const nextButton = document.getElementById("next");
 export const prevButton = document.getElementById("prev");
@@ -12,10 +13,12 @@ export const backButton = document.getElementById("buttonPdf");
 export const canvas = document.querySelector("#cnv");
 export const canvasContext = canvas.getContext("2d");
 
-export function setCompanyName(name) {
+export function setContentText(name) {
   company.innerHTML = name;
 }
-
+export function setWelcomeText(text) {
+  startText.innerHTML = text;
+}
 export function setPage(page) {
   pageSpan.innerHTML = page;
 }

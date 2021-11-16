@@ -4,6 +4,7 @@
         "company": "Nazwa firmy",
         "homeText": "Tekst powitalny z pierwszej strony",
         "contactText": "Tekst nad formularzem kontaktowym",
+        "mainText":"Nasza oferta przedstawia 100 produktów z serii 'My gold product'",
         "contact": [
             {
                 "position": "CTO, co-founder",

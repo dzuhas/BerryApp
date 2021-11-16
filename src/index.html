@@ -1,28 +1,45 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>BerrylifeApp</title>
-    <script src="../node_modules/pdfjs-dist/build/pdf.js"></script>
-    <script src="../node_modules/pdfjs-dist/build/pdf.worker.js"></script>
-    <link rel="stylesheet" href="index.css" />
-  </head>
 
-  <body>
+<head>
+  <meta charset="UTF-8" />
+  <title>BerrylifeApp</title>
+  <script src="../node_modules/pdfjs-dist/build/pdf.js"></script>
+  <script src="../node_modules/pdfjs-dist/build/pdf.worker.js"></script>
+  <link rel="stylesheet" href="index.css" />
+</head>
+
+<body>
+  <div id="welcomePage" >
+    <div id="logoWelcome">
+
+    </div>
+    <div id="welcomeText">
+      Zapraszamy do zapoznania się z naszą ofertą
+    </div>
+    <div>
+      <button id="buttonStart">Chcę zobaczyć</button>
+
+    </div>
+  </div>
+  <div id="main" class="hidden">
+    <div id="logoMain">
+
+    </div>
     <div>
       <p id="company">Welcome to your Electron application.</p>
     </div>
     <nav>
-    <div id="menu">
-      <ul>
-        <li id="pdfMenu">PDFY</li>
-        <li id="produktyMenu">PRODUKTY</li>
-        <li id="filmyMenu">FILMY</li>
-        <li id="wspolpracaMenu">WSPÓŁPRACA</li>
-        <li id="kontaktMenu">KONTAKT</li>
+      <div id="menu">
+        <ul>
+          <li id="pdfMenu">PDFY</li>
+          <li id="produktyMenu">PRODUKTY</li>
+          <li id="filmyMenu">FILMY</li>
+          <li id="wspolpracaMenu">WSPÓŁPRACA</li>
+          <li id="kontaktMenu">KONTAKT</li>
 
-    </div>
-  </nav>
+      </div>
+    </nav>
     <div id="mainContent">
       <div id="pdf" class="pdfMain"></div>
 
@@ -36,17 +53,18 @@
       <div id="pdfPupop" class="pupPdf">
         <button id="prev">Prev</button>
         <button id="next">Next</button>
-       <span><span id="npage">0</span> z <span id="npages">0</span></span> 
+        <span><span id="npage">0</span> z <span id="npages">0</span></span>
         <button id="buttonPdf">Wróć</button>
         <div>
           <canvas id="cnv"></canvas>
         </div>
       </div>
     </div>
+  </div>
+  <script type="module" src="app.js" defer></script>
 
-    <script type="module" src="app.js" defer></script>
+  <script src="../node_modules/pdfjs-dist/build/pdf.js"></script>
+  <script src="../node_modules/pdfjs-dist/build/pdf.worker.js"></script>
+</body>
 
-    <script src="../node_modules/pdfjs-dist/build/pdf.js"></script>
-    <script src="../node_modules/pdfjs-dist/build/pdf.worker.js"></script>
-  </body>
 </html>

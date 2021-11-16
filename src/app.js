@@ -1,3 +1,37 @@
+// ----------- WELCOME PAGE ----------
+
+// ------Button-----------
+const startButton = document.getElementById("buttonStart");
+
+startButton.addEventListener("click", () => {
+  const start = document.getElementById("welcomePage")
+  const main = document.getElementById("main")
+
+  main.classList.toggle("hidden");
+  start.classList.toggle("hidden");
+
+});
+// ------Logo------------
+
+// Pobieranie logo i umieszanie w odpowiednicj miejscach
+
+function createLogo(src, targetLogo) {
+  const logoDiv = document.getElementById(targetLogo);
+  const img = document.createElement("img");
+  img.setAttribute("src", src);
+  //img.className = className;
+  console.log("sukces")
+  logoDiv.appendChild(img);
+
+  return img;
+}
+createLogo("./assets/logo/logo.png", "logoWelcome")
+createLogo("./assets/logo/logo.png", "logoMain")
+
+//------ Text------
+
+
+
 // ----------- MENU ------------------
 
 //Funkcja zamieniająca klasy w odpowiednim divie 
@@ -6,7 +40,7 @@
 //   nameDiv.classList.toggle(classA);
 //   nameDiv.classList.toggle(classB);
 // }
-function repleceMenuHidden(nameDiv,classA,classB) {
+function repleceMenuHidden(nameDiv, classA, classB) {
   nameDiv.classList.replace(classA, classB);
 }
 
@@ -16,12 +50,12 @@ function repleceMenuHidden(nameDiv,classA,classB) {
 //   toggleMenu(filmy,"filmyMainHidden","filmyMain")
 
 // }
-function mainHiddenForAll(){
-  repleceMenuHidden(pdf,"pdfMain","hidden")
-  repleceMenuHidden(produkty,"produktyMain","hidden")
-  repleceMenuHidden(filmy,"filmyMain","hidden",)
-  repleceMenuHidden(wspolpraca,"wspolpracaMain","hidden",)
-  repleceMenuHidden(kontakt,"kontaktMain","hidden",)
+function mainHiddenForAll() {
+  repleceMenuHidden(pdf, "pdfMain", "hidden")
+  repleceMenuHidden(produkty, "produktyMain", "hidden")
+  repleceMenuHidden(filmy, "filmyMain", "hidden",)
+  repleceMenuHidden(wspolpraca, "wspolpracaMain", "hidden",)
+  repleceMenuHidden(kontakt, "kontaktMain", "hidden",)
 
 }
 
@@ -32,13 +66,13 @@ function mainHiddenForAll(){
 const pdfMenuButton = document.getElementById("pdfMenu");
 
 pdfMenuButton.addEventListener("click", () => {
-   //tutaj trzeba dac ifa jesli nacisniesz pdf to nie rob nic
+  //tutaj trzeba dac ifa jesli nacisniesz pdf to nie rob nic
   // pdf.classList.add("pdfMainHidden");
   mainHiddenForAll()
   console.log("zakryte")
-  repleceMenuHidden(pdf,"hidden","pdfMain")
+  repleceMenuHidden(pdf, "hidden", "pdfMain")
 
-   //toggleMenuHiddenForAll()
+  //toggleMenuHiddenForAll()
 });
 
 // --- MENU PRODUKTY -------
@@ -46,12 +80,12 @@ pdfMenuButton.addEventListener("click", () => {
 const produktyMenuButton = document.getElementById("produktyMenu");
 
 produktyMenuButton.addEventListener("click", () => {
-  
+
 
   mainHiddenForAll()
   console.log("zakryte 2")
 
-  repleceMenuHidden(produkty,"hidden","produktyMain")
+  repleceMenuHidden(produkty, "hidden", "produktyMain")
 
 });
 
@@ -62,7 +96,7 @@ filmyMenuButton.addEventListener("click", () => {
   // toggleMenyForAll()
   mainHiddenForAll()
 
-  repleceMenuHidden(filmy,"hidden","filmyMain")
+  repleceMenuHidden(filmy, "hidden", "filmyMain")
 
 });
 // --- MENU WSPÓŁPRACA -------
@@ -73,7 +107,7 @@ wspolpracaMenuButton.addEventListener("click", () => {
   // toggleMenyForAll()
   mainHiddenForAll()
 
-  repleceMenuHidden(wspolpraca,"hidden","wspolpracaMain")
+  repleceMenuHidden(wspolpraca, "hidden", "wspolpracaMain")
 
 });
 
@@ -85,13 +119,13 @@ kontaktMenuButton.addEventListener("click", () => {
   // toggleMenyForAll()
   mainHiddenForAll()
 
-  repleceMenuHidden(kontakt,"hidden","kontaktMain")
+  repleceMenuHidden(kontakt, "hidden", "kontaktMain")
 
 });
 
 // ----------- PDF -------------------
 
-import { setCompanyName } from "./source/view-handler.js";
+import { setContentText, setWelcomeText} from "./source/view-handler.js";
 import { createList, setListListeners } from "./source/list-handler.js";
 
 (async () => {
@@ -99,11 +133,13 @@ import { createList, setListListeners } from "./source/list-handler.js";
     const data = await fetch("config.json").then((res) => res.json());
 
     const { settings, assets } = data;
-
-    const { company } = settings;
+    const { homeText} = settings;
+    const { mainText } = settings;
     const { pdfs } = assets;
+console.log(homeText)
 
-    setCompanyName(company);
+    setContentText(mainText);
+    setWelcomeText(homeText);
     createList(pdfs);
     setListListeners();
   } catch (error) {
@@ -112,4 +148,4 @@ import { createList, setListListeners } from "./source/list-handler.js";
   }
 })();
 
- 
+
