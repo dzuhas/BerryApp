@@ -40,3 +40,10 @@ function togglePDF() {
   list.classList.toggle("pdfMain");
   list.classList.toggle("pdfMainHidden");
 }
+// ------ Kontakt ---------
+
+export const listKontakt = document.getElementById("kontakt");
+
+// ------ Produkty ---------
+
+export const listProduct = document.getElementById("produkty");

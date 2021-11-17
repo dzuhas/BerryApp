@@ -1,16 +1,28 @@
-import { createPDFCard } from "./element-builder.js";
+import { createPDFCard, createKontaktCard, createProductCard } from "./element-builder.js";
 import { openPDF } from "./pdf-handler.js";
-import { list, showPDFView } from "./view-handler.js";
+import { list, showPDFView, listKontakt, listProduct } from "./view-handler.js";
 
 const DOCUMENTS_FOLER = "assets/documents/";
 
-export function createList(elements) {
+export function createListPdf(elements) {
   elements.forEach((element, i) => {
-    const card = createPDFCard(`nexbox${i}`, "newBoxPdf", element);
+    const card = createPDFCard(`nexboxPdf${i}`, "newBoxPdf", element);
     list.appendChild(card);
   });
 }
 
+export function createKontaktList(elements) {
+  elements.forEach((element, i) => {
+    const cardKontakt = createKontaktCard(`boxKontakt${i}`, "newBoxPdf", element);
+    listKontakt.appendChild(cardKontakt);
+  });
+}
+export function createProductList(elements) {
+  elements.forEach((element, i) => {
+    const cardProduct = createProductCard(`boxProduct${i}`, "newBoxPdf", element);
+    listProduct.appendChild(cardProduct);
+  });
+}
 export function setListListeners() {
   const pdfImages = document.querySelectorAll(".pngPdf.clickPdfClass");
 

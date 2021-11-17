@@ -20,7 +20,6 @@ function createLogo(src, targetLogo) {
   const img = document.createElement("img");
   img.setAttribute("src", src);
   //img.className = className;
-  console.log("sukces")
   logoDiv.appendChild(img);
 
   return img;
@@ -69,7 +68,6 @@ pdfMenuButton.addEventListener("click", () => {
   //tutaj trzeba dac ifa jesli nacisniesz pdf to nie rob nic
   // pdf.classList.add("pdfMainHidden");
   mainHiddenForAll()
-  console.log("zakryte")
   repleceMenuHidden(pdf, "hidden", "pdfMain")
 
   //toggleMenuHiddenForAll()
@@ -83,7 +81,6 @@ produktyMenuButton.addEventListener("click", () => {
 
 
   mainHiddenForAll()
-  console.log("zakryte 2")
 
   repleceMenuHidden(produkty, "hidden", "produktyMain")
 
@@ -126,22 +123,27 @@ kontaktMenuButton.addEventListener("click", () => {
 // ----------- PDF -------------------
 
 import { setContentText, setWelcomeText} from "./source/view-handler.js";
-import { createList, setListListeners } from "./source/list-handler.js";
+import { createListPdf, setListListeners, createKontaktList, createProductList } from "./source/list-handler.js";
 
 (async () => {
   try {
     const data = await fetch("config.json").then((res) => res.json());
 
-    const { settings, assets } = data;
+    const { settings, assets, products } = data;
     const { homeText} = settings;
     const { mainText } = settings;
     const { pdfs } = assets;
-console.log(homeText)
+    const { contact } = settings;
+    const { images } = products
+
 
     setContentText(mainText);
     setWelcomeText(homeText);
-    createList(pdfs);
+    createListPdf(pdfs);
     setListListeners();
+    createKontaktList(contact)
+    createProductList(products)
+
   } catch (error) {
 
     console.log(error);
