@@ -87,6 +87,7 @@ produktyMenuButton.addEventListener("click", () => {
 });
 
 // --- MENU FILMY -------
+
 const filmyMenuButton = document.getElementById("filmyMenu");
 
 filmyMenuButton.addEventListener("click", () => {
@@ -124,6 +125,7 @@ kontaktMenuButton.addEventListener("click", () => {
 
 import { setContentText, setWelcomeText} from "./source/view-handler.js";
 import { createListPdf, setListListeners, createKontaktList, createProductList } from "./source/list-handler.js";
+import { fullProductOpen } from "./source/element-builder.js";
 
 (async () => {
   try {
@@ -143,6 +145,7 @@ import { createListPdf, setListListeners, createKontaktList, createProductList }
     setListListeners();
     createKontaktList(contact)
     createProductList(products)
+    fullProductOpen()
 
   } catch (error) {
 
