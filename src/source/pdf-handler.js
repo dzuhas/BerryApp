@@ -7,6 +7,7 @@ import {
   prevButton,
   setPage,
   setPages
+  clearCanvas,
 } from "./view-handler.js";
 
 let state = {
@@ -23,6 +24,7 @@ export function setCurrentPage(currentPage) {
 
 export async function openPDF(filepath) {
   setCurrentPage(1);
+  clearCanvas(canvas);
   const pdfDocument = await pdfjsLib.getDocument(filepath).promise;
   createPDF(pdfDocument, getCurrentPage());
   setPages(pdfDocument.numPages);
