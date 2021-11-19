@@ -24,7 +24,7 @@ export function createProductList(elements) {
   });
 }
 export function setListListeners() {
-  const pdfImages = document.querySelectorAll(".pngPdf.clickPdfClass");
+  const pdfImages = document.querySelectorAll(".clickPdfClass");
 
   pdfImages.forEach((image) => {
     const filename = image.lastChild.innerHTML;
