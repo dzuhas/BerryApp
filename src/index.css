@@ -3,16 +3,16 @@ body {
   background-color: #1876d2;
 }
 
-.hidden {
-  display: none;
-}
-
 .newBoxVideo {
   background-color: green;
 }
 
 .produktyMain {
   display: flex;
+}
+
+.hidden {
+  display: none;
 }
 
 .produktyMainHidden {

@@ -1,3 +1,5 @@
+//------------------ PDF ----------
+
 const pdf = document.getElementById("pdfPupop");
 export const list = document.getElementById("pdf");
 
@@ -16,6 +18,12 @@ export const canvasContext = canvas.getContext("2d");
 export function setContentText(name) {
   company.innerHTML = name;
 }
+
+export function clearCanvas(canvas) {
+  const canvasContext = canvas.getContext("2d");
+  canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+}
+
 export function setWelcomeText(text) {
   startText.innerHTML = text;
 }

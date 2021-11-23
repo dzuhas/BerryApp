@@ -4,9 +4,12 @@
 
 //-------------------- PRODUKT --------------------
 
+var tabAllImages = [];
+
+
 const mainPageProduct = document.getElementById("produkty")
 const fullPageProduct = document.getElementById("productOpen")
-
+var productNameHandler
 export function createKontaktCard(id, className, { position, name, phone, email }) {
   const cardKontakt = document.createElement("div");
 
@@ -67,8 +70,9 @@ export function createProductCard(id, className, { title, description, images, p
   const cardProductTitle = document.createElement("div");
   cardProductTitle.className = "clickProduct"
   cardProductTitle.innerHTML = title;
-console.log(images)
-  createImagesList(images)
+  console.log(images)
+  tabAllImages.push(images)
+  //createImagesList(images)
   const firstImage = images[0];
   //cardProductMainImage.innerHTML = images[0];
 
@@ -78,14 +82,11 @@ console.log(images)
     "pngPdf clickProduct"
   );
 
-  const image2 = createProductImage(
-
-    `./assets/products/${firstImage}`,
-    "pngPdf"
-  );
-
+  const fullIdPhoto = "full" + id + "photo"
 
   console.log(firstImage)
+ 
+  
 
   const cardProductDescription = document.createElement("div");
   cardProductDescription.innerHTML = description;
@@ -104,26 +105,47 @@ console.log(images)
   cardProductTitle.appendChild(fullProduktNameHandler2);
 
   fullPageProduct.appendChild(cardProductFull);
+  
+
+
   console.log(fullId)
 
-  function createImagesList(elements) {
-    const tab = [];
 
-    elements.forEach((element, i) => {
-      console.log(element)
-      const imageProduct = createOneOfImages(`./assets/products/${element}`, "newBoxPdf");
-      tab.push(imageProduct)
-      //cardProductFull.appendChild(imageProduct);
-      // const proba = caruselProductImages(tab)
-      // console.log(proba)
+  //const buttonBackToMainProduct = document.getElementById("backToMainProduct")
 
-      // cardProductFull.appendChild(tab);
+  
+  // function createImagesList(elements, taber) {
+  //   var taber = [];
 
-    });
-    console.log(tab)
-    caruselProductImages (tab)
-  }
-  cardProductFull.appendChild(image2);
+  //   elements.forEach((element, i) => {
+  //     console.log(element)
+  //     console.log(i)
+
+  //     const imageProduct = createOneOfImages(`./assets/products/${element}`, "newBoxPdf");
+  //     taber.push(imageProduct)
+  //     //tab.push(imageProduct)
+
+  //     //imageProduct.className = "hidden"
+  //     //cardProductFull.appendChild(imageProduct);
+  //     // const proba = caruselProductImages(tab)
+  //     // console.log(proba)
+
+  //     // cardProductFull.appendChild(tab);
+  //     return taber
+  //   });
+  //   tabAllImages.push(taber)
+  //   // cardProductFull.appendChild(kamil);
+  // console.log(tabAllImages)
+
+  // console.log(taber)
+
+
+  //   //caruselProductImages(tab, fullIdPhoto)
+
+  // }
+  console.log(fullIdPhoto)
+  //console.log(tab)
+  //tabAllImages.push(ProductPicters)
 
   cardProductFull.appendChild(cardProductDescription);
   cardProductFull.appendChild(cardProductImages);
@@ -131,21 +153,7 @@ console.log(images)
 
   return cardProduct;
 }
-// slideshow z tablicy zdjec danego produktu
 
-function caruselProductImages (tab){
- 
- let curIndex = 0;
-  const imgDuration = 5000;
-
-function slideShow() {
-  document.getElementById('productOpen').src = tab[curIndex];
-  curIndex++;
-  if (curIndex == tab.length) { curIndex = 0; }
-  // setTimeout("slideShow()", imgDuration);
-}
-slideShow();
-}
 
 // tworze zdjecie glowne do produktu
 
@@ -157,29 +165,135 @@ function createProductImage(src, className) {
   return img;
 }
 
-// Tworzy click na elementach produktow docelowo otwierajaca/zamykająca pełny opis produktu
+// Tworzy click na elementach produktow docelowo otwierajaca pełny opis produktu
 
 export function fullProductOpen() {
   const productClickhandlers = document.querySelectorAll(".clickProduct");
-  console.log(productClickhandlers)
-  
+  console.log(tabAllImages)
+
   productClickhandlers.forEach((e) => {
+
     const productName = e.lastChild.innerHTML;
+
     //const filepath = `${DOCUMENTS_FOLER}${filename}`;
+
+    //pobiera nazwe produktu z diva ukrytego pod elementem klikanym i tworzy karte full produkt
+
     e.addEventListener("click", () => {
-      console.log(productName)
-      const janusz = document.getElementById(productName)
-      changeClassOpenProduct(janusz)
+
+      mainPageProduct.classList.toggle("hidden")
+
+       productNameHandler = document.getElementById(productName)
+
+      //zmiana klass z ukrytych na widzialne i odwrotnie
+      changeClassOpenProduct(productNameHandler)
+
+      //pobranie ostatniej cyfry z nazwy produktu, ktora jest to numerem zestawu zdjec z tablicy wszystkich zdjec pobranych z configu
+      const lastProductNameNumber = productName.slice(-1);
+
+      //pobranie zdjec do zmiennej 
+      console.log(tabAllImages[lastProductNameNumber])
+      const prouctImages = tabAllImages[lastProductNameNumber]
+      console.log(prouctImages.length)
+      const productImagesLength = prouctImages.length
+      //tworzenie pierwszego wyswietlonego zdjecia
+      const imageProduct2 = createOneOfImages(`./assets/products/${prouctImages[0]}`, "newBoxPdf");
+      imageProduct2.id = "idFirstProductPhoto"
+      console.log(imageProduct2)
+      productNameHandler.appendChild(imageProduct2)
+      // const imagesfuj = productNameHandler.getElementsByTagName("img");
+      // console.log(imagesfuj)
+      // const coc = imagesfuj[0]
+      // console.log(coc)
+      // prouctImages.classList.remove("hidden");
+      const prevProductPhoto = document.createElement("button")
+      prevProductPhoto.innerHTML = "prev";
+      prevProductPhoto.id = "prevProductPhoto";
+    
+      const nextProductPhoto = document.createElement("button")
+      nextProductPhoto.innerHTML = "next";
+      nextProductPhoto.id = "nextProductPhoto";
+      console.log(productNameHandler)
+
+      //button wróć
+    
+      const backToMainProduct = document.createElement("button")
+      backToMainProduct.innerHTML = "Wróć";
+      backToMainProduct.id = "backToMainProduct";
+      productNameHandler.appendChild(prevProductPhoto);
+      productNameHandler.appendChild(nextProductPhoto);
+      productNameHandler.appendChild(backToMainProduct);
+
+  backToMainProduct.addEventListener("click", () => {
+    closeFullProduct()
+    console.log("akuuku")
+  })
+      // buttony next, priv i zmiana zdjecia
+      const firstProductPhoto = document.getElementById("idFirstProductPhoto")
+      console.log(productNameHandler)
+
+      let imageIndex = 0
+      function changeImageNext() {
+
+        imageIndex++;
+        if (imageIndex == productImagesLength) { imageIndex = 0; }
+        firstProductPhoto.setAttribute("src", `./assets/products/${prouctImages[imageIndex]}`)
+
+      }
+
+      const clickNextProduct = document.getElementById("nextProductPhoto")
+
+      clickNextProduct.addEventListener("click", () => {
+        changeImageNext()
+      })
+
+      function changeImagePrev() {
+
+        imageIndex--;
+        if (imageIndex < 0) { imageIndex = productImagesLength - 1; }
+        firstProductPhoto.setAttribute("src", `./assets/products/${prouctImages[imageIndex]}`)
+
+      }
+
+      const clickPrevProduct = document.getElementById("prevProductPhoto")
+
+      clickPrevProduct.addEventListener("click", () => {
+        changeImagePrev()
+      })
+
     });
   });
 }
 
+
+function closeFullProduct() {
+  const destroyPhotoProduct = document.getElementById("idFirstProductPhoto")
+  destroyPhotoProduct.remove();
+
+  const destroyButtonPrev = document.getElementById("prevProductPhoto")
+  destroyButtonPrev.remove();
+
+  const destroyButtonNext = document.getElementById("nextProductPhoto")
+  destroyButtonNext.remove();
+
+  const destroyButtonprev = document.getElementById("backToMainProduct")
+  destroyButtonprev.remove();
+  changeClassOpenProduct(productNameHandler)
+  console.log(fullPageProduct)
+
+  //fullPageProduct.classList.toggle("hidden");
+  console.log(productNameHandler)
+  mainPageProduct.classList.toggle("hidden")
+
+  //productNameHandler.classList.toggle("hidden");
+
+}
+
 // zmiana klasy z hidden na widzialna w elemntach produkt i pelna wersja produkt
 
-function changeClassOpenProduct(janusz) {
+function changeClassOpenProduct(productNameHandler) {
 
-  janusz.classList.toggle("hidden");
- // fullPageProduct.classList.toggle("hidden");
+  productNameHandler.classList.toggle("hidden");
 
 }
 

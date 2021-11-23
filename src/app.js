@@ -154,3 +154,5 @@ import { fullProductOpen } from "./source/element-builder.js";
 })();
 
 
+///--------- Produkt -------------
+
