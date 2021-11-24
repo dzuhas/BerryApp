@@ -79,7 +79,7 @@
     },
     "products": [
         {
-            "id": 1,
+            "idProduct": 1,
             "title": "Nazwa jaka ma się wyświetlać",
             "description": "Jakiś opis produktu",
             "images": [
@@ -101,7 +101,7 @@
             ]
         },
         {
-            "id": 2,
+            "idProduct": 2,
             "title": "Nazwa 2",
             "description": "Jakiś opis 2",
             "images": [
@@ -109,7 +109,7 @@
                 "image22.png",
                 "image23.png"
             ],
-            "pdfs": [
+            "productPdfs": [
                 {
                     "id": 1,
                     "title": "Nazwa 1",

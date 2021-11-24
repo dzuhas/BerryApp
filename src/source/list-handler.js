@@ -1,8 +1,8 @@
 import { createPDFCard, createKontaktCard, createProductCard } from "./element-builder.js";
-import { openPDF } from "./pdf-handler.js";
-import { list, showPDFView, listKontakt, listProduct } from "./view-handler.js";
+import { openPDF, openPDF2 } from "./pdf-handler.js";
+import { list, showPDFView, listKontakt, listProduct, toggleProductHidden } from "./view-handler.js";
 
-const DOCUMENTS_FOLER = "assets/documents/";
+const DOCUMENTS_FOLDER = "assets/documents/";
 
 export function createListPdf(elements) {
   elements.forEach((element, i) => {
@@ -17,22 +17,39 @@ export function createKontaktList(elements) {
     listKontakt.appendChild(cardKontakt);
   });
 }
+
 export function createProductList(elements) {
   elements.forEach((element, i) => {
     const cardProduct = createProductCard(`boxProduct${i}`, "newBoxPdf", element);
     listProduct.appendChild(cardProduct);
   });
 }
+
+
 export function setListListeners() {
   const pdfImages = document.querySelectorAll(".clickPdfClass");
 
   pdfImages.forEach((image) => {
     const filename = image.lastChild.innerHTML;
-    const filepath = `${DOCUMENTS_FOLER}${filename}`;
+    const filepath = `${DOCUMENTS_FOLDER}${filename}`;
 
     image.addEventListener("click", () => {
       showPDFView();
       openPDF(filepath);
+    });
+  });
+}
+
+export function setListListenersPdfProduct() {
+  const pdfProductHandlerName = document.querySelectorAll(".clickPdfClass2");
+  pdfProductHandlerName.forEach((image2) => {
+
+    const filename = image2.lastChild.innerHTML;
+    const filepath = `assets/products/${filename}`;
+
+    image2.addEventListener("click", () => {
+      toggleProductHidden()
+      openPDF2(filepath);
     });
   });
 }

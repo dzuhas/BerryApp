@@ -3,6 +3,7 @@ import {
   canvas,
   backButton,
   hidePDFView,
+  toggleProductVisible,
   nextButton,
   prevButton,
   setPage,
@@ -44,6 +45,39 @@ export async function openPDF(filepath) {
 
   const backButtonHandler = () => {
     hidePDFView();
+    nextButton.removeEventListener("click", nextButtonHandler);
+    prevButton.removeEventListener("click", prevButtonHandler);
+    backButton.removeEventListener("click", backButtonHandler);
+  };
+
+  nextButton.addEventListener("click", nextButtonHandler);
+  prevButton.addEventListener("click", prevButtonHandler);
+  backButton.addEventListener("click", backButtonHandler);
+}
+
+export async function openPDF2(filepath) {
+  setCurrentPage(1);
+  clearCanvas(canvas);
+  const pdfDocument = await pdfjsLib.getDocument(filepath).promise;
+  createPDF(pdfDocument, getCurrentPage());
+  setPages(pdfDocument.numPages);
+  const nextButtonHandler = () => {
+    const nextPageNumber = getCurrentPage() + 1;
+    if (nextPageNumber > pdfDocument.numPages) return;
+    setCurrentPage(nextPageNumber);
+    createPDF(pdfDocument, nextPageNumber);
+  };
+
+  const prevButtonHandler = () => {
+    const prevPageNumber = getCurrentPage() - 1;
+    if (prevPageNumber < 1) return;
+    setCurrentPage(prevPageNumber);
+    createPDF(pdfDocument, prevPageNumber);
+  };
+
+  const backButtonHandler = () => {
+    toggleProductVisible();
+
     nextButton.removeEventListener("click", nextButtonHandler);
     prevButton.removeEventListener("click", prevButtonHandler);
     backButton.removeEventListener("click", backButtonHandler);

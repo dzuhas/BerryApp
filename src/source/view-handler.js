@@ -47,11 +47,36 @@ function togglePDF() {
 
   list.classList.toggle("pdfMain");
   list.classList.toggle("pdfMainHidden");
+
+  menu.classList.toggle("hidden");
+  company.classList.toggle("hidden");
 }
 // ------ Kontakt ---------
 
 export const listKontakt = document.getElementById("kontakt");
 
 // ------ Produkty ---------
+const toogleProductOpen = document.getElementById("productOpen");
 
 export const listProduct = document.getElementById("produkty");
+
+export function toggleProductHidden() {
+  toogleProductOpen.classList.toggle("hidden");
+
+  pdf.classList.toggle("pupPdf");
+  pdf.classList.toggle("pupPdfOpen");
+
+  list.classList.toggle("pdfMain");
+  list.classList.toggle("pdfMainHidden");
+}
+export function toggleProductVisible(){
+  console.log("dziala koko jumbo")
+  toogleProductOpen.classList.toggle("hidden");
+  pdf.classList.toggle("pupPdf");
+  pdf.classList.toggle("pupPdfOpen");
+
+  list.classList.toggle("pdfMain");
+  list.classList.toggle("pdfMainHidden");
+
+
+}

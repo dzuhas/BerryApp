@@ -1,15 +1,20 @@
 
 
-
+const menu = document.getElementById("menu")
+const company = document.getElementById("company")
 
 //-------------------- PRODUKT --------------------
 
 var tabAllImages = [];
+var titlePdfProduct
+
 
 
 const mainPageProduct = document.getElementById("produkty")
 const fullPageProduct = document.getElementById("productOpen")
 var productNameHandler
+var cardProductPdfs
+
 export function createKontaktCard(id, className, { position, name, phone, email }) {
   const cardKontakt = document.createElement("div");
 
@@ -47,10 +52,25 @@ function createOneOfImages(src, className) {
 
 //Funkcja tworząca karty produktów
 
-export function createProductCard(id, className, { title, description, images, pdfs }) {
+export function createProductCard(id, className, { idProduct, title, description, images, productPdfs }, i) {
 
   const cardProduct = document.createElement("div");
   const cardProductFull = document.createElement("div");
+  console.log(productPdfs)
+  console.log(id)
+  console.log(i)
+
+  console.log(idProduct)
+  console.log(idProduct - 1)
+  const NumberListOfProductPdfs = idProduct - 1
+  const ListOfProductPdfs = productPdfs[NumberListOfProductPdfs]
+  console.log(ListOfProductPdfs)
+  const NumeOfProductPdf = ListOfProductPdfs.title
+  console.log(NumeOfProductPdf)
+  console.log(NumberListOfProductPdfs)
+
+
+  console.log(titlePdfProduct)
 
   cardProduct.id = id;
   cardProduct.className = className;
@@ -58,6 +78,8 @@ export function createProductCard(id, className, { title, description, images, p
   const fullId = "full" + id
   cardProductFull.id = fullId
   cardProductFull.className = "hidden"
+
+
 
   const fullProduktNameHandler = document.createElement("div");
   fullProduktNameHandler.className = "hidden kamil"
@@ -82,21 +104,16 @@ export function createProductCard(id, className, { title, description, images, p
     "pngPdf clickProduct"
   );
 
-  const fullIdPhoto = "full" + id + "photo"
-
   console.log(firstImage)
- 
-  
+  console.log(id)
+
+
 
   const cardProductDescription = document.createElement("div");
   cardProductDescription.innerHTML = description;
 
-  const cardProductImages = document.createElement("div");
-  cardProductImages.id = id;
-
-  const cardProductPdfs = document.createElement("div");
-  cardProductPdfs.innerHTML = pdfs;
-
+  cardProductPdfs = document.createElement("div");
+  cardProductPdfs.id = "pdfGalery" + NumberListOfProductPdfs;
 
   cardProduct.appendChild(image);
   image.appendChild(fullProduktNameHandler);
@@ -105,52 +122,49 @@ export function createProductCard(id, className, { title, description, images, p
   cardProductTitle.appendChild(fullProduktNameHandler2);
 
   fullPageProduct.appendChild(cardProductFull);
-  
+
 
 
   console.log(fullId)
 
-
-  //const buttonBackToMainProduct = document.getElementById("backToMainProduct")
-
-  
-  // function createImagesList(elements, taber) {
-  //   var taber = [];
-
-  //   elements.forEach((element, i) => {
-  //     console.log(element)
-  //     console.log(i)
-
-  //     const imageProduct = createOneOfImages(`./assets/products/${element}`, "newBoxPdf");
-  //     taber.push(imageProduct)
-  //     //tab.push(imageProduct)
-
-  //     //imageProduct.className = "hidden"
-  //     //cardProductFull.appendChild(imageProduct);
-  //     // const proba = caruselProductImages(tab)
-  //     // console.log(proba)
-
-  //     // cardProductFull.appendChild(tab);
-  //     return taber
-  //   });
-  //   tabAllImages.push(taber)
-  //   // cardProductFull.appendChild(kamil);
-  // console.log(tabAllImages)
-
-  // console.log(taber)
-
-
-  //   //caruselProductImages(tab, fullIdPhoto)
-
-  // }
-  console.log(fullIdPhoto)
-  //console.log(tab)
-  //tabAllImages.push(ProductPicters)
-
   cardProductFull.appendChild(cardProductDescription);
-  cardProductFull.appendChild(cardProductImages);
   cardProductFull.appendChild(cardProductPdfs);
 
+  productPdfs.forEach((element, i) => {
+    const dzony = element.title
+    const titlePdfProduct = document.createElement("div")
+    titlePdfProduct.className = "productPdfTitle clickPdfClass2"
+    titlePdfProduct.innerHTML = dzony
+    console.log(element)
+    console.log(dzony)
+    console.log(i)
+    console.log(id)
+    console.log(idProduct)
+    console.log(cardProductPdfs)
+    console.log(element.filename)
+const danek = element.filename
+const pdfProductFilename = document.createElement("div");
+pdfProductFilename.innerHTML = danek;
+pdfProductFilename.className = "newDivPdfFile";
+
+    console.log(titlePdfProduct)
+    const wario = "pdfGalery" + NumberListOfProductPdfs
+    console.log(wario)
+    
+    const bubu = document.getElementById(wario)
+    console.log(bubu)
+    titlePdfProduct.appendChild(pdfProductFilename);
+
+    bubu.appendChild(titlePdfProduct);
+
+    const miranda = createPDFImage(
+      "./assets/documents/Pdf.png",
+      danek,
+      "pngPdf clickPdfClass2"
+    );
+    bubu.appendChild(miranda);
+
+  })
   return cardProduct;
 }
 
@@ -165,11 +179,12 @@ function createProductImage(src, className) {
   return img;
 }
 
-// Tworzy click na elementach produktow docelowo otwierajaca pełny opis produktu
-
+// funkcja otwierajaca pelny opis produktu
 export function fullProductOpen() {
+
   const productClickhandlers = document.querySelectorAll(".clickProduct");
   console.log(tabAllImages)
+  console.log(productClickhandlers)
 
   productClickhandlers.forEach((e) => {
 
@@ -183,7 +198,7 @@ export function fullProductOpen() {
 
       mainPageProduct.classList.toggle("hidden")
 
-       productNameHandler = document.getElementById(productName)
+      productNameHandler = document.getElementById(productName)
 
       //zmiana klass z ukrytych na widzialne i odwrotnie
       changeClassOpenProduct(productNameHandler)
@@ -200,7 +215,9 @@ export function fullProductOpen() {
       const imageProduct2 = createOneOfImages(`./assets/products/${prouctImages[0]}`, "newBoxPdf");
       imageProduct2.id = "idFirstProductPhoto"
       console.log(imageProduct2)
-      productNameHandler.appendChild(imageProduct2)
+      const dawid = document.createElement("div");
+
+      dawid.appendChild(imageProduct2)
       // const imagesfuj = productNameHandler.getElementsByTagName("img");
       // console.log(imagesfuj)
       // const coc = imagesfuj[0]
@@ -209,25 +226,30 @@ export function fullProductOpen() {
       const prevProductPhoto = document.createElement("button")
       prevProductPhoto.innerHTML = "prev";
       prevProductPhoto.id = "prevProductPhoto";
-    
+
       const nextProductPhoto = document.createElement("button")
       nextProductPhoto.innerHTML = "next";
       nextProductPhoto.id = "nextProductPhoto";
       console.log(productNameHandler)
 
       //button wróć
-    
+
       const backToMainProduct = document.createElement("button")
       backToMainProduct.innerHTML = "Wróć";
       backToMainProduct.id = "backToMainProduct";
-      productNameHandler.appendChild(prevProductPhoto);
-      productNameHandler.appendChild(nextProductPhoto);
-      productNameHandler.appendChild(backToMainProduct);
+      const kamil = document.createElement("div");
+      kamil.id = "probaMat"
+      kamil.appendChild(prevProductPhoto);
+      kamil.appendChild(dawid);
 
-  backToMainProduct.addEventListener("click", () => {
-    closeFullProduct()
-    console.log("akuuku")
-  })
+      kamil.appendChild(nextProductPhoto);
+      productNameHandler.appendChild(backToMainProduct);
+      productNameHandler.appendChild(kamil);
+
+      backToMainProduct.addEventListener("click", () => {
+        closeFullProduct()
+      })
+
       // buttony next, priv i zmiana zdjecia
       const firstProductPhoto = document.getElementById("idFirstProductPhoto")
       console.log(productNameHandler)
@@ -267,14 +289,14 @@ export function fullProductOpen() {
 
 
 function closeFullProduct() {
-  const destroyPhotoProduct = document.getElementById("idFirstProductPhoto")
+  const destroyPhotoProduct = document.getElementById("probaMat")
   destroyPhotoProduct.remove();
 
-  const destroyButtonPrev = document.getElementById("prevProductPhoto")
-  destroyButtonPrev.remove();
+  // const destroyButtonPrev = document.getElementById("prevProductPhoto")
+  // destroyButtonPrev.remove();
 
-  const destroyButtonNext = document.getElementById("nextProductPhoto")
-  destroyButtonNext.remove();
+  // const destroyButtonNext = document.getElementById("nextProductPhoto")
+  // destroyButtonNext.remove();
 
   const destroyButtonprev = document.getElementById("backToMainProduct")
   destroyButtonprev.remove();
@@ -294,6 +316,8 @@ function closeFullProduct() {
 function changeClassOpenProduct(productNameHandler) {
 
   productNameHandler.classList.toggle("hidden");
+  menu.classList.toggle("hidden");
+  company.classList.toggle("hidden");
 
 }
 
