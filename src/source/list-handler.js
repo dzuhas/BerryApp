@@ -1,6 +1,6 @@
-import { createPDFCard, createKontaktCard, createProductCard } from "./element-builder.js";
+import { createPDFCard, createKontaktCard, createProductCard, createVideoCard } from "./element-builder.js";
 import { openPDF, openPDF2 } from "./pdf-handler.js";
-import { list, showPDFView, listKontakt, listProduct, toggleProductHidden } from "./view-handler.js";
+import { list, showPDFView, listKontakt, listProduct, toggleProductHidden, listVideos } from "./view-handler.js";
 
 const DOCUMENTS_FOLDER = "assets/documents/";
 
@@ -51,5 +51,16 @@ export function setListListenersPdfProduct() {
       toggleProductHidden()
       openPDF2(filepath);
     });
+  });
+}
+
+//-------------- Filmy -------------
+
+export function createVideosList(elements) {
+  elements.forEach((element, i) => {
+    console.log(element)
+    const cardVideo = createVideoCard(`boxVideos${i}`, "newBoxPdf", element);
+    console.log(cardVideo)
+    listVideos.appendChild(cardVideo);
   });
 }

@@ -135,13 +135,7 @@ export function createProductCard(id, className, { idProduct, title, description
     const titlePdfProduct = document.createElement("div")
     titlePdfProduct.className = "productPdfTitle clickPdfClass2"
     titlePdfProduct.innerHTML = dzony
-    console.log(element)
-    console.log(dzony)
-    console.log(i)
-    console.log(id)
-    console.log(idProduct)
-    console.log(cardProductPdfs)
-    console.log(element.filename)
+    
 const danek = element.filename
 const pdfProductFilename = document.createElement("div");
 pdfProductFilename.innerHTML = danek;
@@ -370,4 +364,60 @@ function createPDFTitle(title, filename, className) {
   pdfTitle.appendChild(pdfFilename2);
 
   return pdfTitle;
+}
+//------------------- FILMY ----------------
+
+
+export function createVideoCard(id, className, { idVideo, title, filename, poster }) {
+ // console.log(videos.id)
+  console.log(idVideo)
+
+  const cardVideo = document.createElement("div")
+
+  const cardVideoFull = document.createElement("div")
+  cardVideoFull.id = filename
+
+  const cardVideoTitle = document.createElement("div")
+  cardVideoTitle.innerHTML = title;
+
+  const cardVideoFilename = document.createElement("div")
+  cardVideoFilename.innerHTML = filename;
+
+  cardVideoFilename.className = "hidden"
+
+  const cardVideoPosterImg = document.createElement("img")
+  cardVideoPosterImg.className = "pngPdf clickPoster"
+
+  const posterImgSrc = `./assets/posters/${poster}`
+ 
+  cardVideoPosterImg.src = posterImgSrc
+
+  cardVideo.appendChild(cardVideoPosterImg)
+  cardVideoFull.appendChild(cardVideoTitle)
+  cardVideoPosterImg.appendChild(cardVideoFilename)
+  //cardVideoPoster.appendChild(cardVideoFilename)
+
+return cardVideo
+}
+export function videoOpen() {
+
+  const videoClickhandlers = document.querySelectorAll(".clickPoster");
+  console.log(videoClickhandlers)
+  
+  videoClickhandlers.forEach((e) => {
+
+   // const productName = e.lastChild.innerHTML;
+
+    //const filepath = `${DOCUMENTS_FOLER}${filename}`;
+
+    //pobiera nazwe produktu z diva ukrytego pod elementem klikanym i tworzy karte video
+
+    e.addEventListener("click", () => {
+
+    
+
+      console.log("gugu")
+
+    });
+  })
 }

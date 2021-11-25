@@ -14,11 +14,11 @@
                 "www": "website.com"
             },
             {
-                "position": "CTO, co-founder",
-                "name": "Maria Ziomek",
-                "phone": "123-456-789",
-                "email": "mail@mail.com",
-                "www": "website.com"
+                "position": "Sales Direktor",
+                "name": "Marian Poziomek2",
+                "phone": "000-456-789",
+                "email": "mail@mail.com2",
+                "www": "website2.com"
             }
         ],
         "social": [
@@ -57,10 +57,17 @@
         ],
         "videos": [
             {
-                "id": 1,
+                "idVideo": 1,
                 "title": "Nazwa jaka ma się wyświetlać",
-                "filename": "Nazwa pliku.mp4",
-                "poster": "Miniaturka (nazwa pliku)"
+                "filename": "Nazwa1.mp4",
+                "poster": "Poster1.jpg"
+            },
+
+            {
+                "idVideo": 2,
+                "title": "Nazwa jaka ma się wyświetlać2",
+                "filename": "Nazwa pliku2.mp4",
+                "poster": "Poster2.jpg"
             }
         ],
         "images": [

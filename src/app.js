@@ -124,8 +124,8 @@ kontaktMenuButton.addEventListener("click", () => {
 // ----------- PDF -------------------
 
 import { setContentText, setWelcomeText} from "./source/view-handler.js";
-import { createListPdf, setListListeners, createKontaktList, createProductList, setListListenersPdfProduct } from "./source/list-handler.js";
-import { fullProductOpen } from "./source/element-builder.js";
+import { createListPdf, setListListeners, createKontaktList, createProductList, setListListenersPdfProduct, createVideosList } from "./source/list-handler.js";
+import { fullProductOpen, videoOpen } from "./source/element-builder.js";
 
 (async () => {
   try {
@@ -138,6 +138,7 @@ import { fullProductOpen } from "./source/element-builder.js";
     const { contact } = settings;
     const { images } = products
     const { productPdfs } = products
+    const { videos } = assets;
 
 console.log(products)
 console.log(productPdfs)
@@ -150,7 +151,8 @@ console.log(productPdfs)
     createProductList(products)
     fullProductOpen()
     setListListenersPdfProduct()
-
+    createVideosList(videos)
+    videoOpen()
   } catch (error) {
 
     console.log(error);
