@@ -135,16 +135,16 @@ export function createProductCard(id, className, { idProduct, title, description
     const titlePdfProduct = document.createElement("div")
     titlePdfProduct.className = "productPdfTitle clickPdfClass2"
     titlePdfProduct.innerHTML = dzony
-    
-const danek = element.filename
-const pdfProductFilename = document.createElement("div");
-pdfProductFilename.innerHTML = danek;
-pdfProductFilename.className = "newDivPdfFile";
+
+    const danek = element.filename
+    const pdfProductFilename = document.createElement("div");
+    pdfProductFilename.innerHTML = danek;
+    pdfProductFilename.className = "newDivPdfFile";
 
     console.log(titlePdfProduct)
     const wario = "pdfGalery" + NumberListOfProductPdfs
     console.log(wario)
-    
+
     const bubu = document.getElementById(wario)
     console.log(bubu)
     titlePdfProduct.appendChild(pdfProductFilename);
@@ -367,15 +367,36 @@ function createPDFTitle(title, filename, className) {
 }
 //------------------- FILMY ----------------
 
+const fullPageVideo = document.getElementById("videoOpen")
+const cardVideo = document.createElement("div")
+
 
 export function createVideoCard(id, className, { idVideo, title, filename, poster }) {
- // console.log(videos.id)
+  // console.log(videos.id)
   console.log(idVideo)
 
-  const cardVideo = document.createElement("div")
 
   const cardVideoFull = document.createElement("div")
   cardVideoFull.id = filename
+  cardVideoFull.className = "hidden"
+
+  const videoFull = document.createElement("video")
+  videoFull.src = `./assets/videos/${filename}`
+  videoFull.setAttribute("controls", "controls")
+  videoFull.setAttribute("width", 320)
+  videoFull.setAttribute("height", 240)
+  const backToMainVideos = document.createElement("button")
+  backToMainVideos.innerHTML = "Wróć";
+  backToMainVideos.id = "backToMainVideos";
+
+  backToMainVideos.addEventListener("click", () => {
+    cardVideoFull.classList.toggle("hidden");
+    menu.classList.toggle("hidden");
+    company.classList.toggle("hidden");
+    cardVideo.classList.toggle("hidden")
+
+  })
+
 
   const cardVideoTitle = document.createElement("div")
   cardVideoTitle.innerHTML = title;
@@ -389,24 +410,30 @@ export function createVideoCard(id, className, { idVideo, title, filename, poste
   cardVideoPosterImg.className = "pngPdf clickPoster"
 
   const posterImgSrc = `./assets/posters/${poster}`
- 
+
   cardVideoPosterImg.src = posterImgSrc
 
   cardVideo.appendChild(cardVideoPosterImg)
+  fullPageVideo.appendChild(cardVideoFull)
+  cardVideoFull.appendChild(backToMainVideos)
+
+  cardVideoFull.appendChild(videoFull)
+
   cardVideoFull.appendChild(cardVideoTitle)
   cardVideoPosterImg.appendChild(cardVideoFilename)
   //cardVideoPoster.appendChild(cardVideoFilename)
 
-return cardVideo
+  return cardVideo
 }
 export function videoOpen() {
 
   const videoClickhandlers = document.querySelectorAll(".clickPoster");
   console.log(videoClickhandlers)
-  
+
   videoClickhandlers.forEach((e) => {
 
-   // const productName = e.lastChild.innerHTML;
+    const videoName = e.lastChild.innerHTML;
+    console.log(videoName)
 
     //const filepath = `${DOCUMENTS_FOLER}${filename}`;
 
@@ -414,9 +441,14 @@ export function videoOpen() {
 
     e.addEventListener("click", () => {
 
-    
+      console.log(videoName)
+      const videoNameHandler = document.getElementById(videoName)
+      videoNameHandler.classList.toggle("hidden")
 
+      menu.classList.toggle("hidden");
+      company.classList.toggle("hidden");
       console.log("gugu")
+      cardVideo.classList.toggle("hidden")
 
     });
   })

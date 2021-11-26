@@ -2,6 +2,8 @@ node_modules
 src/assets/images
 src/assets/products
 src/assets/videos
+src/assets/posters
+
 
 # Logs
 logs
