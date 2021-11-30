@@ -29,6 +29,18 @@
             {
                 "type": "insta",
                 "link": "https://instagram.com"
+            },
+            {
+                "type": "youTube",
+                "link": "https://instagram.com"
+            },
+            {
+                "type": "twitter",
+                "link": "https://instagram.com"
+            },
+            {
+                "type": "linkedin",
+                "link": "https://instagram.com"
             }
         ]
     },

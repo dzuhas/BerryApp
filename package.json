@@ -46,6 +46,7 @@
     "dist": "^0.1.2",
     "electron-pdf-window": "^1.0.12",
     "electron-squirrel-startup": "^1.0.0",
+    "hammerjs": "^2.0.8",
     "pdfjs": "^2.4.6"
   },
   "devDependencies": {

@@ -160,5 +160,4 @@ console.log(productPdfs)
 })();
 
 
-///--------- Produkt -------------
 

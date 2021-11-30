@@ -232,13 +232,15 @@ export function fullProductOpen() {
       backToMainProduct.innerHTML = "Wróć";
       backToMainProduct.id = "backToMainProduct";
       const kamil = document.createElement("div");
-      kamil.id = "probaMat"
+      kamil.id = "sliderConteiner"
       kamil.appendChild(prevProductPhoto);
       kamil.appendChild(dawid);
 
       kamil.appendChild(nextProductPhoto);
       productNameHandler.appendChild(backToMainProduct);
       productNameHandler.appendChild(kamil);
+
+
 
       backToMainProduct.addEventListener("click", () => {
         closeFullProduct()
@@ -264,7 +266,6 @@ export function fullProductOpen() {
       })
 
       function changeImagePrev() {
-
         imageIndex--;
         if (imageIndex < 0) { imageIndex = productImagesLength - 1; }
         firstProductPhoto.setAttribute("src", `./assets/products/${prouctImages[imageIndex]}`)
@@ -276,6 +277,25 @@ export function fullProductOpen() {
       clickPrevProduct.addEventListener("click", () => {
         changeImagePrev()
       })
+      //-------------------Swipe------------------------------------------------------------
+   
+var square = document.getElementById("sliderConteiner");
+var manager = new Hammer.Manager(square);
+
+var Swipe = new Hammer.Swipe();
+
+manager.add(Swipe);
+
+// Dodawanie swipa w lewo i prawo
+manager.on('swipeleft', function(e) {
+  changeImageNext()
+
+});
+
+manager.on('swiperight', function(e) {
+  changeImagePrev()
+
+});
 
     });
   });
@@ -283,7 +303,7 @@ export function fullProductOpen() {
 
 
 function closeFullProduct() {
-  const destroyPhotoProduct = document.getElementById("probaMat")
+  const destroyPhotoProduct = document.getElementById("sliderConteiner")
   destroyPhotoProduct.remove();
 
   // const destroyButtonPrev = document.getElementById("prevProductPhoto")
@@ -394,9 +414,12 @@ export function createVideoCard(id, className, { idVideo, title, filename, poste
     menu.classList.toggle("hidden");
     company.classList.toggle("hidden");
     cardVideo.classList.toggle("hidden")
-
+    stopVideo()
   })
-
+  function stopVideo() {
+    videoFull.pause();
+    videoFull.currentTime = 0;
+  }
 
   const cardVideoTitle = document.createElement("div")
   cardVideoTitle.innerHTML = title;
@@ -453,3 +476,5 @@ export function videoOpen() {
     });
   })
 }
+
+//---------------Swipe foto---------------
