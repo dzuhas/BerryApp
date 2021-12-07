@@ -1,4 +1,5 @@
 //------------------ PDF ----------
+const headId = document.getElementById("head");
 
 const pdf = document.getElementById("pdfPupop");
 export const list = document.getElementById("pdf");
@@ -47,6 +48,8 @@ function togglePDF() {
 
   list.classList.toggle("pdfMain");
   list.classList.toggle("pdfMainHidden");
+  
+  headId.classList.toggle("hidden");
 
   menu.classList.toggle("hidden");
   company.classList.toggle("hidden");

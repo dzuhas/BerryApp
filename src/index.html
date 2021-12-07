@@ -17,29 +17,31 @@
     <div id="welcomeText">
       Zapraszamy do zapoznania się z naszą ofertą
     </div>
-    <div>
+    <div class="buttonStartClass">
       <button id="buttonStart">Chcę zobaczyć</button>
 
     </div>
   </div>
   <div id="main" class="hidden">
-    <div id="logoMain">
-
-    </div>
-    <div>
-      <p id="company">Welcome to your Electron application.</p>
-    </div>
-    <nav>
-      <div id="menu">
-        <ul>
-          <li id="pdfMenu">PDFY</li>
-          <li id="produktyMenu">PRODUKTY</li>
-          <li id="filmyMenu">FILMY</li>
-          <li id="wspolpracaMenu">WSPÓŁPRACA</li>
-          <li id="kontaktMenu">KONTAKT</li>
+    <div id="head">
+      <div id="logoMain">
 
       </div>
-    </nav>
+      <div>
+        <p id="company"></p>
+      </div>
+      <nav class="navigationBar">
+        <div id="menu">
+          <ul>
+            <li id="pdfMenu">PDFY</li>
+            <li id="produktyMenu">PRODUKTY</li>
+            <li id="filmyMenu">FILMY</li>
+            <li id="wspolpracaMenu">WSPÓŁPRACA</li>
+            <li id="kontaktMenu">KONTAKT</li>
+
+        </div>
+      </nav>
+    </div>
     <div id="mainContent">
       <div id="pdf" class="pdfMain"></div>
 
@@ -52,10 +54,10 @@
       <div id="wspolpraca" class="hidden">
         <div>
           <form>
-          Imię i nazwisko: <input type="text" name="name"><br>
-          Email: <input type="text" name="email"><br>
-          Telefon: <input type="text" name="telefon">
-          Firma: <input type="text" name="firma">
+            Imię i nazwisko: <input type="text" name="name"><br>
+            Email: <input type="text" name="email"><br>
+            Telefon: <input type="text" name="telefon">
+            Firma: <input type="text" name="firma">
 
           </form>
         </div>
@@ -64,42 +66,44 @@
       <div id="kontakt" class="hidden"></div>
 
       <div id="pdfPupop" class="pupPdf">
-        <button id="prev">Prev</button>
-        <button id="next">Next</button>
-        <span><span id="npage">0</span> z <span id="npages">0</span></span>
-        <button id="buttonPdf">Wróć</button>
-        <div>
+        <div class="pdfNavigation">
+          <button id="prev" class="buttons">Poprzednia strona</button>
+          <div class="buttons">Strona&nbsp   <span id="npage"> 0 </span> &nbspz&nbsp <span id="npages"> 0 </span></div>
+          <button id="next" class="buttons">Następna strona</button>
+          <button id="buttonPdf" class="buttons">Wróć</button>
+        </div>
+        <div class="canvasContainer">
           <canvas id="cnv"></canvas>
         </div>
       </div>
 
       <div id="productOpen">
-       
+
 
       </div>
       <div id="videoOpen">
-       
+
 
       </div>
     </div>
   </div>
-  <footer>
-<div>
-  <a href="wwww.facebook.com"><img src="./assets/images/FACE_icon.png"></a>
-</div>
-<div>
-  <a href="index.html"><img src="./assets/images/LINKEDIN_icon.png"></a>
-</div>
-<div>
-  <a href="index.html"><img src="./assets/images/INSTA_icon.png"></a>
-</div>
-<div>
-  <a href="index.html"><img src="./assets/images/TWITER_icon.png"></a>
-</div>
-<div>
-  <a href="index.html"><img src="./assets/images/YT_icon.png" ></a>
-</div>
-  </footer>
+  <!-- <footer>
+    <div>
+      <a href="wwww.facebook.com"><img src="./assets/images/FACE_icon.png"></a>
+    </div>
+    <div>
+      <a href="index.html"><img src="./assets/images/LINKEDIN_icon.png"></a>
+    </div>
+    <div>
+      <a href="index.html"><img src="./assets/images/INSTA_icon.png"></a>
+    </div>
+    <div>
+      <a href="index.html"><img src="./assets/images/TWITER_icon.png"></a>
+    </div>
+    <div>
+      <a href="index.html"><img src="./assets/images/YT_icon.png"></a>
+    </div>
+  </footer> -->
   <script type="module" src="app.js" defer></script>
   <script src="../node_modules/hammerjs/hammer.js"></script>
 

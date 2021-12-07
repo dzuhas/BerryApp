@@ -100,7 +100,7 @@
         {
             "idProduct": 1,
             "title": "Nazwa jaka ma się wyświetlać",
-            "description": "Jakiś opis produktu",
+            "description": "Jakiś opis produktu - Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas sit",
             "images": [
                 "image1.png",
                 "image2.png",
@@ -122,7 +122,7 @@
         {
             "idProduct": 2,
             "title": "Nazwa 2",
-            "description": "Jakiś opis 2",
+            "description": "Jakiś opis 2  - Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur ",
             "images": [
                 "image21.jpg",
                 "image22.png",

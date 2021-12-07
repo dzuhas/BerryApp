@@ -56,21 +56,10 @@ export function createProductCard(id, className, { idProduct, title, description
 
   const cardProduct = document.createElement("div");
   const cardProductFull = document.createElement("div");
-  console.log(productPdfs)
-  console.log(id)
-  console.log(i)
 
-  console.log(idProduct)
-  console.log(idProduct - 1)
   const NumberListOfProductPdfs = idProduct - 1
   const ListOfProductPdfs = productPdfs[NumberListOfProductPdfs]
-  console.log(ListOfProductPdfs)
   const NumeOfProductPdf = ListOfProductPdfs.title
-  console.log(NumeOfProductPdf)
-  console.log(NumberListOfProductPdfs)
-
-
-  console.log(titlePdfProduct)
 
   cardProduct.id = id;
   cardProduct.className = className;
@@ -90,9 +79,9 @@ export function createProductCard(id, className, { idProduct, title, description
   fullProduktNameHandler2.innerHTML = fullId;
 
   const cardProductTitle = document.createElement("div");
-  cardProductTitle.className = "clickProduct"
+  cardProductTitle.className = "productTitle clickProduct"
   cardProductTitle.innerHTML = title;
-  console.log(images)
+
   tabAllImages.push(images)
   //createImagesList(images)
   const firstImage = images[0];
@@ -101,19 +90,22 @@ export function createProductCard(id, className, { idProduct, title, description
   const image = createProductImage(
 
     `./assets/products/${firstImage}`,
-    "pngPdf clickProduct"
+    "pngProduct clickProduct"
   );
-
-  console.log(firstImage)
-  console.log(id)
-
-
+  const fullProductTexts = document.createElement("div");
+  fullProductTexts.className = "fullProductTexts"
 
   const cardProductDescription = document.createElement("div");
   cardProductDescription.innerHTML = description;
+  cardProductDescription.classList = "cardProductDescription";
 
   cardProductPdfs = document.createElement("div");
+  cardProductPdfs.classList = "cardProductPdfs"
   cardProductPdfs.id = "pdfGalery" + NumberListOfProductPdfs;
+
+  const cardProductTitleFull = document.createElement("div");
+  cardProductTitleFull.className = "productTitleFull"
+  cardProductTitleFull.innerHTML = title;
 
   cardProduct.appendChild(image);
   image.appendChild(fullProduktNameHandler);
@@ -122,41 +114,43 @@ export function createProductCard(id, className, { idProduct, title, description
   cardProductTitle.appendChild(fullProduktNameHandler2);
 
   fullPageProduct.appendChild(cardProductFull);
+  cardProductFull.appendChild(fullProductTexts);
 
+  fullProductTexts.appendChild(cardProductTitleFull);
+  fullProductTexts.appendChild(cardProductDescription);
+  fullProductTexts.appendChild(cardProductPdfs);
 
-
-  console.log(fullId)
-
-  cardProductFull.appendChild(cardProductDescription);
-  cardProductFull.appendChild(cardProductPdfs);
 
   productPdfs.forEach((element, i) => {
-    const dzony = element.title
+
+    const titlePdfFullProduct = element.title
+
     const titlePdfProduct = document.createElement("div")
     titlePdfProduct.className = "productPdfTitle clickPdfClass2"
-    titlePdfProduct.innerHTML = dzony
+    titlePdfProduct.innerHTML = titlePdfFullProduct
 
-    const danek = element.filename
+    const filenamePdf = element.filename
     const pdfProductFilename = document.createElement("div");
-    pdfProductFilename.innerHTML = danek;
+    pdfProductFilename.innerHTML = filenamePdf;
     pdfProductFilename.className = "newDivPdfFile";
 
-    console.log(titlePdfProduct)
-    const wario = "pdfGalery" + NumberListOfProductPdfs
-    console.log(wario)
+    const handlerPdfGaleryName = "pdfGalery" + NumberListOfProductPdfs
+    console.log(handlerPdfGaleryName)
 
-    const bubu = document.getElementById(wario)
-    console.log(bubu)
+    const handlerPdfGaleryNameDiv = document.getElementById(handlerPdfGaleryName)
     titlePdfProduct.appendChild(pdfProductFilename);
+    const pdfWithTitle = document.createElement("div");
+    pdfWithTitle.className = "pdfWithTitle"
 
-    bubu.appendChild(titlePdfProduct);
+    handlerPdfGaleryNameDiv.appendChild(pdfWithTitle);
 
-    const miranda = createPDFImage(
+    const PdfProductImage = createPDFImage(
       "./assets/documents/Pdf.png",
-      danek,
-      "pngPdf clickPdfClass2"
+      filenamePdf,
+      "pngPdfProduct clickPdfClass2"
     );
-    bubu.appendChild(miranda);
+    pdfWithTitle.appendChild(PdfProductImage);
+    pdfWithTitle.appendChild(titlePdfProduct);
 
   })
   return cardProduct;
@@ -193,23 +187,22 @@ export function fullProductOpen() {
       mainPageProduct.classList.toggle("hidden")
 
       productNameHandler = document.getElementById(productName)
-
       //zmiana klass z ukrytych na widzialne i odwrotnie
       changeClassOpenProduct(productNameHandler)
+      productNameHandler.classList = "fullProductBox"
 
       //pobranie ostatniej cyfry z nazwy produktu, ktora jest to numerem zestawu zdjec z tablicy wszystkich zdjec pobranych z configu
       const lastProductNameNumber = productName.slice(-1);
 
       //pobranie zdjec do zmiennej 
-      console.log(tabAllImages[lastProductNameNumber])
       const prouctImages = tabAllImages[lastProductNameNumber]
-      console.log(prouctImages.length)
       const productImagesLength = prouctImages.length
+
       //tworzenie pierwszego wyswietlonego zdjecia
-      const imageProduct2 = createOneOfImages(`./assets/products/${prouctImages[0]}`, "newBoxPdf");
+      const imageProduct2 = createOneOfImages(`./assets/products/${prouctImages[0]}`, "fullProductPhotos");
       imageProduct2.id = "idFirstProductPhoto"
-      console.log(imageProduct2)
       const dawid = document.createElement("div");
+      dawid.classList = "imgContainer"
 
       dawid.appendChild(imageProduct2)
       // const imagesfuj = productNameHandler.getElementsByTagName("img");
@@ -217,28 +210,43 @@ export function fullProductOpen() {
       // const coc = imagesfuj[0]
       // console.log(coc)
       // prouctImages.classList.remove("hidden");
-      const prevProductPhoto = document.createElement("button")
-      prevProductPhoto.innerHTML = "prev";
+      // const prevProductPhoto = document.createElement("button")
+      // prevProductPhoto.innerHTML = "prev";
+      // prevProductPhoto.id = "prevProductPhoto";
+
+      const prevProductPhoto = document.createElement("img")
+      prevProductPhoto.src = `./assets/images/arrowLeft.png`;
       prevProductPhoto.id = "prevProductPhoto";
 
-      const nextProductPhoto = document.createElement("button")
-      nextProductPhoto.innerHTML = "next";
+      const nextProductPhoto = document.createElement("img")
+      nextProductPhoto.src = `./assets/images/arrowRight.png`;
       nextProductPhoto.id = "nextProductPhoto";
-      console.log(productNameHandler)
 
       //button wróć
 
-      const backToMainProduct = document.createElement("button")
-      backToMainProduct.innerHTML = "Wróć";
+      // const backToMainProduct = document.createElement("button")
+      // backToMainProduct.innerHTML = "Wróć";
+      // backToMainProduct.id = "backToMainProduct";
+
+      const backToMainProduct = document.createElement("img");
+      backToMainProduct.setAttribute("src", `./assets/images/Group 102.png`);
       backToMainProduct.id = "backToMainProduct";
+
+      const backToMainProductDiv = document.createElement("div")
+      backToMainProductDiv.classList = "backToMainProductDiv"
+
+
       const kamil = document.createElement("div");
       kamil.id = "sliderConteiner"
-      kamil.appendChild(prevProductPhoto);
       kamil.appendChild(dawid);
 
-      kamil.appendChild(nextProductPhoto);
-      productNameHandler.appendChild(backToMainProduct);
+      dawid.appendChild(nextProductPhoto);
+      dawid.appendChild(prevProductPhoto);
+
       productNameHandler.appendChild(kamil);
+
+      productNameHandler.appendChild(backToMainProductDiv);
+      backToMainProductDiv.appendChild(backToMainProduct);
 
 
 
@@ -278,24 +286,24 @@ export function fullProductOpen() {
         changeImagePrev()
       })
       //-------------------Swipe------------------------------------------------------------
-   
-var square = document.getElementById("sliderConteiner");
-var manager = new Hammer.Manager(square);
 
-var Swipe = new Hammer.Swipe();
+      var square = document.getElementById("sliderConteiner");
+      var manager = new Hammer.Manager(square);
 
-manager.add(Swipe);
+      var Swipe = new Hammer.Swipe();
 
-// Dodawanie swipa w lewo i prawo
-manager.on('swipeleft', function(e) {
-  changeImageNext()
+      manager.add(Swipe);
 
-});
+      // Dodawanie swipa w lewo i prawo
+      manager.on('swipeleft', function (e) {
+        changeImageNext()
 
-manager.on('swiperight', function(e) {
-  changeImagePrev()
+      });
 
-});
+      manager.on('swiperight', function (e) {
+        changeImagePrev()
+
+      });
 
     });
   });
@@ -385,6 +393,7 @@ function createPDFTitle(title, filename, className) {
 
   return pdfTitle;
 }
+
 //------------------- FILMY ----------------
 
 const fullPageVideo = document.getElementById("videoOpen")

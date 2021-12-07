@@ -1,18 +1,85 @@
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   background-color: #1876d2;
+  font-family: "Poppins";
+}
+
+#main {
+  flex-direction: column;
+}
+
+#logoWelcome {
+  text-align: center;
+  margin-top: 311px;
+}
+
+#welcomeText {
+  text-align: center;
+  margin-top: 91px;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.buttonStartClass {
+  text-align: center;
+  margin-top: 91px;
+}
+
+#buttonStart {
+  width: 272px;
+  height: 70px;
+  background-color: #E8442C;
+  border-radius: 35px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #FFFFFF;
+  border: none;
+}
+
+.logoMain {
+  float: right;
+  width: 290px;
+  height: 104px;
+  margin-right: 140px;
+  margin-bottom: 76px;
+  margin-top: 88px;
+}
+
+#head {
+  display: flex;
+  flex-direction: column;
+}
+
+#company {
+  margin-right: 312px;
+  font-size: 19px;
+  float: right;
+}
+
+.navigationBar {
+  margin-bottom: 69px;
+}
+
+ul li {
+  display: inline;
+  white-space: nowrap;
+  float: right;
+}
+
+li {
+  margin-left: 48px;
+  font-size: 25px;
+}
+
+#menu {
+  margin-right: 312px;
 }
 
 .newBoxVideo {
   background-color: green;
 }
 
-.produktyMain {
-  display: flex;
-}
-
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .produktyMainHidden {
@@ -35,22 +102,32 @@ body {
   display: flex;
 }
 
+.canvasContainer {
+  text-align: center;
+}
+
 .pngPdf {
   height: 115px;
   width: 101px;
   align-content: center;
+  margin-bottom: 30px;
 }
 
 .pdfMain {
   display: flex;
+  justify-content: center;
 }
 
 .pdfMainHidden {
   display: none;
 }
 
+.PDFTitle {
+  font-size: 19px;
+}
+
 .clickPdfClass {
-  color: blue;
+  color: black;
 }
 
 .newDivPdfFile {
@@ -61,7 +138,8 @@ body {
   background-color: grey;
   width: 201px;
   height: 180px;
-  margin-right: 75px;
+  margin-right: 175px;
+  text-align: center;
 }
 
 .pupPdf {
@@ -71,9 +149,138 @@ body {
 
 .pupPdfOpen {
   display: block;
-  position: absolute;
+  text-align: center;
 }
 
 .noneSens {
   color: #000;
+}
+
+#cnv {
+  text-align: center;
+}
+
+.pdfNavigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttons {
+  width: 272px;
+  height: 70px;
+  background-color: #E8442C;
+  border-radius: 35px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #FFFFFF;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 40px;
+}
+
+.newBoxProduct {
+  width: 206px;
+  height: 172px;
+  margin-right: 70px;
+}
+
+.pngProduct {
+  width: 206px;
+  height: 115px;
+  margin-bottom: 30px;
+}
+
+.produktyMain {
+  display: flex;
+  padding-left: 305px;
+  padding-right: 305px;
+}
+
+.productTitle {
+  text-align: center;
+}
+
+.fullProductPhotos {
+  width: 655px;
+  height: 368px;
+  position: relative;
+}
+
+.fullProductBox {
+  height: 568px;
+  display: flex;
+  margin-left: 336px;
+  margin-right: 336px;
+  flex-wrap: wrap;
+}
+
+#sliderConteiner {
+  order: -1;
+}
+
+.pngPdfProduct {
+  width: 34px;
+  height: 39px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cardProductPdfs {
+  display: flex;
+  margin-top: 50px;
+}
+
+.pdfWithTitle {
+  margin-right: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.productTitleFull {
+  font-size: 22px;
+  margin-bottom: 68px;
+  margin-top: 20px;
+}
+
+.fullProductTexts {
+  margin-left: 32px;
+  height: 368px;
+  width: 528px;
+}
+
+#backToMainProduct {
+  text-align: center;
+  justify-content: center;
+  width: 416px;
+  height: 30px;
+}
+
+.backToMainProductDiv {
+  justify-content: center;
+  width: 100%;
+  display: flex;
+}
+
+.productPdfTitle {
+  text-align: center;
+  font-size: small;
+}
+
+#nextProductPhoto {
+  position: absolute;
+  right: 10px;
+  top: 169px;
+}
+
+#prevProductPhoto {
+  position: absolute;
+  left: 10px;
+  top: 169px;
+}
+
+.imgContainer {
+  position: relative;
 }

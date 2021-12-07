@@ -20,7 +20,7 @@ export function createKontaktList(elements) {
 
 export function createProductList(elements) {
   elements.forEach((element, i) => {
-    const cardProduct = createProductCard(`boxProduct${i}`, "newBoxPdf", element);
+    const cardProduct = createProductCard(`boxProduct${i}`, "newBoxProduct", element);
     listProduct.appendChild(cardProduct);
   });
 }

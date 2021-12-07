@@ -15,17 +15,17 @@ startButton.addEventListener("click", () => {
 
 // Pobieranie logo i umieszanie w odpowiednicj miejscach
 
-function createLogo(src, targetLogo) {
+function createLogo(src, targetLogo, classname) {
   const logoDiv = document.getElementById(targetLogo);
   const img = document.createElement("img");
   img.setAttribute("src", src);
-  //img.className = className;
+  img.className = classname;
   logoDiv.appendChild(img);
 
   return img;
 }
 createLogo("./assets/logo/logo.png", "logoWelcome")
-createLogo("./assets/logo/logo.png", "logoMain")
+createLogo("./assets/logo/logo.png", "logoMain", "logoMain")
 
 //------ Text------
 
@@ -65,7 +65,6 @@ function mainHiddenForAll() {
 const pdfMenuButton = document.getElementById("pdfMenu");
 
 pdfMenuButton.addEventListener("click", () => {
-  //tutaj trzeba dac ifa jesli nacisniesz pdf to nie rob nic
   // pdf.classList.add("pdfMainHidden");
   mainHiddenForAll()
   repleceMenuHidden(pdf, "hidden", "pdfMain")
