@@ -1,5 +1,5 @@
 //------------------ PDF ----------
-const headId = document.getElementById("head");
+export const headId = document.getElementById("head");
 
 const pdf = document.getElementById("pdfPupop");
 export const list = document.getElementById("pdf");
@@ -73,7 +73,6 @@ export function toggleProductHidden() {
   list.classList.toggle("pdfMainHidden");
 }
 export function toggleProductVisible(){
-  console.log("dziala koko jumbo")
   toogleProductOpen.classList.toggle("hidden");
   pdf.classList.toggle("pupPdf");
   pdf.classList.toggle("pupPdfOpen");
@@ -87,3 +86,9 @@ export function toggleProductVisible(){
 //-------- Filmy ----------
 
 export const listVideos = document.getElementById("filmy")
+
+export function toggleHeadHidden() {
+
+  headId.classList.toggle("hidden");
+
+}

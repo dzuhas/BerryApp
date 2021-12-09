@@ -98,10 +98,6 @@ li {
   display: flex;
 }
 
-.kontaktMain {
-  display: flex;
-}
-
 .canvasContainer {
   text-align: center;
 }
@@ -283,4 +279,81 @@ li {
 
 .imgContainer {
   position: relative;
+}
+
+.videosContainer {
+  display: grid;
+  margin-left: 278px;
+  grid-template-columns: repeat(4, 299px);
+  grid-gap: 50px;
+}
+
+.videoItem {
+  height: 168px;
+  width: 299px;
+}
+
+.cardVideoFull {
+  display: flex;
+  flex-direction: column;
+  margin-left: 278px;
+  margin-right: 278px;
+  align-items: center;
+}
+
+.videoFull {
+  width: 1300px;
+  max-height: 800px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+#backToMainVideos {
+  width: 272px;
+  height: 70px;
+  background-color: #E8442C;
+  border-radius: 35px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #FFFFFF;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 40px;
+}
+
+.cardVideoTitle {
+  font-size: large;
+}
+
+.kontaktMain {
+  display: flex;
+  margin-left: 278px;
+  margin-right: 278px;
+  margin-top: 55px;
+  justify-content: center;
+}
+
+.newBoxKontakt {
+  width: 354px;
+  height: 203px;
+  background-color: yellow;
+  margin: 20px;
+  border-radius: 37px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-style: solid;
+  border-color: #667791;
+}
+
+.cardKontaktPosition {
+  margin-top: 26px;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.fontKontakt {
+  font-size: 22px;
 }

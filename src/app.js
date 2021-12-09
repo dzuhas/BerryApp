@@ -139,8 +139,8 @@ import { fullProductOpen, videoOpen } from "./source/element-builder.js";
     const { productPdfs } = products
     const { videos } = assets;
 
-console.log(products)
-console.log(productPdfs)
+console.log(contact)
+console.log(settings)
 
     setContentText(mainText);
     setWelcomeText(homeText);

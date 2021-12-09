@@ -11,21 +11,6 @@ export function createListPdf(elements) {
   });
 }
 
-export function createKontaktList(elements) {
-  elements.forEach((element, i) => {
-    const cardKontakt = createKontaktCard(`boxKontakt${i}`, "newBoxPdf", element);
-    listKontakt.appendChild(cardKontakt);
-  });
-}
-
-export function createProductList(elements) {
-  elements.forEach((element, i) => {
-    const cardProduct = createProductCard(`boxProduct${i}`, "newBoxProduct", element);
-    listProduct.appendChild(cardProduct);
-  });
-}
-
-
 export function setListListeners() {
   const pdfImages = document.querySelectorAll(".clickPdfClass");
 
@@ -39,6 +24,26 @@ export function setListListeners() {
     });
   });
 }
+
+//-------------------------- Kontakt --------------------------------
+
+export function createKontaktList(elements) {
+  elements.forEach((element, i) => {
+    const cardKontakt = createKontaktCard(`boxKontakt${i}`, "newBoxKontakt", element);
+    
+    listKontakt.appendChild(cardKontakt);
+  });
+}
+
+export function createProductList(elements) {
+  elements.forEach((element, i) => {
+    const cardProduct = createProductCard(`boxProduct${i}`, "newBoxProduct", element);
+    listProduct.appendChild(cardProduct);
+  });
+}
+
+
+
 
 export function setListListenersPdfProduct() {
   const pdfProductHandlerName = document.querySelectorAll(".clickPdfClass2");

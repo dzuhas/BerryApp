@@ -1,3 +1,4 @@
+import { toggleHeadHidden } from "./view-handler.js";
 
 
 const menu = document.getElementById("menu")
@@ -15,7 +16,7 @@ const fullPageProduct = document.getElementById("productOpen")
 var productNameHandler
 var cardProductPdfs
 
-export function createKontaktCard(id, className, { position, name, phone, email }) {
+export function createKontaktCard(id, className, { position, name, phone, email, www }) {
   const cardKontakt = document.createElement("div");
 
   cardKontakt.id = id;
@@ -23,20 +24,29 @@ export function createKontaktCard(id, className, { position, name, phone, email 
 
   const cardKontaktPosition = document.createElement("div");
   cardKontaktPosition.innerHTML = position;
+  cardKontaktPosition.className = "cardKontaktPosition fontKontakt"
 
   const cardKontaktName = document.createElement("div");
   cardKontaktName.innerHTML = name;
+  cardKontaktName.className = "cardKontaktName fontKontakt"
 
   const cardKontaktPhone = document.createElement("div");
   cardKontaktPhone.innerHTML = phone;
+  cardKontaktPhone.className = "cardKontaktPhone fontKontakt"
 
   const cardKontaktEmail = document.createElement("div");
   cardKontaktEmail.innerHTML = email;
+  cardKontaktEmail.className = "cardKontaktEmail fontKontakt"
+
+  // const cardKontaktWww = document.createElement("div");
+  // cardKontaktWww.innerHTML = www;
+  // cardKontaktWww.className = "cardKontaktWww fontKontakt"
 
   cardKontakt.appendChild(cardKontaktPosition);
   cardKontakt.appendChild(cardKontaktName);
   cardKontakt.appendChild(cardKontaktPhone);
   cardKontakt.appendChild(cardKontaktEmail);
+  // cardKontakt.appendChild(cardKontaktWww);
 
   return cardKontakt;
 }
@@ -171,8 +181,7 @@ function createProductImage(src, className) {
 export function fullProductOpen() {
 
   const productClickhandlers = document.querySelectorAll(".clickProduct");
-  console.log(tabAllImages)
-  console.log(productClickhandlers)
+ 
 
   productClickhandlers.forEach((e) => {
 
@@ -398,30 +407,28 @@ function createPDFTitle(title, filename, className) {
 
 const fullPageVideo = document.getElementById("videoOpen")
 const cardVideo = document.createElement("div")
-
+cardVideo.classList = "videosContainer"
 
 export function createVideoCard(id, className, { idVideo, title, filename, poster }) {
   // console.log(videos.id)
-  console.log(idVideo)
 
 
   const cardVideoFull = document.createElement("div")
   cardVideoFull.id = filename
-  cardVideoFull.className = "hidden"
-
+  //cardVideoFull.className = "hidden"
+  cardVideoFull.classList ="hidden cardVideoFull"
   const videoFull = document.createElement("video")
   videoFull.src = `./assets/videos/${filename}`
   videoFull.setAttribute("controls", "controls")
-  videoFull.setAttribute("width", 320)
-  videoFull.setAttribute("height", 240)
+ 
+  videoFull.classList = "videoFull"
   const backToMainVideos = document.createElement("button")
   backToMainVideos.innerHTML = "Wróć";
   backToMainVideos.id = "backToMainVideos";
 
   backToMainVideos.addEventListener("click", () => {
     cardVideoFull.classList.toggle("hidden");
-    menu.classList.toggle("hidden");
-    company.classList.toggle("hidden");
+    toggleHeadHidden()
     cardVideo.classList.toggle("hidden")
     stopVideo()
   })
@@ -432,14 +439,14 @@ export function createVideoCard(id, className, { idVideo, title, filename, poste
 
   const cardVideoTitle = document.createElement("div")
   cardVideoTitle.innerHTML = title;
-
+  cardVideoTitle.classList = "cardVideoTitle"
   const cardVideoFilename = document.createElement("div")
   cardVideoFilename.innerHTML = filename;
 
   cardVideoFilename.className = "hidden"
 
   const cardVideoPosterImg = document.createElement("img")
-  cardVideoPosterImg.className = "pngPdf clickPoster"
+  cardVideoPosterImg.className = "videoItem clickPoster"
 
   const posterImgSrc = `./assets/posters/${poster}`
 
@@ -447,11 +454,11 @@ export function createVideoCard(id, className, { idVideo, title, filename, poste
 
   cardVideo.appendChild(cardVideoPosterImg)
   fullPageVideo.appendChild(cardVideoFull)
-  cardVideoFull.appendChild(backToMainVideos)
 
   cardVideoFull.appendChild(videoFull)
-
   cardVideoFull.appendChild(cardVideoTitle)
+  cardVideoFull.appendChild(backToMainVideos)
+
   cardVideoPosterImg.appendChild(cardVideoFilename)
   //cardVideoPoster.appendChild(cardVideoFilename)
 
@@ -460,12 +467,10 @@ export function createVideoCard(id, className, { idVideo, title, filename, poste
 export function videoOpen() {
 
   const videoClickhandlers = document.querySelectorAll(".clickPoster");
-  console.log(videoClickhandlers)
 
   videoClickhandlers.forEach((e) => {
 
     const videoName = e.lastChild.innerHTML;
-    console.log(videoName)
 
     //const filepath = `${DOCUMENTS_FOLER}${filename}`;
 
@@ -473,13 +478,11 @@ export function videoOpen() {
 
     e.addEventListener("click", () => {
 
-      console.log(videoName)
       const videoNameHandler = document.getElementById(videoName)
+
       videoNameHandler.classList.toggle("hidden")
 
-      menu.classList.toggle("hidden");
-      company.classList.toggle("hidden");
-      console.log("gugu")
+      toggleHeadHidden()
       cardVideo.classList.toggle("hidden")
 
     });
