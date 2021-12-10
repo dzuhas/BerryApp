@@ -4,12 +4,10 @@ import { toggleHeadHidden } from "./view-handler.js";
 const menu = document.getElementById("menu")
 const company = document.getElementById("company")
 
-//-------------------- PRODUKT --------------------
+//------------------------------------------ PRODUKT -------------------------------------------------
 
 var tabAllImages = [];
 var titlePdfProduct
-
-
 
 const mainPageProduct = document.getElementById("produkty")
 const fullPageProduct = document.getElementById("productOpen")
@@ -78,10 +76,8 @@ export function createProductCard(id, className, { idProduct, title, description
   cardProductFull.id = fullId
   cardProductFull.className = "hidden"
 
-
-
   const fullProduktNameHandler = document.createElement("div");
-  fullProduktNameHandler.className = "hidden kamil"
+  fullProduktNameHandler.className = "hidden"
   fullProduktNameHandler.innerHTML = fullId;
 
   const fullProduktNameHandler2 = document.createElement("div");
@@ -145,7 +141,6 @@ export function createProductCard(id, className, { idProduct, title, description
     pdfProductFilename.className = "newDivPdfFile";
 
     const handlerPdfGaleryName = "pdfGalery" + NumberListOfProductPdfs
-    console.log(handlerPdfGaleryName)
 
     const handlerPdfGaleryNameDiv = document.getElementById(handlerPdfGaleryName)
     titlePdfProduct.appendChild(pdfProductFilename);
@@ -178,10 +173,11 @@ function createProductImage(src, className) {
 }
 
 // funkcja otwierajaca pelny opis produktu
+
 export function fullProductOpen() {
 
   const productClickhandlers = document.querySelectorAll(".clickProduct");
- 
+
 
   productClickhandlers.forEach((e) => {
 
@@ -196,6 +192,7 @@ export function fullProductOpen() {
       mainPageProduct.classList.toggle("hidden")
 
       productNameHandler = document.getElementById(productName)
+
       //zmiana klass z ukrytych na widzialne i odwrotnie
       changeClassOpenProduct(productNameHandler)
       productNameHandler.classList = "fullProductBox"
@@ -210,10 +207,10 @@ export function fullProductOpen() {
       //tworzenie pierwszego wyswietlonego zdjecia
       const imageProduct2 = createOneOfImages(`./assets/products/${prouctImages[0]}`, "fullProductPhotos");
       imageProduct2.id = "idFirstProductPhoto"
-      const dawid = document.createElement("div");
-      dawid.classList = "imgContainer"
+      const imgContainer = document.createElement("div");
+      imgContainer.classList = "imgContainer"
 
-      dawid.appendChild(imageProduct2)
+      imgContainer.appendChild(imageProduct2)
       // const imagesfuj = productNameHandler.getElementsByTagName("img");
       // console.log(imagesfuj)
       // const coc = imagesfuj[0]
@@ -245,14 +242,14 @@ export function fullProductOpen() {
       backToMainProductDiv.classList = "backToMainProductDiv"
 
 
-      const kamil = document.createElement("div");
-      kamil.id = "sliderConteiner"
-      kamil.appendChild(dawid);
+      const sliderConteiner = document.createElement("div");
+      sliderConteiner.id = "sliderConteiner"
+      sliderConteiner.appendChild(imgContainer);
 
-      dawid.appendChild(nextProductPhoto);
-      dawid.appendChild(prevProductPhoto);
+      imgContainer.appendChild(nextProductPhoto);
+      imgContainer.appendChild(prevProductPhoto);
 
-      productNameHandler.appendChild(kamil);
+      productNameHandler.appendChild(sliderConteiner);
 
       productNameHandler.appendChild(backToMainProductDiv);
       backToMainProductDiv.appendChild(backToMainProduct);
@@ -265,7 +262,6 @@ export function fullProductOpen() {
 
       // buttony next, priv i zmiana zdjecia
       const firstProductPhoto = document.getElementById("idFirstProductPhoto")
-      console.log(productNameHandler)
 
       let imageIndex = 0
       function changeImageNext() {
@@ -294,7 +290,7 @@ export function fullProductOpen() {
       clickPrevProduct.addEventListener("click", () => {
         changeImagePrev()
       })
-      //-------------------Swipe------------------------------------------------------------
+      //---------------------------------------------Swipe------------------------------------------------------------
 
       var square = document.getElementById("sliderConteiner");
       var manager = new Hammer.Manager(square);
@@ -332,10 +328,8 @@ function closeFullProduct() {
   const destroyButtonprev = document.getElementById("backToMainProduct")
   destroyButtonprev.remove();
   changeClassOpenProduct(productNameHandler)
-  console.log(fullPageProduct)
 
   //fullPageProduct.classList.toggle("hidden");
-  console.log(productNameHandler)
   mainPageProduct.classList.toggle("hidden")
 
   //productNameHandler.classList.toggle("hidden");
@@ -416,11 +410,11 @@ export function createVideoCard(id, className, { idVideo, title, filename, poste
   const cardVideoFull = document.createElement("div")
   cardVideoFull.id = filename
   //cardVideoFull.className = "hidden"
-  cardVideoFull.classList ="hidden cardVideoFull"
+  cardVideoFull.classList = "hidden cardVideoFull"
   const videoFull = document.createElement("video")
   videoFull.src = `./assets/videos/${filename}`
   videoFull.setAttribute("controls", "controls")
- 
+
   videoFull.classList = "videoFull"
   const backToMainVideos = document.createElement("button")
   backToMainVideos.innerHTML = "Wróć";
@@ -489,4 +483,3 @@ export function videoOpen() {
   })
 }
 
-//---------------Swipe foto---------------

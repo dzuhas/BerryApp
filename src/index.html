@@ -3,9 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>BerrylifeApp</title>
-  <script src="../node_modules/pdfjs-dist/build/pdf.js"></script>
-  <script src="../node_modules/pdfjs-dist/build/pdf.worker.js"></script>
+  <title>Kiosk App</title>
   <link rel="stylesheet" href="index.css" />
 </head>
 
@@ -52,12 +50,20 @@
       </div>
 
       <div id="wspolpraca" class="hidden">
-        <div>
+        <div class="wspolpacaContainer">
+          <div class="wspolpracaText">
+           <p> Chcesz z nami współpracować lub masz pytania?<br> Zostaw swój kontakt. Odezwiemy się!</p>
+            
+          </div>
+          <div class="manWspolpraca">
+            <img src="./assets/images/he.png">
+          </div>
           <form>
-            Imię i nazwisko: <input type="text" name="name"><br>
-            Email: <input type="text" name="email"><br>
-            Telefon: <input type="text" name="telefon">
-            Firma: <input type="text" name="firma">
+            
+             <input class="bigInput bigInputUp" type="text" name="name" placeholder="Imię i Nazwisko"><br>
+             <input class="bigInput" type="text" name="email" placeholder="Email"><br>
+             <input class="smallInput" type="text" name="telefon" placeholder="Telefon">
+             <input class="smallInput smallInput2" type="text" name="firma" placeholder="Firma">
 
           </form>
         </div>
@@ -68,7 +74,7 @@
       <div id="pdfPupop" class="pupPdf">
         <div class="pdfNavigation">
           <button id="prev" class="buttons">Poprzednia strona</button>
-          <div class="buttons">Strona&nbsp   <span id="npage"> 0 </span> &nbspz&nbsp <span id="npages"> 0 </span></div>
+          <div class="buttons">Strona&nbsp <span id="npage"> 0 </span> &nbspz&nbsp <span id="npages"> 0 </span></div>
           <button id="next" class="buttons">Następna strona</button>
           <button id="buttonPdf" class="buttons">Wróć</button>
         </div>
@@ -106,7 +112,6 @@
   </footer> -->
   <script type="module" src="app.js" defer></script>
   <script src="../node_modules/hammerjs/hammer.js"></script>
-
   <script src="../node_modules/pdfjs-dist/build/pdf.js"></script>
   <script src="../node_modules/pdfjs-dist/build/pdf.worker.js"></script>
 </body>

@@ -1,4 +1,5 @@
-//------------------ PDF ----------
+//------------------ PDF ---------------------
+
 export const headId = document.getElementById("head");
 
 const pdf = document.getElementById("pdfPupop");
@@ -54,11 +55,13 @@ function togglePDF() {
   menu.classList.toggle("hidden");
   company.classList.toggle("hidden");
 }
-// ------ Kontakt ---------
+
+// ------------------------ Kontakt -----------------------------
 
 export const listKontakt = document.getElementById("kontakt");
 
-// ------ Produkty ---------
+// ------------------------ Produkty ----------------------------
+
 const toogleProductOpen = document.getElementById("productOpen");
 
 export const listProduct = document.getElementById("produkty");
@@ -83,7 +86,7 @@ export function toggleProductVisible(){
 
 }
 
-//-------- Filmy ----------
+//-------------------------- Filmy -----------------------------
 
 export const listVideos = document.getElementById("filmy")
 

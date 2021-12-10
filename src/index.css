@@ -1,5 +1,5 @@
 body {
-  background-color: #1876d2;
+  background-color: white;
   font-family: "Poppins";
 }
 
@@ -131,7 +131,6 @@ li {
 }
 
 .newBoxPdf {
-  background-color: grey;
   width: 201px;
   height: 180px;
   margin-right: 175px;
@@ -356,4 +355,47 @@ li {
 
 .fontKontakt {
   font-size: 22px;
+}
+
+.wspolpacaContainer {
+  width: 893px;
+  height: 419px;
+  background-color: #359428;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.wspolpracaText {
+  width: 893px;
+  height: 128px;
+}
+
+.manWspolpraca {
+  margin-left: 104px;
+  margin-bottom: 92px;
+}
+
+.bigInput {
+  width: 447px;
+  margin-left: 30px;
+  border: none;
+  border-bottom: 2px solid #667791;
+  height: 40px;
+  margin-bottom: 18px;
+}
+
+.bigInputUp {
+  margin-top: 15px;
+}
+
+.smallInput {
+  width: 187px;
+  margin-left: 30px;
+  border: none;
+  border-bottom: 2px solid #667791;
+  height: 40px;
+}
+
+.smallInput2 {
+  margin-left: 65px;
 }

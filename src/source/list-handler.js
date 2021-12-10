@@ -2,6 +2,8 @@ import { createPDFCard, createKontaktCard, createProductCard, createVideoCard } 
 import { openPDF, openPDF2 } from "./pdf-handler.js";
 import { list, showPDFView, listKontakt, listProduct, toggleProductHidden, listVideos } from "./view-handler.js";
 
+//----------------------------PDF----------------------------------------
+
 const DOCUMENTS_FOLDER = "assets/documents/";
 
 export function createListPdf(elements) {
@@ -30,10 +32,12 @@ export function setListListeners() {
 export function createKontaktList(elements) {
   elements.forEach((element, i) => {
     const cardKontakt = createKontaktCard(`boxKontakt${i}`, "newBoxKontakt", element);
-    
+
     listKontakt.appendChild(cardKontakt);
   });
 }
+
+//-------------------------- Product --------------------------------
 
 export function createProductList(elements) {
   elements.forEach((element, i) => {
@@ -41,9 +45,6 @@ export function createProductList(elements) {
     listProduct.appendChild(cardProduct);
   });
 }
-
-
-
 
 export function setListListenersPdfProduct() {
   const pdfProductHandlerName = document.querySelectorAll(".clickPdfClass2");
@@ -59,7 +60,7 @@ export function setListListenersPdfProduct() {
   });
 }
 
-//-------------- Filmy -------------
+//------------------------- Filmy ---------------------------------------
 
 export function createVideosList(elements) {
   elements.forEach((element, i) => {
