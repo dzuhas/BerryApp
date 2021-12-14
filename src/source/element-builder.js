@@ -347,7 +347,7 @@ function changeClassOpenProduct(productNameHandler) {
 }
 
 
-//--------------- PDF-------------------
+//---------------------------------------- PDF---------------------------------------------
 
 export function createPDFCard(id, className, { title, filename }) {
   const card = document.createElement("div");
@@ -397,14 +397,13 @@ function createPDFTitle(title, filename, className) {
   return pdfTitle;
 }
 
-//------------------- FILMY ----------------
+//----------------------------------------------- FILMY ----------------------------------------------
 
 const fullPageVideo = document.getElementById("videoOpen")
 const cardVideo = document.createElement("div")
 cardVideo.classList = "videosContainer"
 
 export function createVideoCard(id, className, { idVideo, title, filename, poster }) {
-  // console.log(videos.id)
 
 
   const cardVideoFull = document.createElement("div")
@@ -458,6 +457,7 @@ export function createVideoCard(id, className, { idVideo, title, filename, poste
 
   return cardVideo
 }
+
 export function videoOpen() {
 
   const videoClickhandlers = document.querySelectorAll(".clickPoster");

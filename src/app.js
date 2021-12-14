@@ -1,6 +1,6 @@
 // ----------- WELCOME PAGE ----------
 
-// ------Button-----------
+// -----------Button-----------
 const startButton = document.getElementById("buttonStart");
 
 startButton.addEventListener("click", () => {
@@ -11,7 +11,7 @@ startButton.addEventListener("click", () => {
   start.classList.toggle("hidden");
 
 });
-// ------Logo------------
+// ------------Logo------------
 
 // Pobieranie logo i umieszanie w odpowiednicj miejscach
 
@@ -35,20 +35,11 @@ createLogo("./assets/logo/logo.png", "logoMain", "logoMain")
 
 //Funkcja zamieniająca klasy w odpowiednim divie 
 
-// function toggleMenu(nameDiv,classA,classB) {
-//   nameDiv.classList.toggle(classA);
-//   nameDiv.classList.toggle(classB);
-// }
+
 function repleceMenuHidden(nameDiv, classA, classB) {
   nameDiv.classList.replace(classA, classB);
 }
 
-// function toggleMenyForAll(){
-//   toggleMenu(pdf,"pdfMain","pdfMainHidden")
-//   toggleMenu(produkty,"produktyMainHidden","produktyMain")
-//   toggleMenu(filmy,"filmyMainHidden","filmyMain")
-
-// }
 function mainHiddenForAll() {
   repleceMenuHidden(pdf, "pdfMain", "hidden")
   repleceMenuHidden(produkty, "produktyMain", "hidden")
@@ -57,6 +48,23 @@ function mainHiddenForAll() {
   repleceMenuHidden(kontakt, "kontaktMain", "hidden",)
 
 }
+
+//Funkcja podświetlająca odpowiedni dział w menu 
+
+function makeColor(nameDiv, classA, classB) {
+  nameDiv.classList.replace(classA, classB);
+}
+
+function GreyForAll() {
+  makeColor(pdfMenu, "colorRed", "colorGrey")
+  makeColor(produktyMenu, "colorRed", "colorGrey")
+  makeColor(filmyMenu, "colorRed", "colorGrey",)
+  makeColor(wspolpracaMenu, "colorRed", "colorGrey",)
+  makeColor(kontaktMenu, "colorRed", "colorGrey",)
+
+}
+
+
 
 
 
@@ -69,7 +77,9 @@ pdfMenuButton.addEventListener("click", () => {
   mainHiddenForAll()
   repleceMenuHidden(pdf, "hidden", "pdfMain")
 
-  //toggleMenuHiddenForAll()
+  GreyForAll()
+  makeColor(pdfMenu, "colorGrey", "colorRed")
+
 });
 
 // --- MENU PRODUKTY -------
@@ -78,10 +88,11 @@ const produktyMenuButton = document.getElementById("produktyMenu");
 
 produktyMenuButton.addEventListener("click", () => {
 
-
+  GreyForAll()
   mainHiddenForAll()
 
   repleceMenuHidden(produkty, "hidden", "produktyMain")
+  makeColor(produktyMenu, "colorGrey", "colorRed")
 
 });
 
@@ -92,8 +103,12 @@ const filmyMenuButton = document.getElementById("filmyMenu");
 filmyMenuButton.addEventListener("click", () => {
   // toggleMenyForAll()
   mainHiddenForAll()
-
   repleceMenuHidden(filmy, "hidden", "filmyMain")
+
+
+  GreyForAll()
+  makeColor(filmyMenu, "colorGrey", "colorRed")
+
 
 });
 // --- MENU WSPÓŁPRACA -------
@@ -103,9 +118,10 @@ const wspolpracaMenuButton = document.getElementById("wspolpracaMenu");
 wspolpracaMenuButton.addEventListener("click", () => {
   // toggleMenyForAll()
   mainHiddenForAll()
-
   repleceMenuHidden(wspolpraca, "hidden", "wspolpracaMain")
 
+  GreyForAll()
+  makeColor(wspolpracaMenu, "colorGrey", "colorRed")
 });
 
 // --- MENU KONTAKT -------
@@ -113,10 +129,12 @@ wspolpracaMenuButton.addEventListener("click", () => {
 const kontaktMenuButton = document.getElementById("kontaktMenu");
 
 kontaktMenuButton.addEventListener("click", () => {
-  // toggleMenyForAll()
+  
   mainHiddenForAll()
-
   repleceMenuHidden(kontakt, "hidden", "kontaktMain")
+
+  GreyForAll()
+  makeColor(kontaktMenu, "colorGrey", "colorRed")
 
 });
 
@@ -139,8 +157,6 @@ import { fullProductOpen, videoOpen } from "./source/element-builder.js";
     const { productPdfs } = products
     const { videos } = assets;
 
-console.log(contact)
-console.log(settings)
 
     setContentText(mainText);
     setWelcomeText(homeText);
@@ -158,5 +174,5 @@ console.log(settings)
   }
 })();
 
-
+//-------------------- Wspolpraca ---------------------------
 

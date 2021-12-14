@@ -3,18 +3,19 @@ $primary-color :white;
 body {
   // font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   background-color: $primary-color;
-  font-family: "Poppins"
+  font-family: "Poppins";
+  color: #707070;  
 }
 
 #main{
   flex-direction: column;
 }
+
 // Logo i haslo reklamowe
 
 #logoWelcome{
 text-align: center;
 margin-top: 311px;
-
 }
 
 #welcomeText{
@@ -28,6 +29,7 @@ margin-top: 311px;
   text-align: center;
   margin-top: 91px;
 }
+
 #buttonStart{
   width: 272px;
   height: 70px;
@@ -76,6 +78,16 @@ li{
 #menu{
   margin-right: 312px;
 }
+.colorGrey{
+  color: #707070;
+}
+
+.colorRed{
+  color: red;
+}
+
+
+
 //ZAWARTOŚĆ MAIN CONTENT
 
 .newBoxVideo {
@@ -130,7 +142,7 @@ li{
 
 }
 .clickPdfClass{
-  color:black;
+  color:gray;
 
 }
 //nowy div z zawortoscia - nazwa pliku pdf
@@ -379,13 +391,22 @@ height: 419px;
 background-color: #359428;
 display: flex;
 flex-wrap: wrap;
-
+justify-content: center;
+margin-left: auto;
+margin-right: auto;
+border: 1px;
+border-color: #707070;
+border-width: 1px;
+border-style: solid;
 
 }
 
 .wspolpracaText{
   width: 893px;
   height: 128px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
 }
 
 .manWspolpraca{
@@ -418,4 +439,9 @@ flex-wrap: wrap;
 
 .smallInput2{
 margin-left: 65px;
+}
+
+.wspolpracaButton{
+  text-align: center;
+  margin-top: -43px;
 }
