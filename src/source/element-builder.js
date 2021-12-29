@@ -413,6 +413,8 @@ export function createVideoCard(id, className, { idVideo, title, filename, poste
   const videoFull = document.createElement("video")
   videoFull.src = `./assets/videos/${filename}`
   videoFull.setAttribute("controls", "controls")
+  videoFull.setAttribute("preload", "auto")
+
 
   videoFull.classList = "videoFull"
   const backToMainVideos = document.createElement("button")

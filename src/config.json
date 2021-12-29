@@ -2,7 +2,7 @@
     "settings": {
         "logo": "logo.png",
         "company": "Nazwa firmy",
-        "homeText": "Tekst powitalny z pierwszej strony",
+        "homeText": "Cześć Łukasz",
         "contactText": "Tekst nad formularzem kontaktowym",
         "mainText": "Nasza oferta przedstawia 100 produktów z serii 'My gold product'",
         "contact": [

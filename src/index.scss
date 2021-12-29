@@ -78,6 +78,7 @@ li{
 #menu{
   margin-right: 312px;
 }
+
 .colorGrey{
   color: #707070;
 }
@@ -96,9 +97,11 @@ li{
 }
 
 .hidden{
-  display: none !important;
+ display: none !important;
 
 }
+
+
 .produktyMainHidden{
   display: none;
 
@@ -119,9 +122,11 @@ li{
 
 
 // DZIAL PDF
+
 .canvasContainer{
   text-align: center;
 }
+
 .pngPdf{
   height:115px;
   width:101px;
@@ -132,11 +137,13 @@ li{
 .pdfMain{
   display: flex;
   justify-content:center;
+  margin-top: 68px;
  }
  
  .pdfMainHidden{
    display: none;
  }
+
 .PDFTitle{
   font-size: 19px;
 
@@ -146,13 +153,16 @@ li{
 
 }
 //nowy div z zawortoscia - nazwa pliku pdf
+
 .newDivPdfFile{
   display: none;
 }
+
 .newBoxPdf {
   width:201px;
   height: 180px;
-  margin-right: 175px;
+  margin-right: 88px;
+  margin-left: 88px;
   text-align: center;
 
 }
@@ -219,9 +229,14 @@ color: #000;
 }
 
 .fullProductPhotos{
-  width: 655px;
-  height: 368px;
-  position: relative;
+  width:  655px ;
+  
+  //height: auto;
+ //height: 368px;
+margin-left: auto;
+margin-right: auto;
+position: relative;
+object-fit: cover;
 }
 
 .fullProductBox{
@@ -240,8 +255,9 @@ color: #000;
 .pngPdfProduct{
   width: 34px;
   height: 39px;
-margin-left: auto;
-margin-right: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5px ;
 }
 
 .cardProductPdfs{
@@ -302,11 +318,21 @@ font-size: small;
 
 .imgContainer{
   position: relative;
+  width:  655px;
+  height: 360px;
+  display: flex;
+
 }
+
+// Dział Filmy
+
+
 
 .videosContainer{
   display: grid;
   margin-left: 278px;
+  margin-right: 278px;
+
   grid-template-columns: repeat(4, 299px);
   grid-gap: 50px;
 }
@@ -314,6 +340,80 @@ font-size: small;
 .videoItem{
   height: 168px;
   width: 299px;
+}
+
+.videoItem:nth-child(2)
+ {
+  grid-column-start: 2;
+  grid-column-end: five;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  height: 386px;
+  width: 648px;
+}
+
+.videoItem:nth-child(3)
+ {
+  grid-column-start: 4;
+  grid-column-end: end;
+  grid-row-start: 1;
+  grid-row-end: 3;
+ 
+}
+
+.videoItem:nth-child(5)
+ {
+  grid-column-start: 4;
+  grid-column-end: end;
+  grid-row-start: 2;
+  grid-row-end: 4;
+ 
+}
+
+.videoItem:nth-child(6)
+ {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start:3;
+  grid-row-end:5;
+  height: 386px;
+  width: 648px;
+}
+
+.videoItem:nth-child(7)
+ {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  
+}
+
+.videoItem:nth-child(8)
+ {
+  grid-column-start: 4;
+  grid-column-end: end;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  
+}
+
+.videoItem:nth-child(9)
+ {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 4;
+  grid-row-end: 5;
+  
+}
+
+.videoItem:nth-child(11)
+ {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 5;
+  grid-row-end: 6;
+  
 }
 
 .cardVideoFull{
@@ -362,7 +462,6 @@ font-size: small;
 .newBoxKontakt{
 width: 354px;
 height: 203px;
-background-color: yellow;
 margin: 20px;
 border-radius: 37px;
 display: flex;
@@ -373,7 +472,7 @@ border-color: #667791;
 }
 
 .cardKontaktPosition{
-  margin-top: 26px;
+  margin-top: 39px;
   margin-bottom: 8px;
   font-weight: bold;
 }
@@ -388,7 +487,6 @@ border-color: #667791;
 .wspolpacaContainer{
 width: 893px;
 height: 419px;
-background-color: #359428;
 display: flex;
 flex-wrap: wrap;
 justify-content: center;
@@ -444,4 +542,18 @@ margin-left: 65px;
 .wspolpracaButton{
   text-align: center;
   margin-top: -43px;
+}
+
+// ------------------------------ Error --------------------------
+
+#error{
+  background-color: #dee201;
+}
+
+.errorContainer{
+  margin-top: 406px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }

@@ -64,9 +64,7 @@ export function setListListenersPdfProduct() {
 
 export function createVideosList(elements) {
   elements.forEach((element, i) => {
-    console.log(element)
     const cardVideo = createVideoCard(`boxVideos${i}`, "newBoxPdf", element);
-    console.log(cardVideo)
     listVideos.appendChild(cardVideo);
   });
 }

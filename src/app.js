@@ -138,7 +138,7 @@ kontaktMenuButton.addEventListener("click", () => {
 
 });
 
-// ----------- PDF -------------------
+// ----------- Config -------------------
 
 import { setContentText, setWelcomeText} from "./source/view-handler.js";
 import { createListPdf, setListListeners, createKontaktList, createProductList, setListListenersPdfProduct, createVideosList } from "./source/list-handler.js";
@@ -169,10 +169,22 @@ import { fullProductOpen, videoOpen } from "./source/element-builder.js";
     createVideosList(videos)
     videoOpen()
   } catch (error) {
+    console.log("apskierror");
 
     console.log(error);
   }
 })();
 
 //-------------------- Wspolpraca ---------------------------
+
+//-------------------- Error --------------------------------
+// const errorButton = document.getElementById("buttonError");
+
+// errorButton.addEventListener("click", () => {
+  
+ 
+
+// });
+
+
 
