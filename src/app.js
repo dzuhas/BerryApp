@@ -1,6 +1,64 @@
+
+// ----------- Config -------------------
+
+import { setContentText, setWelcomeText} from "./source/view-handler.js";
+import { createListPdf, setListListeners, createKontaktList, createProductList, setListListenersPdfProduct, createVideosList } from "./source/list-handler.js";
+import { fullProductOpen, videoOpen } from "./source/element-builder.js";
+
+(async () => {
+  try {
+    const data = await fetch("config.json").then((res) => res.json());
+
+    const { settings, assets, products } = data;
+    console.log(settings)
+    console.log(settings.desktop)
+
+    const { homeText} = settings;
+    const { mainText } = settings;
+    const { pdfs } = assets;
+    const { contact } = settings;
+    const { images } = products
+    const { productPdfs } = products
+    const { videos } = assets;
+    const { desktop } = settings;
+    const { logo } = settings;
+
+    setLogo(logo);
+    setDesktop(desktop);
+    setContentText(mainText);
+    setWelcomeText(homeText);
+    createListPdf(pdfs);
+    setListListeners();
+    createKontaktList(contact)
+    createProductList(products)
+    fullProductOpen()
+    setListListenersPdfProduct()
+    createVideosList(videos)
+    videoOpen()
+  } catch (error) {
+    console.log("apskierror");
+
+    console.log(error);
+  }
+})();
+
 // ----------- WELCOME PAGE ----------
 
+//------------Background-image------
+
+
+function setDesktop(desktop){
+  console.log(desktop)
+
+document.body.style.backgroundImage = "url(assets/images/"+desktop+")";
+
+}
+// -----------Font-----------
+
+
+
 // -----------Button-----------
+
 const startButton = document.getElementById("buttonStart");
 
 startButton.addEventListener("click", () => {
@@ -11,21 +69,31 @@ startButton.addEventListener("click", () => {
   start.classList.toggle("hidden");
 
 });
+
 // ------------Logo------------
 
 // Pobieranie logo i umieszanie w odpowiednicj miejscach
 
-function createLogo(src, targetLogo, classname) {
-  const logoDiv = document.getElementById(targetLogo);
-  const img = document.createElement("img");
-  img.setAttribute("src", src);
-  img.className = classname;
-  logoDiv.appendChild(img);
 
-  return img;
+function setLogo(logo){
+
+  function createLogo(src, targetLogo, classname) {
+    const logoDiv = document.getElementById(targetLogo);
+    const img = document.createElement("img");
+    img.setAttribute("src", src);
+    img.className = classname;
+    logoDiv.appendChild(img);
+  
+    return img;
+  }
+
+
+
+createLogo("./assets/logo/"+logo, "logoWelcome")
+createLogo("./assets/logo/"+logo, "logoMain", "logoMain")
+
 }
-createLogo("./assets/logo/logo.png", "logoWelcome")
-createLogo("./assets/logo/logo.png", "logoMain", "logoMain")
+
 
 //------ Text------
 
@@ -116,7 +184,7 @@ filmyMenuButton.addEventListener("click", () => {
 const wspolpracaMenuButton = document.getElementById("wspolpracaMenu");
 
 wspolpracaMenuButton.addEventListener("click", () => {
-  // toggleMenyForAll()
+
   mainHiddenForAll()
   repleceMenuHidden(wspolpraca, "hidden", "wspolpracaMain")
 
@@ -138,42 +206,6 @@ kontaktMenuButton.addEventListener("click", () => {
 
 });
 
-// ----------- Config -------------------
-
-import { setContentText, setWelcomeText} from "./source/view-handler.js";
-import { createListPdf, setListListeners, createKontaktList, createProductList, setListListenersPdfProduct, createVideosList } from "./source/list-handler.js";
-import { fullProductOpen, videoOpen } from "./source/element-builder.js";
-
-(async () => {
-  try {
-    const data = await fetch("config.json").then((res) => res.json());
-
-    const { settings, assets, products } = data;
-    const { homeText} = settings;
-    const { mainText } = settings;
-    const { pdfs } = assets;
-    const { contact } = settings;
-    const { images } = products
-    const { productPdfs } = products
-    const { videos } = assets;
-
-
-    setContentText(mainText);
-    setWelcomeText(homeText);
-    createListPdf(pdfs);
-    setListListeners();
-    createKontaktList(contact)
-    createProductList(products)
-    fullProductOpen()
-    setListListenersPdfProduct()
-    createVideosList(videos)
-    videoOpen()
-  } catch (error) {
-    console.log("apskierror");
-
-    console.log(error);
-  }
-})();
 
 //-------------------- Wspolpraca ---------------------------
 
