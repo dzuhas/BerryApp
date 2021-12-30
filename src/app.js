@@ -22,7 +22,10 @@ import { fullProductOpen, videoOpen } from "./source/element-builder.js";
     const { videos } = assets;
     const { desktop } = settings;
     const { logo } = settings;
+    const { font } = settings;
 
+
+    setFont(font);
     setLogo(logo);
     setDesktop(desktop);
     setContentText(mainText);
@@ -48,14 +51,26 @@ import { fullProductOpen, videoOpen } from "./source/element-builder.js";
 
 
 function setDesktop(desktop){
-  console.log(desktop)
 
 document.body.style.backgroundImage = "url(assets/images/"+desktop+")";
 
 }
 // -----------Font-----------
 
+async function setFont(font) {
+  const newFont = new FontFace('myFont', 'url(assets/font/'+font+')');
+  // wait for font to be loaded
 
+  await newFont.load();
+  // add font to document
+  console.log(font)
+  console.log(newFont)
+
+
+  document.fonts.add(newFont);
+  // enable font with CSS class
+  document.body.classList.add('fonts-loaded');
+}
 
 // -----------Button-----------
 

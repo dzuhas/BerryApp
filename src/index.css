@@ -1,6 +1,13 @@
+@font-face {
+  font-family: "myFont";
+  src: url("assets/font/Poppins-Medium.woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
+  font-family: "myFont";
   background-color: white;
-  font-family: "Poppins";
   color: #707070;
 }
 

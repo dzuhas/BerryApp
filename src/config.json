@@ -1,6 +1,7 @@
 {
     "settings": {
-        "desktop":"background.jpg",
+        "desktop":"background(zmienic plik).jpg",
+        "font": "comici.ttf",
         "logo": "logo.png",
         "company": "Nazwa firmy",
         "homeText": "Tekst powitalny z pierwszej strony",
