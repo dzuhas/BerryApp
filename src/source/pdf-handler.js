@@ -9,6 +9,7 @@ import {
   setPage,
   clearCanvas,
   setPages
+  clearCanvas,
 } from "./view-handler.js";
 
 let state = {

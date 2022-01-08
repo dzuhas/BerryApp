@@ -17,6 +17,11 @@ export const backButton = document.getElementById("buttonPdf");
 export const canvas = document.querySelector("#cnv");
 export const canvasContext = canvas.getContext("2d");
 
+export function clearCanvas(canvas) {
+  const canvasContext = canvas.getContext("2d");
+  canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+}
+
 export function setContentText(name) {
   company.innerHTML = name;
 }
