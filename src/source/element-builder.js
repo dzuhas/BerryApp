@@ -290,6 +290,7 @@ export function fullProductOpen() {
       clickPrevProduct.addEventListener("click", () => {
         changeImagePrev()
       })
+      
       //---------------------------------------------Swipe------------------------------------------------------------
 
       var square = document.getElementById("sliderConteiner");
@@ -401,11 +402,84 @@ function createPDFTitle(title, filename, className) {
 
 const fullPageVideo = document.getElementById("videoOpen")
 const cardVideo = document.createElement("div")
-cardVideo.classList = "videosContainer"
+cardVideo.classList = "videosContainer";
+
+
+// function getVideoImage(path, secs, callback) {
+//   var me = this, video = document.createElement('video');
+//   video.onloadedmetadata = function() {
+//     if ('function' === typeof secs) {
+//       secs = secs(this.duration);
+//     }
+//     this.currentTime = Math.min(Math.max(0, (secs < 0 ? this.duration : 0) + secs), this.duration);
+//   };
+//   video.onseeked = function(e) {
+//     var canvas = document.createElement('canvas');
+//     canvas.height = video.videoHeight;
+//     canvas.width = video.videoWidth;
+//     var ctx = canvas.getContext('2d');
+//     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+//     var img = new Image();
+//     img.src = canvas.toDataURL();
+//     callback.call(me, img, this.currentTime, e);
+//   };
+//   video.onerror = function(e) {
+//     callback.call(me, undefined, undefined, e);
+//   };
+//   video.src = path;
+// }
+
+// async function extractFramesFromVideo(videoUrl, fps=25) {
+//   return new Promise(async (resolve) => {
+// console.log("torun")
+//     // fully download it first (no buffering):
+//     let videoBlob = await fetch(videoUrl).then(r => r.blob());
+//     let videoObjectUrl = URL.createObjectURL(videoBlob);
+//     let video = document.createElement("video");
+
+//     let seekResolve;
+//     video.addEventListener('seeked', async function() {
+//       if(seekResolve) seekResolve();
+//     });
+
+//     video.src = videoObjectUrl;
+
+//     // workaround chromium metadata bug (https://stackoverflow.com/q/38062864/993683)
+//     while((video.duration === Infinity || isNaN(video.duration)) && video.readyState < 2) {
+//       await new Promise(r => setTimeout(r, 1000));
+//       video.currentTime = 10000000*Math.random();
+//     }
+//     let duration = video.duration;
+
+//     let canvas = document.createElement('canvas');
+//     let context = canvas.getContext('2d');
+//     let [w, h] = [video.videoWidth, video.videoHeight]
+//     canvas.width =  w;
+//     canvas.height = h;
+
+//     let frames = [];
+//     let interval = 1 / fps;
+//     let currentTime = 0;
+
+//     while(currentTime < duration) {
+//       video.currentTime = currentTime;
+//       await new Promise(r => seekResolve=r);
+
+//       context.drawImage(video, 0, 0, w, h);
+//       let base64ImageData = canvas.toDataURL();
+//       frames.push(base64ImageData);
+
+//       currentTime += interval;
+//     }
+//     resolve(frames);
+//   });
+// }
+
 
 export function createVideoCard(id, className, { idVideo, title, filename, poster }) {
 
-
+  //const humor = document.createElement("ol")
+  //getVideoImage(`./assets/videos/${filename}`, 1000, callback)
   const cardVideoFull = document.createElement("div")
   cardVideoFull.id = filename
   //cardVideoFull.className = "hidden"
@@ -415,7 +489,30 @@ export function createVideoCard(id, className, { idVideo, title, filename, poste
   videoFull.setAttribute("controls", "controls")
   videoFull.setAttribute("preload", "auto")
 
-
+  //  async function showImageAt(secs, src) {
+  //   var duration;
+  //   console.log(duration)
+  //   getVideoImage(
+  //     src,
+  //     3,
+  //    function (img, secs, event) {
+  //       if (event.type == 'seeked') {
+  //         var li = document.createElement('li');
+  //         li.appendChild(img);
+  //         document.getElementById(filename).appendChild(li);
+  //         if (duration >= ++secs) {
+  //           showImageAt(secs);
+  //         };
+  //       }
+  //     }
+  //   );
+  // }
+  
+  // showImageAt(1, `./assets/videos/${filename}`);
+  //extractFramesFromVideo(`./assets/videos/${filename}`, fps=25)
+ 
+  // let framesk = await extractFramesFromVideo(`./assets/videos/${filename}`);
+//console.log(frames)
   videoFull.classList = "videoFull"
   const backToMainVideos = document.createElement("button")
   backToMainVideos.innerHTML = "Wróć";
@@ -427,6 +524,7 @@ export function createVideoCard(id, className, { idVideo, title, filename, poste
     cardVideo.classList.toggle("hidden")
     stopVideo()
   })
+  
   function stopVideo() {
     videoFull.pause();
     videoFull.currentTime = 0;
@@ -485,3 +583,25 @@ export function videoOpen() {
   })
 }
 
+
+//const extractFrames = require('ffmpeg-extract-frames')
+// import extractFrames from '../node_modules/ffmpeg-extract-frames';
+
+// await extractFrames({
+//   input: 'media/1.mp4',
+//   output: './screenshot-%i.jpg',
+//   offsets: [
+//     1000,
+//     2000,
+//     3500
+//   ]
+// })
+
+//------ Poster --------
+
+const videoToPoster = document.getElementById("videoOpen")
+
+
+// videoToPoster.forEach(function() {
+//   console.log("number");
+// });

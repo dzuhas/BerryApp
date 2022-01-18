@@ -10,7 +10,6 @@ import { fullProductOpen, videoOpen } from "./source/element-builder.js";
     const data = await fetch("config.json").then((res) => res.json());
 
     const { settings, assets, products } = data;
-    console.log(settings)
     console.log(settings.desktop)
 
     const { homeText} = settings;
@@ -23,8 +22,9 @@ import { fullProductOpen, videoOpen } from "./source/element-builder.js";
     const { desktop } = settings;
     const { logo } = settings;
     const { font } = settings;
+    const { filename } = videos;
 
-
+console.log(filename)
     setFont(font);
     setLogo(logo);
     setDesktop(desktop);
@@ -32,11 +32,12 @@ import { fullProductOpen, videoOpen } from "./source/element-builder.js";
     setWelcomeText(homeText);
     createListPdf(pdfs);
     setListListeners();
-    createKontaktList(contact)
-    createProductList(products)
-    fullProductOpen()
-    setListListenersPdfProduct()
-    createVideosList(videos)
+    createKontaktList(contact);
+    createProductList(products);
+    fullProductOpen();
+    setListListenersPdfProduct();
+    createVideosList(videos);
+    //createPosters(videos)
     videoOpen()
   } catch (error) {
     console.log("apskierror");
@@ -224,6 +225,8 @@ kontaktMenuButton.addEventListener("click", () => {
 
 //-------------------- Wspolpraca ---------------------------
 
+
+  
 //-------------------- Error --------------------------------
 // const errorButton = document.getElementById("buttonError");
 
@@ -234,4 +237,15 @@ kontaktMenuButton.addEventListener("click", () => {
 // });
 
 
+//const extractFrames = require('ffmpeg-extract-frames')
+// import extractFrames from '../node_modules/ffmpeg-extract-frames';
 
+// await extractFrames({
+//   input: 'media/1.mp4',
+//   output: './screenshot-%i.jpg',
+//   offsets: [
+//     1000,
+//     2000,
+//     3500
+//   ]
+// })

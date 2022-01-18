@@ -68,3 +68,66 @@ export function createVideosList(elements) {
     listVideos.appendChild(cardVideo);
   });
 }
+
+//------------------------Poster----------------------------
+
+
+function getVideoImage(path, secs, callback) {
+  var me = this, video = document.createElement('video');
+  video.onloadedmetadata = function() {
+    if ('function' === typeof secs) {
+      secs = secs(this.duration);
+    }
+    this.currentTime = Math.min(Math.max(0, (secs < 0 ? this.duration : 0) + secs), this.duration);
+  };
+  video.onseeked = function(e) {
+    var canvas = document.createElement('canvas');
+    canvas.height = video.videoHeight;
+    canvas.width = video.videoWidth;
+    var ctx = canvas.getContext('2d');
+    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+    var img = new Image();
+    img.src = canvas.toDataURL();
+    callback.call(me, img, this.currentTime, e);
+    ctx.restore();
+
+  };
+  video.onerror = function(e) {
+    callback.call(me, undefined, undefined, e);
+  };
+  video.src = path;
+
+}
+
+async function showImageAt(secs, video) {
+  var duration;
+  console.log(video)
+  getVideoImage(
+    `./assets/videos/${video}`,
+    function(totalTime) {
+      duration = totalTime;
+      return secs;
+    },
+   function(img, secs, event) {
+      if (event.type == 'seeked') {
+        var li = document.createElement('li');
+        li.innerHTML += '<b>Frame at second ' + secs + ':</b><br />';
+        li.appendChild(img);
+        document.getElementById(video).appendChild(li);
+        if (duration >= ++secs) {
+          showImageAt(secs);
+        };
+      }
+    }
+  );
+}
+
+
+// export function createPosters(elements){
+//   elements.forEach((element, i) => {
+
+//     const filenameVideo = element.filename
+//     console.log(filenameVideo)
+//     await showImageAt(3, filenameVideo);
+//   });
+// }

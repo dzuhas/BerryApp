@@ -60,12 +60,12 @@
           <div class="manWspolpraca">
             <img src="./assets/images/he.png">
           </div>
-          <form>
+          <form method="post" action="/login">
             
-             <input class="bigInput bigInputUp" type="text" name="name" placeholder="Imię i Nazwisko"><br>
-             <input class="bigInput" type="text" name="email" placeholder="Email"><br>
-             <input class="smallInput" type="text" name="telefon" placeholder="Telefon">
-             <input class="smallInput smallInput2" type="text" name="firma" placeholder="Firma">
+             <input class="bigInput bigInputUp" input type="text" name="username" id="nameWspolpraca" placeholder="Imię i Nazwisko"><br>
+             <input class="bigInput" type="text" id="WspolpracaEmail" placeholder="Email"><br>
+             <input class="smallInput" type="text" id="telefon" placeholder="Telefon">
+             <input class="smallInput smallInput2" type="text" id="firma" placeholder="Firma">
 
           </form>
           <button id="wspolpracaSend" class="buttons wspolpracaButton">Przesyłam</button>
@@ -125,7 +125,106 @@
       <a href="index.html"><img src="./assets/images/YT_icon.png"></a>
     </div>
   </footer> -->
+  <script>
+    const {ipcRenderer} = require('electron')
+
+// let movies = [];
+//         // example {id:1592304983049, title: 'Deadpool', year: 2015}
+//         const addMovie = (ev)=>{
+//             ev.preventDefault();  //to stop the form submitting
+//             let movie = {
+//                 id: Date.now(),
+//                 title: document.getElementById('nameWspolpraca').value,
+//                 year: document.getElementById('WspolpracaEmail').value
+//             }
+//             movies.push(movie);
+
+//             let csvContent = "data:text/csv;charset=utf-8,";
+
+//             document.forms[0].reset(); // to clear the form for the next entries
+//             //document.querySelector('form').reset();
+
+//             //for display purposes only
+//             console.warn('added' , {movies} );
+//             // let pre = document.querySelector('#msg pre');
+//             // pre.textContent = '\n' + JSON.stringify(movies, '\t', 2);
+//             let row = movies.join(",");
+//             csvContent += row + "\r\n";
+//             console.log(csvContent)
+
+//           //  let username = document.getElementById("username").value;
+          
+    
+//             // //saving to localStorage
+//             // localStorage.setItem('MyMovieList', JSON.stringify(movies) );
+//         }
+
+//         document.addEventListener('DOMContentLoaded', ()=>{
+//             document.getElementById('wspolpracaSend').addEventListener('click', addMovie);
+            
+//         });
+//         ipcRenderer.send('asynchronous-message', movies[0] )
+        const updateBtn = document.getElementById('wspolpracaSend')
+
+        updateBtn.addEventListener('click', function () {
+          let contactList = [];
+        // example {id:1592304983049, title: 'Deadpool', year: 2015}
+        var today = new Date();
+
+var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+
+var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+
+var dateTime = date+' '+time;
+           // ev.preventDefault();  //to stop the form submitting
+            let daneDoKontaktu = {
+                czas: dateTime,
+                nazwa: document.getElementById('nameWspolpraca').value,
+                email: document.getElementById('WspolpracaEmail').value,
+                telefon: document.getElementById('telefon').value,
+                firma: document.getElementById('firma').value
+
+            }
+            contactList.push(daneDoKontaktu);
+
+            let csvContent = "data:text/csv;charset=utf-8,";
+
+            document.forms[0].reset(); // to clear the form for the next entries
+            //document.querySelector('form').reset();
+
+            //for display purposes only
+            console.warn('added' , {contactList} );
+            // let pre = document.querySelector('#msg pre');
+            // pre.textContent = '\n' + JSON.stringify(movies, '\t', 2);
+            let row = contactList.join(",");
+            csvContent += row + "\r\n";
+            console.log(csvContent)
+            console.log(contactList)
+
+          //  let username = document.getElementById("username").value;
+          ipcRenderer.send("msg", daneDoKontaktu)
+    
+            // //saving to localStorage
+            // localStorage.setItem('MyMovieList', JSON.stringify(movies) );
+        
+           // prints "pong"
+
+          console.log("bub")
+
+
+})
+
+// send username to main.js 
+
+  </script>
   <script type="module" src="app.js" defer></script>
+  <!-- <script src="form.js" ></script> -->
+
+  <!-- <script type="module" src="../node_modules/fluent-ffmpeg/index.js"></script>
+
+  <script type="module" src="../node_modules/ffmpeg-extract-frames/index.js"></script> -->
+ 
+
   <script src="../node_modules/hammerjs/hammer.js"></script>
   <script src="../node_modules/pdfjs-dist/build/pdf.js"></script>
   <script src="../node_modules/pdfjs-dist/build/pdf.worker.js"></script>

@@ -1,19 +1,86 @@
 const path = require('path');
+const ObjectsToCsv = require('objects-to-csv');
+var fs = require('fs');
 
 
 
 
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
+//const { ipcMain } = require('electron')
+ipcMain.on("msg", (event, data) => {
+  console.log(data)
+
+ 
+
+  // const fastcsv = require('fast-csv');
+  // const ws = fs.createWriteStream("./src/assets/files/wspolpracaInfo.csv");
+  // fastcsv
+  //   .write(data, { headers: true ,flags: 'a', includeEndRowDelimiter: true })
+  //   .pipe(ws);
 
 
-// Handle creating/removing shortcuts on Windows when installing/uninstalling.
-if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
-  app.quit();
-}
+
+  // const createCsvWriter = require('csv-writer').createObjectCsvWriter;
+  // const csvWriter = createCsvWriter({
+  //     path: './src/assets/files/wspolpracaInfo.csv',
+  //     header: [
+  //         {id: 'nazwa'},
+  //         {id: 'email'},
+  //         {id: 'telefon'},
+  //         {id: 'firma'},
+  //         {id: 'id'}
+
+  //     ],
+  //     recordDelimiter: '\r\n'
+  // });
+  //  const kamil = data
+  
+  // csvWriter.writeRecords(kamil) 
+  //      // returns a promise
+  //     .then(() => {
+  //         console.log('...Done');
+  //     });
+   
+var dataToWrite = JSON.stringify(data)
+console.log(dataToWrite)
+fs.appendFile('./src/assets/files/wspolpracaInfo.csv', `${dataToWrite}\r\n` , (err) => {
+    if (err) {
+      console.log('Some error occured - file either not saved or corrupted file saved.');
+    } else {
+      console.log('It\'s saved!');
+    }
+  });
+
+
+ // If you use "await", code must be inside an asynchronous function:
+  // (async () => {
+  //   const csv = new ObjectsToCsv(data);
+  //  console.log(csv)
+  //   // Save to file:
+  //   await csv.toDisk('./src/assets/files/wspolpracaInfo.csv', { append: true });
+  //   // Return the CSV file as string:
+  //   console.log(await csv.toString());
+  // })();
+   // console.log(data) // prints "ping"
+   // event.reply('asynchronous-reply', 'pong')
+   
+  
+  // Handle creating/removing shortcuts on Windows when installing/uninstalling.
+  if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
+    app.quit();
+  }
+})
+// Sample data - two columns, three rows:
+
+
 
 const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false
+  },
     width: 800,
     height: 600,
   });
@@ -29,6 +96,9 @@ const createWindow = () => {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on('ready', createWindow);
+
+
+// // Parse JSON bodies (as sent by API clients)
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
@@ -50,3 +120,23 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
+const appr = require('express')();
+var bodyParser = require('body-parser')
+
+
+// create application/json parser
+var jsonParser = bodyParser.json()
+
+// create application/x-www-form-urlencoded parser
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
+
+// POST /login gets urlencoded bodies
+appr.post('/login', urlencodedParser, function (req, res) {
+  console.log(request.body);
+})
+
+// // Access the parse results as request.body
+appr.post('/', function(request, response){
+    console.log(request.body.user.name);
+    console.log(request.body.user.email);
+});
