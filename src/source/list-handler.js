@@ -13,16 +13,33 @@ export function createListPdf(elements) {
   });
 }
 
+
+
 export function setListListeners() {
   const pdfImages = document.querySelectorAll(".clickPdfClass");
 
   pdfImages.forEach((image) => {
     const filename = image.lastChild.innerHTML;
     const filepath = `${DOCUMENTS_FOLDER}${filename}`;
+    const parentDiv = image.parentElement
+
+    parentDiv.addEventListener('pointerdown', (event) => {
+      parentDiv.classList.add('addShadow')
+    });
+
+    
 
     image.addEventListener("click", () => {
+     
       showPDFView();
       openPDF(filepath);
+     // parentDiv.classList.remove('addShadow')
+    
+    });
+
+    parentDiv.addEventListener('pointerup', (event) => {
+      parentDiv.classList.remove('addShadow')
+
     });
   });
 }

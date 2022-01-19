@@ -1,7 +1,7 @@
 {
     "settings": {
         "desktop":"background(zmienic plik).jpg",
-        "font": "comici.ttf",
+        "font": "Poppins-Medium.woff",
         "logo": "logo.png",
         "company": "Nazwa firmy",
         "homeText": "Tekst powitalny z pierwszej strony",
