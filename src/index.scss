@@ -173,6 +173,34 @@ li{
 
 //nowy div z zawortoscia - nazwa pliku pdf
 
+.logoPdf{
+  width: 215px;
+  height: 77px;
+  
+}
+
+.buttonWroc{
+  display: inline-flex;
+  margin-right: 1283px;
+}
+
+.navigation2Pdf{
+  width: 1204px;
+  height: 75px;
+  display: flex;
+  flex-direction: row;
+}
+
+.pageNavigator{
+  display: flex;
+  flex-direction: row;
+}
+
+.arrowPdfnumber{
+  width: 17px;
+  height: 17.12px;
+}
+
 .newDivPdfFile{
   display: none;
 }
@@ -195,16 +223,21 @@ li{
   display:block;
 text-align: center;
 }
+
 .noneSens {
 color: #000;
 }
+
 #cnv{
   text-align: center;
 }
+
 .pdfNavigation{
   display: flex;
   align-items: center;
-  justify-content: center 
+  justify-content: center;
+  flex-wrap: wrap;
+
 }
 .buttons{
   width: 272px;

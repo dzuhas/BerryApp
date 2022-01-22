@@ -23,7 +23,9 @@ export function setCurrentPage(currentPage) {
   state = { ...state, currentPage };
 }
 
-export async function openPDF(filepath) {
+export async function openPDF(filepath,filename) {
+  document.getElementById("pdfPageName").innerHTML = filename;
+  console.log(filename)
   setCurrentPage(1);
   clearCanvas(canvas);
   const pdfDocument = await pdfjsLib.getDocument(filepath).promise;

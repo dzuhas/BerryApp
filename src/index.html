@@ -54,18 +54,19 @@
       <div id="wspolpraca" class="hidden">
         <div class="wspolpacaContainer">
           <div class="wspolpracaText">
-           <p> Chcesz z nami współpracować lub masz pytania?<br> Zostaw swój kontakt. Odezwiemy się!</p>
-            
+            <p> Chcesz z nami współpracować lub masz pytania?<br> Zostaw swój kontakt. Odezwiemy się!</p>
+
           </div>
           <div class="manWspolpraca">
             <img src="./assets/images/he.png">
           </div>
           <form method="post" action="/login">
-            
-             <input class="bigInput bigInputUp" input type="text" name="username" id="nameWspolpraca" placeholder="Imię i Nazwisko"><br>
-             <input class="bigInput" type="text" id="WspolpracaEmail" placeholder="Email"><br>
-             <input class="smallInput" type="text" id="telefon" placeholder="Telefon">
-             <input class="smallInput smallInput2" type="text" id="firma" placeholder="Firma">
+
+            <input class="bigInput bigInputUp" input type="text" name="username" id="nameWspolpraca"
+              placeholder="Imię i Nazwisko"><br>
+            <input class="bigInput" type="text" id="WspolpracaEmail" placeholder="Email"><br>
+            <input class="smallInput" type="text" id="telefon" placeholder="Telefon">
+            <input class="smallInput smallInput2" type="text" id="firma" placeholder="Firma">
 
           </form>
           <button id="wspolpracaSend" class="buttons wspolpracaButton">Przesyłam</button>
@@ -77,10 +78,29 @@
 
       <div id="pdfPupop" class="pupPdf">
         <div class="pdfNavigation">
-          <button id="prev" class="buttons">Poprzednia strona</button>
-          <div class="buttons">Strona&nbsp <span id="npage"> 0 </span> &nbspz&nbsp <span id="npages"> 0 </span></div>
-          <button id="next" class="buttons">Następna strona</button>
-          <button id="buttonPdf" class="buttons">Wróć</button>
+          <div id="buttonPdf" class="buttonWroc">
+
+            <img class="arrowBackPdf" src="./assets/images/Path 191.svg">
+            <div>Poprzednia strona</div>
+
+          </div>
+          <div id="logoPdf"></div>
+          <div class="navigation2Pdf">
+            <div>
+              <div>PDF</div>
+              <div id="pdfPageName"></div>
+            </div>
+            <div class="pageNavigator">
+              <img id="prev" class="arrowPdfnumber" src="./assets/images/Path 189.svg">
+              <div>
+                <div class="">Strona&nbsp </div><br>
+                <div><span id="npage"> 0 </span> &nbsp/&nbsp <span id="npages"> 0 </span></div>
+              </div>
+              <img id="next" class="arrowPdfnumber" src="./assets/images/Path 188.svg">
+
+              <div class="pdfZoom"></div>
+            </div>
+          </div>
         </div>
         <div class="canvasContainer">
           <canvas id="cnv"></canvas>
@@ -126,93 +146,93 @@
     </div>
   </footer> -->
   <script>
-    const {ipcRenderer} = require('electron')
+    const { ipcRenderer } = require('electron')
 
-// let movies = [];
-//         // example {id:1592304983049, title: 'Deadpool', year: 2015}
-//         const addMovie = (ev)=>{
-//             ev.preventDefault();  //to stop the form submitting
-//             let movie = {
-//                 id: Date.now(),
-//                 title: document.getElementById('nameWspolpraca').value,
-//                 year: document.getElementById('WspolpracaEmail').value
-//             }
-//             movies.push(movie);
+    // let movies = [];
+    //         // example {id:1592304983049, title: 'Deadpool', year: 2015}
+    //         const addMovie = (ev)=>{
+    //             ev.preventDefault();  //to stop the form submitting
+    //             let movie = {
+    //                 id: Date.now(),
+    //                 title: document.getElementById('nameWspolpraca').value,
+    //                 year: document.getElementById('WspolpracaEmail').value
+    //             }
+    //             movies.push(movie);
 
-//             let csvContent = "data:text/csv;charset=utf-8,";
+    //             let csvContent = "data:text/csv;charset=utf-8,";
 
-//             document.forms[0].reset(); // to clear the form for the next entries
-//             //document.querySelector('form').reset();
+    //             document.forms[0].reset(); // to clear the form for the next entries
+    //             //document.querySelector('form').reset();
 
-//             //for display purposes only
-//             console.warn('added' , {movies} );
-//             // let pre = document.querySelector('#msg pre');
-//             // pre.textContent = '\n' + JSON.stringify(movies, '\t', 2);
-//             let row = movies.join(",");
-//             csvContent += row + "\r\n";
-//             console.log(csvContent)
+    //             //for display purposes only
+    //             console.warn('added' , {movies} );
+    //             // let pre = document.querySelector('#msg pre');
+    //             // pre.textContent = '\n' + JSON.stringify(movies, '\t', 2);
+    //             let row = movies.join(",");
+    //             csvContent += row + "\r\n";
+    //             console.log(csvContent)
 
-//           //  let username = document.getElementById("username").value;
-          
-    
-//             // //saving to localStorage
-//             // localStorage.setItem('MyMovieList', JSON.stringify(movies) );
-//         }
-
-//         document.addEventListener('DOMContentLoaded', ()=>{
-//             document.getElementById('wspolpracaSend').addEventListener('click', addMovie);
-            
-//         });
-//         ipcRenderer.send('asynchronous-message', movies[0] )
-        const updateBtn = document.getElementById('wspolpracaSend')
-
-        updateBtn.addEventListener('click', function () {
-          let contactList = [];
-        // example {id:1592304983049, title: 'Deadpool', year: 2015}
-        var today = new Date();
-
-var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-
-var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-
-var dateTime = date+' '+time;
-           // ev.preventDefault();  //to stop the form submitting
-            let daneDoKontaktu = {
-                czas: dateTime,
-                nazwa: document.getElementById('nameWspolpraca').value,
-                email: document.getElementById('WspolpracaEmail').value,
-                telefon: document.getElementById('telefon').value,
-                firma: document.getElementById('firma').value
-
-            }
-            contactList.push(daneDoKontaktu);
-
-            let csvContent = "data:text/csv;charset=utf-8,";
-
-            document.forms[0].reset(); // to clear the form for the next entries
-            //document.querySelector('form').reset();
-
-            //for display purposes only
-            console.warn('added' , {contactList} );
-            // let pre = document.querySelector('#msg pre');
-            // pre.textContent = '\n' + JSON.stringify(movies, '\t', 2);
-            let row = contactList.join(",");
-            csvContent += row + "\r\n";
-            console.log(csvContent)
-            console.log(contactList)
-
-          //  let username = document.getElementById("username").value;
-          ipcRenderer.send("msg", daneDoKontaktu)
-    
-            // //saving to localStorage
-            // localStorage.setItem('MyMovieList', JSON.stringify(movies) );
-        
-           // prints "pong"
-
-          console.log("bub")
+    //           //  let username = document.getElementById("username").value;
 
 
-})
+    //             // //saving to localStorage
+    //             // localStorage.setItem('MyMovieList', JSON.stringify(movies) );
+    //         }
+
+    //         document.addEventListener('DOMContentLoaded', ()=>{
+    //             document.getElementById('wspolpracaSend').addEventListener('click', addMovie);
+
+    //         });
+    //         ipcRenderer.send('asynchronous-message', movies[0] )
+    const updateBtn = document.getElementById('wspolpracaSend')
+
+    updateBtn.addEventListener('click', function () {
+      let contactList = [];
+      // example {id:1592304983049, title: 'Deadpool', year: 2015}
+      var today = new Date();
+
+      var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+
+      var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+
+      var dateTime = date + ' ' + time;
+      // ev.preventDefault();  //to stop the form submitting
+      let daneDoKontaktu = {
+        czas: dateTime,
+        nazwa: document.getElementById('nameWspolpraca').value,
+        email: document.getElementById('WspolpracaEmail').value,
+        telefon: document.getElementById('telefon').value,
+        firma: document.getElementById('firma').value
+
+      }
+      contactList.push(daneDoKontaktu);
+
+      let csvContent = "data:text/csv;charset=utf-8,";
+
+      document.forms[0].reset(); // to clear the form for the next entries
+      //document.querySelector('form').reset();
+
+      //for display purposes only
+      console.warn('added', { contactList });
+      // let pre = document.querySelector('#msg pre');
+      // pre.textContent = '\n' + JSON.stringify(movies, '\t', 2);
+      let row = contactList.join(",");
+      csvContent += row + "\r\n";
+      console.log(csvContent)
+      console.log(contactList)
+
+      //  let username = document.getElementById("username").value;
+      ipcRenderer.send("msg", daneDoKontaktu)
+
+      // //saving to localStorage
+      // localStorage.setItem('MyMovieList', JSON.stringify(movies) );
+
+      // prints "pong"
+
+      console.log("bub")
+
+
+    })
 
 // send username to main.js 
 
@@ -223,7 +243,7 @@ var dateTime = date+' '+time;
   <!-- <script type="module" src="../node_modules/fluent-ffmpeg/index.js"></script>
 
   <script type="module" src="../node_modules/ffmpeg-extract-frames/index.js"></script> -->
- 
+
 
   <script src="../node_modules/hammerjs/hammer.js"></script>
   <script src="../node_modules/pdfjs-dist/build/pdf.js"></script>

@@ -107,6 +107,7 @@ function setLogo(logo){
 
 createLogo("./assets/logo/"+logo, "logoWelcome")
 createLogo("./assets/logo/"+logo, "logoMain", "logoMain")
+createLogo("./assets/logo/"+logo, "logoPdf", "logoPdf")
 
 }
 

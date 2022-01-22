@@ -32,7 +32,7 @@ export function setListListeners() {
     image.addEventListener("click", () => {
      
       showPDFView();
-      openPDF(filepath);
+      openPDF(filepath,filename);
      // parentDiv.classList.remove('addShadow')
     
     });

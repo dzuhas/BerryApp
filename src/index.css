@@ -152,6 +152,33 @@ li {
   opacity: 1;
 }
 
+.logoPdf {
+  width: 215px;
+  height: 77px;
+}
+
+.buttonWroc {
+  display: inline-flex;
+  margin-right: 1283px;
+}
+
+.navigation2Pdf {
+  width: 1204px;
+  height: 75px;
+  display: flex;
+  flex-direction: row;
+}
+
+.pageNavigator {
+  display: flex;
+  flex-direction: row;
+}
+
+.arrowPdfnumber {
+  width: 17px;
+  height: 17.12px;
+}
+
 .newDivPdfFile {
   display: none;
 }
@@ -186,6 +213,7 @@ li {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .buttons {
