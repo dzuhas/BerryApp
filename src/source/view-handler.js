@@ -8,6 +8,9 @@ export const list = document.getElementById("pdf");
 const company = document.getElementById("company");
 const startText = document.getElementById("welcomeText");
 
+export const zoomInButton = document.getElementById("zoomIn");
+export const zoomOutButton = document.getElementById("zoomOut");
+
 export const nextButton = document.getElementById("next");
 export const prevButton = document.getElementById("prev");
 export const pageSpan = document.getElementById("npage");
@@ -24,6 +27,8 @@ export function setContentText(name) {
 export function clearCanvas(canvas) {
   const canvasContext = canvas.getContext("2d");
   canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+  canvasContext.beginPath();
+
 }
 
 export function setWelcomeText(text) {
@@ -67,6 +72,7 @@ const toogleProductOpen = document.getElementById("productOpen");
 export const listProduct = document.getElementById("produkty");
 
 export function toggleProductHidden() {
+
   toogleProductOpen.classList.toggle("hidden");
 
   pdf.classList.toggle("pupPdf");
@@ -76,6 +82,7 @@ export function toggleProductHidden() {
   list.classList.toggle("pdfMainHidden");
 }
 export function toggleProductVisible(){
+
   toogleProductOpen.classList.toggle("hidden");
   pdf.classList.toggle("pupPdf");
   pdf.classList.toggle("pupPdfOpen");
