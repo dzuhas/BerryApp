@@ -22,7 +22,7 @@ export function getCurrentPage() {
   return state.currentPage;
 }
 
- export function getCurrentScale(){
+export function getCurrentScale() {
   return state.scale;
 }
 
@@ -34,42 +34,85 @@ export function setCurrentScale(scale) {
   state = { ...state, scale };
 }
 
-export async function openPDF(filepath,filename) {
+export async function openPDF(filepath, filename) {
   document.getElementById("pdfPageName").innerHTML = filename;
   console.log(filename)
   setCurrentPage(1);
   setCurrentScale(1.5)
   clearCanvas(canvas);
   const pdfDocument = await pdfjsLib.getDocument(filepath).promise;
-  createPDF(pdfDocument, getCurrentPage(),getCurrentScale());
+  createPDF(pdfDocument, getCurrentPage(), getCurrentScale());
   setPages(pdfDocument.numPages);
 
   const nextButtonHandler = () => {
     const nextPageNumber = getCurrentPage() + 1;
     if (nextPageNumber > pdfDocument.numPages) return;
     setCurrentPage(nextPageNumber);
-    createPDF(pdfDocument, nextPageNumber,getCurrentScale());
+    if (pageRendering) {
+      console.log("renderuje sie")
+      //ensure previous operations were cancelled or completed.
+      clearCanvas(canvas)
+
+        .then(function () {
+          createPDF(pdfDocument, nextPageNumber, getCurrentScale());
+        });
+    } else {
+      createPDF(pdfDocument, nextPageNumber, getCurrentScale());
+    };
+
   };
 
   const prevButtonHandler = () => {
     const prevPageNumber = getCurrentPage() - 1;
     if (prevPageNumber < 1) return;
     setCurrentPage(prevPageNumber);
-    createPDF(pdfDocument, prevPageNumber,getCurrentScale());
+    if (pageRendering) {
+      console.log("renderuje sie")
+      //ensure previous operations were cancelled or completed.
+      clearCanvas(canvas)
+
+        .then(function () {
+          createPDF(pdfDocument, prevPageNumber, getCurrentScale());
+        });
+    } else {
+      createPDF(pdfDocument, prevPageNumber, getCurrentScale());
+    };
   };
 
   const zoomInPdf = () => {
     const zoomIn = getCurrentScale() + 1;
     if (zoomIn > 5) return;
     setCurrentScale(zoomIn);
-    createPDF(pdfDocument, getCurrentPage(),getCurrentScale());
+    if (pageRendering) {
+      console.log("renderuje sie")
+      console.log(canvas)
+      console.log(canvasContext)
+
+      clearCanvas(canvas)
+        .then(function () {
+          createPDF(pdfDocument, getCurrentPage(), getCurrentScale());
+        });
+    } else {
+      createPDF(pdfDocument, getCurrentPage(), getCurrentScale());
+    };
+
   };
 
   const zoomOutPdf = () => {
     const zoomOut = getCurrentScale() - 1;
     if (zoomOut < 1) return;
     setCurrentScale(zoomOut);
-    createPDF(pdfDocument, getCurrentPage(),getCurrentScale());
+    if (pageRendering) {
+      console.log("renderuje sie")
+      //ensure previous operations were cancelled or completed.
+      clearCanvas(canvas)
+        .then(function () {
+          createPDF(pdfDocument, getCurrentPage(), getCurrentScale());
+        });
+    } else {
+      createPDF(pdfDocument, getCurrentPage(), getCurrentScale());
+    };
+
   };
 
   const backButtonHandler = () => {
@@ -93,7 +136,7 @@ export async function openPDF2(filepath) {
   setCurrentPage(1);
   clearCanvas(canvas);
   const pdfDocument = await pdfjsLib.getDocument(filepath).promise;
-  createPDF(pdfDocument, getCurrentPage(),getCurrentScale());
+  createPDF(pdfDocument, getCurrentPage(), getCurrentScale());
   setPages(pdfDocument.numPages);
   const nextButtonHandler = () => {
     const nextPageNumber = getCurrentPage() + 1;
@@ -130,16 +173,29 @@ function queueRenderPage(num) {
   }
 }
 
+var pageRendering = false
+var pageNumPending = null
+
 export async function createPDF(doc, pageNumber, scaleNumber) {
-  clearCanvas(canvas);
+  pageRendering = true;
+
 
   const page = await doc.getPage(pageNumber);
-  const viewport = page.getViewport({ scale: scaleNumber});
+  const viewport = page.getViewport({ scale: scaleNumber });
 
   canvas.height = viewport.height;
   canvas.width = viewport.width;
+  console.log(pageRendering)
 
 
-  page.render({ viewport, canvasContext });
+  var renderTask = page.render({ viewport, canvasContext });
+  renderTask.promise.then(function () {
+    console.log("sius")
+    console.log(pageRendering)
+    pageRendering = false;
+
+
+  });
   setPage(pageNumber);
+  return renderTask
 }
