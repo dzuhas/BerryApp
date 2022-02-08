@@ -1,6 +1,7 @@
 import { toggleHeadHidden } from "./view-handler.js";
+import { logo } from "../app.js";
 
-
+console.log(logo)
 const menu = document.getElementById("menu")
 const company = document.getElementById("company")
 
@@ -211,21 +212,14 @@ export function fullProductOpen() {
       imgContainer.classList = "imgContainer"
 
       imgContainer.appendChild(imageProduct2)
-      // const imagesfuj = productNameHandler.getElementsByTagName("img");
-      // console.log(imagesfuj)
-      // const coc = imagesfuj[0]
-      // console.log(coc)
-      // prouctImages.classList.remove("hidden");
-      // const prevProductPhoto = document.createElement("button")
-      // prevProductPhoto.innerHTML = "prev";
-      // prevProductPhoto.id = "prevProductPhoto";
+   
 
       const prevProductPhoto = document.createElement("img")
-      prevProductPhoto.src = `./assets/images/arrowLeft.png`;
+      prevProductPhoto.src = `./assets/images/Path 189.png`;
       prevProductPhoto.id = "prevProductPhoto";
 
       const nextProductPhoto = document.createElement("img")
-      nextProductPhoto.src = `./assets/images/arrowRight.png`;
+      nextProductPhoto.src = `./assets/images/Path 190.png`;
       nextProductPhoto.id = "nextProductPhoto";
 
       //button wróć
@@ -245,9 +239,12 @@ export function fullProductOpen() {
       const sliderConteiner = document.createElement("div");
       sliderConteiner.id = "sliderConteiner"
       sliderConteiner.appendChild(imgContainer);
-
-      imgContainer.appendChild(nextProductPhoto);
+      
+      
       imgContainer.appendChild(prevProductPhoto);
+      imgContainer.appendChild(imageProduct2)
+      imgContainer.appendChild(nextProductPhoto);
+
 
       productNameHandler.appendChild(sliderConteiner);
 
@@ -290,7 +287,7 @@ export function fullProductOpen() {
       clickPrevProduct.addEventListener("click", () => {
         changeImagePrev()
       })
-      
+
       //---------------------------------------------Swipe------------------------------------------------------------
 
       var square = document.getElementById("sliderConteiner");
@@ -346,7 +343,15 @@ function changeClassOpenProduct(productNameHandler) {
   company.classList.toggle("hidden");
 
 }
+function createLogo(src, targetLogo, classname) {
+  const logoDiv = document.getElementById(targetLogo);
+  const img = document.createElement("img");
+  img.setAttribute("src", src);
+  img.className = classname;
+  logoDiv.appendChild(img);
 
+  return img;
+}
 
 //---------------------------------------- PDF---------------------------------------------
 
@@ -476,67 +481,84 @@ cardVideo.classList = "videosContainer";
 //     resolve(frames);
 //   });
 // }
+export function createVideoLogo(src, targetLogo, classname) {
+  const logoDiv = document.getElementById(targetLogo);
+  const img = document.createElement("img");
+  img.setAttribute("src", src);
+  img.className = classname;
+  logoDiv.appendChild(img);
+
+  return img;
+}
 
 
-export function createVideoCard(id, className, { idVideo, title, filename, poster }) {
-
+export function createVideoCard(id, className, { idVideo, title, filename, poster }, logo, listOfVideosLength) {
   //const humor = document.createElement("ol")
   //getVideoImage(`./assets/videos/${filename}`, 1000, callback)
   const cardVideoFull = document.createElement("div")
-  cardVideoFull.id = filename
-  //cardVideoFull.className = "hidden"
+  cardVideoFull.id = idVideo
+  cardVideoFull.value = idVideo
   cardVideoFull.classList = "hidden cardVideoFull"
+
   const videoFull = document.createElement("video")
   videoFull.src = `./assets/videos/${filename}`
   videoFull.setAttribute("controls", "controls")
   videoFull.setAttribute("preload", "auto")
-
-  //  async function showImageAt(secs, src) {
-  //   var duration;
-  //   console.log(duration)
-  //   getVideoImage(
-  //     src,
-  //     3,
-  //    function (img, secs, event) {
-  //       if (event.type == 'seeked') {
-  //         var li = document.createElement('li');
-  //         li.appendChild(img);
-  //         document.getElementById(filename).appendChild(li);
-  //         if (duration >= ++secs) {
-  //           showImageAt(secs);
-  //         };
-  //       }
-  //     }
-  //   );
-  // }
-  
-  // showImageAt(1, `./assets/videos/${filename}`);
-  //extractFramesFromVideo(`./assets/videos/${filename}`, fps=25)
- 
-  // let framesk = await extractFramesFromVideo(`./assets/videos/${filename}`);
-//console.log(frames)
   videoFull.classList = "videoFull"
-  const backToMainVideos = document.createElement("button")
-  backToMainVideos.innerHTML = "Wróć";
+
+
+  const videoFullDiv = document.createElement("div")
+  videoFullDiv.classList = "videoFullDiv"
+
+  const backToMainVideosDiv = document.createElement("div")
+  backToMainVideosDiv.classList = "backToMainVideosDiv"
+
+  const arrowTextBackDiv = document.createElement("div")
+  arrowTextBackDiv.classList = "arrowTextBackDiv"
+
+  const backToMainVideos = document.createElement("img")
+  backToMainVideos.src = "./assets/images/Path 191.svg"
   backToMainVideos.id = "backToMainVideos";
 
-  backToMainVideos.addEventListener("click", () => {
+  const backToMainVideosText = document.createElement("div")
+  backToMainVideosText.innerHTML = "Poprzednia strona";
+  backToMainVideosText.classList = "backToMainVideosText"
+
+  backToMainVideosDiv.addEventListener("click", () => {
     cardVideoFull.classList.toggle("hidden");
     toggleHeadHidden()
     cardVideo.classList.toggle("hidden")
     stopVideo()
   })
-  
+
   function stopVideo() {
     videoFull.pause();
     videoFull.currentTime = 0;
   }
 
+  const cardVideoTitleDiv = document.createElement("div")
+  cardVideoTitleDiv.classList = "cardVideoTitleDiv"
+
   const cardVideoTitle = document.createElement("div")
   cardVideoTitle.innerHTML = title;
   cardVideoTitle.classList = "cardVideoTitle"
+
+  const cardVideoJustSignFilmy = document.createElement("div")
+  cardVideoJustSignFilmy.innerHTML = "FILMY";
+  cardVideoJustSignFilmy.classList = "cardVideoJustSignFilmy"
+
   const cardVideoFilename = document.createElement("div")
-  cardVideoFilename.innerHTML = filename;
+  cardVideoFilename.innerHTML = idVideo;
+  cardVideoFilename.classList = "cardVideoFilename"
+
+
+
+
+
+  const cardVideoLogo = document.createElement("img")
+  cardVideoLogo.id = "cardVideoLogo"
+  cardVideoLogo.src = `./assets/logo/${logo}`
+
 
   cardVideoFilename.className = "hidden"
 
@@ -550,15 +572,96 @@ export function createVideoCard(id, className, { idVideo, title, filename, poste
   cardVideo.appendChild(cardVideoPosterImg)
   fullPageVideo.appendChild(cardVideoFull)
 
-  cardVideoFull.appendChild(videoFull)
-  cardVideoFull.appendChild(cardVideoTitle)
-  cardVideoFull.appendChild(backToMainVideos)
+  backToMainVideosDiv.appendChild(arrowTextBackDiv)
+  arrowTextBackDiv.appendChild(backToMainVideos)
+  arrowTextBackDiv.appendChild(backToMainVideosText)
+  backToMainVideosDiv.appendChild(cardVideoLogo)
+
+  cardVideoTitleDiv.appendChild(cardVideoJustSignFilmy)
+  cardVideoTitleDiv.appendChild(cardVideoTitle)
+
+
+
+  cardVideoFull.appendChild(backToMainVideosDiv)
+  cardVideoFull.appendChild(cardVideoTitleDiv)
+  cardVideoFull.appendChild(videoFullDiv)
+  videoFullDiv.appendChild(videoFull)
+
+  if (listOfVideosLength > 1) {
+   
+
+    console.log("Length > 1")
+    const videoFullPrev = document.createElement("img")
+    videoFullPrev.classList = "videoFullPrev"
+    videoFullPrev.src = `./assets/images/Path 189.png`;
+
+
+    const videoFullNext = document.createElement("img")
+    videoFullNext.classList = "videoFullNext"
+    videoFullNext.src = `./assets/images/Path 190.png`;
+
+    //videoFullDiv.appendChild(videoFullPrev)
+    videoFullDiv.appendChild(videoFullNext)
+    videoFullDiv.insertBefore(videoFullPrev, videoFull)
+    videoFullPrev.addEventListener("click", () => {
+
+      const collection = document.getElementsByClassName("cardVideoFull").length
+      const curentVideo = document.getElementById(idVideo)
+
+      if (idVideo == 1) {
+        curentVideo.classList.toggle("hidden");
+
+        const prevVideo = document.getElementById(collection)
+        prevVideo.classList.toggle("hidden");
+      }
+      else {
+        curentVideo.classList.toggle("hidden");
+
+        const prevVideo = document.getElementById(idVideo - 1)
+        prevVideo.classList.toggle("hidden");
+
+        console.log(collection)
+
+        console.log("prev")
+      }
+      //var closestElement = div.closest(".cardVideoFull");
+
+      //console.log(closestElement)
+    })
+
+
+    videoFullNext.addEventListener("click", () => {
+      const collection = document.getElementsByClassName("cardVideoFull").length
+      const curentVideo = document.getElementById(idVideo)
+
+      if (idVideo == collection) {
+
+        curentVideo.classList.toggle("hidden");
+
+        const nextVideo = document.getElementById("1")
+        nextVideo.classList.toggle("hidden");
+      }
+      else {
+        curentVideo.classList.toggle("hidden");
+
+        const prevVideo = document.getElementById(idVideo + 1)
+        prevVideo.classList.toggle("hidden");
+
+        console.log("next")
+      }
+    })
+  }
+
+
+
+  //createLogo("./assets/logo/"+logo, "cardVideoLogo", "logoPdf")
 
   cardVideoPosterImg.appendChild(cardVideoFilename)
   //cardVideoPoster.appendChild(cardVideoFilename)
 
   return cardVideo
 }
+
 
 export function videoOpen() {
 
@@ -568,7 +671,6 @@ export function videoOpen() {
 
     const videoName = e.lastChild.innerHTML;
 
-    //const filepath = `${DOCUMENTS_FOLER}${filename}`;
 
     //pobiera nazwe produktu z diva ukrytego pod elementem klikanym i tworzy karte video
 
@@ -585,19 +687,6 @@ export function videoOpen() {
   })
 }
 
-
-//const extractFrames = require('ffmpeg-extract-frames')
-// import extractFrames from '../node_modules/ffmpeg-extract-frames';
-
-// await extractFrames({
-//   input: 'media/1.mp4',
-//   output: './screenshot-%i.jpg',
-//   offsets: [
-//     1000,
-//     2000,
-//     3500
-//   ]
-// })
 
 //------ Poster --------
 

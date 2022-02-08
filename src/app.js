@@ -1,10 +1,10 @@
 
 // ----------- Config -------------------
 
-import { setContentText, setWelcomeText} from "./source/view-handler.js";
+import { setContentText, setWelcomeText } from "./source/view-handler.js";
 import { createListPdf, setListListeners, createKontaktList, createProductList, setListListenersPdfProduct, createVideosList } from "./source/list-handler.js";
 import { fullProductOpen, videoOpen } from "./source/element-builder.js";
-
+export var logo
 (async () => {
   try {
     const data = await fetch("config.json").then((res) => res.json());
@@ -12,7 +12,7 @@ import { fullProductOpen, videoOpen } from "./source/element-builder.js";
     const { settings, assets, products } = data;
     console.log(settings.desktop)
 
-    const { homeText} = settings;
+    const { homeText } = settings;
     const { mainText } = settings;
     const { pdfs } = assets;
     const { contact } = settings;
@@ -20,11 +20,15 @@ import { fullProductOpen, videoOpen } from "./source/element-builder.js";
     const { productPdfs } = products
     const { videos } = assets;
     const { desktop } = settings;
-    const { logo } = settings;
+    var { logo } = settings;
     const { font } = settings;
     const { filename } = videos;
 
-console.log(filename)
+const listOfVideosLength = videos.length
+console.log(listOfVideosLength)
+console.log(videos)
+
+
     setFont(font);
     setLogo(logo);
     setDesktop(desktop);
@@ -36,9 +40,12 @@ console.log(filename)
     createProductList(products);
     fullProductOpen();
     setListListenersPdfProduct();
-    createVideosList(videos);
+    createVideosList(videos,logo,listOfVideosLength);
     //createPosters(videos)
     videoOpen()
+    console.log(logo)
+
+    return {logo}
   } catch (error) {
     console.log("apskierror");
 
@@ -51,15 +58,15 @@ console.log(filename)
 //------------Background-image------
 
 
-function setDesktop(desktop){
+function setDesktop(desktop) {
 
-document.body.style.backgroundImage = "url(assets/images/"+desktop+")";
+  document.body.style.backgroundImage = "url(assets/images/" + desktop + ")";
 
 }
 // -----------Font-----------
 
 async function setFont(font) {
-  const newFont = new FontFace('myFont', 'url(assets/font/'+font+')');
+  const newFont = new FontFace('myFont', 'url(assets/font/' + font + ')');
   // wait for font to be loaded
 
   await newFont.load();
@@ -91,7 +98,7 @@ startButton.addEventListener("click", () => {
 // Pobieranie logo i umieszanie w odpowiednicj miejscach
 
 
-function setLogo(logo){
+function setLogo(logo) {
 
   function createLogo(src, targetLogo, classname) {
     const logoDiv = document.getElementById(targetLogo);
@@ -99,15 +106,15 @@ function setLogo(logo){
     img.setAttribute("src", src);
     img.className = classname;
     logoDiv.appendChild(img);
-  
+
     return img;
   }
 
 
 
-createLogo("./assets/logo/"+logo, "logoWelcome")
-createLogo("./assets/logo/"+logo, "logoMain", "logoMain")
-createLogo("./assets/logo/"+logo, "logoPdf", "logoPdf")
+  createLogo("./assets/logo/" + logo, "logoWelcome")
+  createLogo("./assets/logo/" + logo, "logoMain", "logoMain")
+  createLogo("./assets/logo/" + logo, "logoPdf", "logoPdf")
 
 }
 
@@ -214,7 +221,7 @@ wspolpracaMenuButton.addEventListener("click", () => {
 const kontaktMenuButton = document.getElementById("kontaktMenu");
 
 kontaktMenuButton.addEventListener("click", () => {
-  
+
   mainHiddenForAll()
   repleceMenuHidden(kontakt, "hidden", "kontaktMain")
 
@@ -227,13 +234,13 @@ kontaktMenuButton.addEventListener("click", () => {
 //-------------------- Wspolpraca ---------------------------
 
 
-  
+
 //-------------------- Error --------------------------------
 // const errorButton = document.getElementById("buttonError");
 
 // errorButton.addEventListener("click", () => {
-  
- 
+
+
 
 // });
 
@@ -250,3 +257,5 @@ kontaktMenuButton.addEventListener("click", () => {
 //     3500
 //   ]
 // })
+
+console.log(logo)

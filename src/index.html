@@ -81,33 +81,42 @@
           <div id="buttonPdf" class="buttonWroc">
 
             <img class="arrowBackPdf" src="./assets/images/Path 191.svg">
-            <div>Poprzednia strona</div>
+            <div class="backToMainPdf">Poprzednia strona</div>
 
           </div>
           <div id="logoPdf"></div>
           <div class="navigation2Pdf">
-            <div>
-              <div>PDF</div>
+            <div class="pdfSignAndFileName">
+              <div class="justPdfSign">PDF</div>
               <div id="pdfPageName"></div>
             </div>
             <div class="pageNavigator">
-              <img id="prev" class="arrowPdfnumber" src="./assets/images/Path 189.svg">
-              <div>
-                <div class="">Strona&nbsp </div><br>
-                <div><span id="npage"> 0 </span> &nbsp/&nbsp <span id="npages"> 0 </span></div>
-              </div>
-              <img id="next" class="arrowPdfnumber" src="./assets/images/Path 188.svg">
 
-              <div class="pdfZoom">
-              <div id="zoomIn">Zoom In</div>
-              <div id="zoomOut">Zoom Out</div>
+              
+                <div class="justStronaSign">Strona </div>
+                <div class="pagesNumbers">
+                  <img id="prev" class="arrowPdfnumber" src="./assets/images/Path 189.svg">
 
-              </div>
+                  <span id="npage"> 0 </span>
+                  <span class="fontSizeSlesh">/ </span>
+                  <span id="npages"> 0 </span>
+                  <img id="next" class="arrowPdfnumber" src="./assets/images/Path 188.svg">
+
+                </div>
+              
+
+            </div>
+            <div class="pdfZoom">
+              <img id="zoomIn" class="zoom" src="./assets/images/zoomIn.png">
+              <img id="zoomOut" class="zoom" src="./assets/images/zoomOut.png">
+
             </div>
           </div>
         </div>
         <div class="canvasContainer">
-          <canvas id="cnv"></canvas>
+          <div class="canvasContainerInside">
+            <canvas id="cnv"></canvas>
+          </div>
         </div>
       </div>
 

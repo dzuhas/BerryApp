@@ -27,6 +27,7 @@ export function setContentText(name) {
 export async function clearCanvas(canvas) {
   const canvasContext = canvas.getContext("2d");
   canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+  canvasContext.beginPath()
 return canvas
 }
 

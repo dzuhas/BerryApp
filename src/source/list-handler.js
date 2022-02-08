@@ -79,9 +79,10 @@ export function setListListenersPdfProduct() {
 
 //------------------------- Filmy ---------------------------------------
 
-export function createVideosList(elements) {
+export function createVideosList(elements, logo,listOfVideosLength) {
+  console.log(listOfVideosLength)
   elements.forEach((element, i) => {
-    const cardVideo = createVideoCard(`boxVideos${i}`, "newBoxPdf", element);
+    const cardVideo = createVideoCard(`boxVideos${i}`, "newBoxPdf", element,logo,listOfVideosLength);
     listVideos.appendChild(cardVideo);
   });
 }
