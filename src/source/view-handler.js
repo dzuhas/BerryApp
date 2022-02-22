@@ -61,6 +61,17 @@ function togglePDF() {
   company.classList.toggle("hidden");
 }
 
+export function togglePDF2() {
+  pdf.classList.toggle("pupPdf");
+  pdf.classList.toggle("pupPdfOpen");
+
+  list.classList.toggle("pdfMain");
+  list.classList.toggle("pdfMainHidden");
+  
+
+ 
+}
+
 // ------------------------ Kontakt -----------------------------
 
 export const listKontakt = document.getElementById("kontakt");

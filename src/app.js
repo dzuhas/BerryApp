@@ -1,3 +1,16 @@
+//--------------Player-----------------
+
+// import Plyr from '../node_modules/plyr/src/js/plyr.js';
+
+// const player = new Plyr('#player');
+
+
+
+// videojs('my-player', {
+//   controls: true,
+//   autoplay: false,
+//   preload: 'auto'
+// });
 
 // ----------- Config -------------------
 
@@ -38,7 +51,7 @@ console.log(videos)
     setListListeners();
     createKontaktList(contact);
     createProductList(products);
-    fullProductOpen();
+    fullProductOpen(logo);
     setListListenersPdfProduct();
     createVideosList(videos,logo,listOfVideosLength);
     //createPosters(videos)
@@ -258,4 +271,3 @@ kontaktMenuButton.addEventListener("click", () => {
 //   ]
 // })
 
-console.log(logo)

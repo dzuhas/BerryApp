@@ -3,6 +3,7 @@ import {
   canvas,
   backButton,
   hidePDFView,
+  togglePDF2,
   toggleProductVisible,
   nextButton,
   prevButton,
@@ -12,6 +13,8 @@ import {
   clearCanvas,
   setPages
 } from "./view-handler.js";
+
+
 
 let state = {
   currentPage: 1,
@@ -36,7 +39,6 @@ export function setCurrentScale(scale) {
 
 export async function openPDF(filepath, filename) {
   document.getElementById("pdfPageName").innerHTML = filename;
-  console.log(filename)
   setCurrentPage(1);
   setCurrentScale(1)
   clearCanvas(canvas);
@@ -88,7 +90,7 @@ export async function openPDF(filepath, filename) {
     setCurrentScale(zoomIn);
     if (pageRendering) {
       console.log("renderuje sie")
-     
+
 
       clearCanvas(canvas)
         .then(function () {
@@ -127,7 +129,6 @@ export async function openPDF(filepath, filename) {
     backButton.removeEventListener("click", backButtonHandler);
     zoomInButton.removeEventListener("click", zoomInPdf);
     zoomOutButton.removeEventListener("click", zoomOutPdf);
-    console.log(pdfDocument)
 
   };
 
@@ -189,7 +190,7 @@ export async function openPDF2(filepath) {
     setCurrentScale(zoomIn);
     if (pageRendering) {
       console.log("renderuje sie")
-     
+
 
       clearCanvas(canvas)
         .then(function () {
@@ -218,23 +219,26 @@ export async function openPDF2(filepath) {
 
   };
 
-  const backButtonHandler = () => {
+  const backButtonHandler2 = () => {
+
+
     pdfDocument.destroy()
     clearCanvas(canvas)
 
-    hidePDFView();
     nextButton.removeEventListener("click", nextButtonHandler);
     prevButton.removeEventListener("click", prevButtonHandler);
-    backButton.removeEventListener("click", backButtonHandler);
+    backButton.removeEventListener("click", backButtonHandler2);
     zoomInButton.removeEventListener("click", zoomInPdf);
     zoomOutButton.removeEventListener("click", zoomOutPdf);
-    console.log(pdfDocument)
+    togglePDF2()
+    const produkty = document.getElementById("productOpen")
+    produkty.classList.toggle("hidden");
 
   };
 
   nextButton.addEventListener("click", nextButtonHandler);
   prevButton.addEventListener("click", prevButtonHandler);
-  backButton.addEventListener("click", backButtonHandler);
+  backButton.addEventListener("click", backButtonHandler2);
 
   zoomInButton.addEventListener("click", zoomInPdf);
   zoomOutButton.addEventListener("click", zoomOutPdf);
@@ -245,7 +249,7 @@ export async function openPDF2(filepath) {
 var pageRendering = false
 
 export async function createPDF(doc, pageNumber, scaleNumber) {
-  
+
   pageRendering = true;
 
 
@@ -258,13 +262,13 @@ export async function createPDF(doc, pageNumber, scaleNumber) {
 
   var renderTask = page.render({ viewport, canvasContext });
   renderTask.promise.then(function () {
-   
+
     pageRendering = false;
 
 
   }
-  
-  
+
+
   );
   setPage(pageNumber);
   return renderTask

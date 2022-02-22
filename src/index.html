@@ -5,6 +5,11 @@
   <meta charset="UTF-8" />
   <title>Kiosk App</title>
   <link rel="stylesheet" href="index.css" />
+  <!-- <link rel="stylesheet" href="../node_modules/plyr/src/sass/plyr.scss"> -->
+  <link href="../node_modules/video.js/dist/video-js.min.css" rel="stylesheet">
+  <script src="../node_modules/video.js/dist/video.min.js"></script>
+  <link href="../node_modules/@videojs/themes/dist/forest/index.css"rel="stylesheet">
+
 </head>
 
 <body>
@@ -92,18 +97,18 @@
             </div>
             <div class="pageNavigator">
 
-              
-                <div class="justStronaSign">Strona </div>
-                <div class="pagesNumbers">
-                  <img id="prev" class="arrowPdfnumber" src="./assets/images/Path 189.svg">
 
-                  <span id="npage"> 0 </span>
-                  <span class="fontSizeSlesh">/ </span>
-                  <span id="npages"> 0 </span>
-                  <img id="next" class="arrowPdfnumber" src="./assets/images/Path 188.svg">
+              <div class="justStronaSign">Strona </div>
+              <div class="pagesNumbers">
+                <img id="prev" class="arrowPdfnumber" src="./assets/images/Path 189.svg">
 
-                </div>
-              
+                <span id="npage"> 0 </span>
+                <span class="fontSizeSlesh">/ </span>
+                <span id="npages"> 0 </span>
+                <img id="next" class="arrowPdfnumber" src="./assets/images/Path 188.svg">
+
+              </div>
+
 
             </div>
             <div class="pdfZoom">
@@ -231,8 +236,7 @@
       // pre.textContent = '\n' + JSON.stringify(movies, '\t', 2);
       let row = contactList.join(",");
       csvContent += row + "\r\n";
-      console.log(csvContent)
-      console.log(contactList)
+
 
       //  let username = document.getElementById("username").value;
       ipcRenderer.send("msg", daneDoKontaktu)
@@ -257,7 +261,14 @@
 
   <script type="module" src="../node_modules/ffmpeg-extract-frames/index.js"></script> -->
 
+  <!-- <script type="module" src="../node_modules/plyr/src/js/plyr.js"></script> -->
+  <!-- <script type=module src="../node_modules/plyr/src/js/plyr.js"></script>
 
+  <script>
+
+    const player = new Plyr('#player');
+
+  </script> -->
   <script src="../node_modules/hammerjs/hammer.js"></script>
   <script src="../node_modules/pdfjs-dist/build/pdf.js"></script>
   <script src="../node_modules/pdfjs-dist/build/pdf.worker.js"></script>

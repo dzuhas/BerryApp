@@ -1,19 +1,20 @@
-import { toggleHeadHidden } from "./view-handler.js";
-import { logo } from "../app.js";
 
-console.log(logo)
+// const player = new Plyr('#player');
+
+import { toggleHeadHidden } from "./view-handler.js";
+
 const menu = document.getElementById("menu")
 const company = document.getElementById("company")
 
-//------------------------------------------ PRODUKT -------------------------------------------------
 
 var tabAllImages = [];
-var titlePdfProduct
 
 const mainPageProduct = document.getElementById("produkty")
 const fullPageProduct = document.getElementById("productOpen")
 var productNameHandler
 var cardProductPdfs
+
+//------------------------------------------ Kontakt -------------------------------------------------
 
 export function createKontaktCard(id, className, { position, name, phone, email, www }) {
   const cardKontakt = document.createElement("div");
@@ -59,10 +60,13 @@ function createOneOfImages(src, className) {
 }
 
 
+//------------------------------------------ Produkt -------------------------------------------------
+
+
 //Funkcja tworząca karty produktów
 
 export function createProductCard(id, className, { idProduct, title, description, images, productPdfs }, i) {
-
+console.log(" createProductCard")
   const cardProduct = document.createElement("div");
   const cardProductFull = document.createElement("div");
 
@@ -175,8 +179,7 @@ function createProductImage(src, className) {
 
 // funkcja otwierajaca pelny opis produktu
 
-export function fullProductOpen() {
-
+export function fullProductOpen(logo) {
   const productClickhandlers = document.querySelectorAll(".clickProduct");
 
 
@@ -191,7 +194,7 @@ export function fullProductOpen() {
     e.addEventListener("click", () => {
 
       mainPageProduct.classList.toggle("hidden")
-
+      toggleHeadHidden()
       productNameHandler = document.getElementById(productName)
 
       //zmiana klass z ukrytych na widzialne i odwrotnie
@@ -212,7 +215,10 @@ export function fullProductOpen() {
       imgContainer.classList = "imgContainer"
 
       imgContainer.appendChild(imageProduct2)
-   
+
+      const cardVideoLogo = document.createElement("img")
+      cardVideoLogo.id = "cardVideoLogo"
+      cardVideoLogo.src = `./assets/logo/${logo}`
 
       const prevProductPhoto = document.createElement("img")
       prevProductPhoto.src = `./assets/images/Path 189.png`;
@@ -222,39 +228,50 @@ export function fullProductOpen() {
       nextProductPhoto.src = `./assets/images/Path 190.png`;
       nextProductPhoto.id = "nextProductPhoto";
 
-      //button wróć
+      const backToMainVideosDiv = document.createElement("div")
+      backToMainVideosDiv.id = "backToProductsDiv"
 
-      // const backToMainProduct = document.createElement("button")
-      // backToMainProduct.innerHTML = "Wróć";
-      // backToMainProduct.id = "backToMainProduct";
+      const arrowTextBackDiv = document.createElement("div")
+      arrowTextBackDiv.classList = "arrowTextBackDiv"
 
-      const backToMainProduct = document.createElement("img");
-      backToMainProduct.setAttribute("src", `./assets/images/Group 102.png`);
-      backToMainProduct.id = "backToMainProduct";
+      const backToMainVideos = document.createElement("img")
+      backToMainVideos.src = "./assets/images/Path 191.svg"
+      backToMainVideos.id = "backToMainProduct";
 
-      const backToMainProductDiv = document.createElement("div")
-      backToMainProductDiv.classList = "backToMainProductDiv"
+      const backToMainVideosText = document.createElement("div")
+      backToMainVideosText.innerHTML = "Poprzednia strona";
+      backToMainVideosText.classList = "backToMainVideosText"
 
 
       const sliderConteiner = document.createElement("div");
       sliderConteiner.id = "sliderConteiner"
+
       sliderConteiner.appendChild(imgContainer);
-      
-      
+
+
       imgContainer.appendChild(prevProductPhoto);
       imgContainer.appendChild(imageProduct2)
       imgContainer.appendChild(nextProductPhoto);
 
+      backToMainVideosDiv.appendChild(arrowTextBackDiv);
+      backToMainVideosDiv.appendChild(cardVideoLogo);
+
+      arrowTextBackDiv.appendChild(backToMainVideos);
+      arrowTextBackDiv.appendChild(backToMainVideosText);
+      console.log(productNameHandler)
+      productNameHandler.prepend(backToMainVideosDiv);
+
+      //productNameHandler.appendChild(backToMainVideosDiv);
 
       productNameHandler.appendChild(sliderConteiner);
 
-      productNameHandler.appendChild(backToMainProductDiv);
-      backToMainProductDiv.appendChild(backToMainProduct);
+      
 
 
 
-      backToMainProduct.addEventListener("click", () => {
+      arrowTextBackDiv.addEventListener("click", () => {
         closeFullProduct()
+        toggleHeadHidden()
       })
 
       // buttony next, priv i zmiana zdjecia
@@ -317,14 +334,16 @@ function closeFullProduct() {
   const destroyPhotoProduct = document.getElementById("sliderConteiner")
   destroyPhotoProduct.remove();
 
+  const destroybackToProductsDiv = document.getElementById("backToProductsDiv")
+  destroybackToProductsDiv.remove();
   // const destroyButtonPrev = document.getElementById("prevProductPhoto")
   // destroyButtonPrev.remove();
 
   // const destroyButtonNext = document.getElementById("nextProductPhoto")
   // destroyButtonNext.remove();
 
-  const destroyButtonprev = document.getElementById("backToMainProduct")
-  destroyButtonprev.remove();
+  // const destroyButtonprev = document.getElementById("backToMainProduct")
+  // destroyButtonprev.remove();
   changeClassOpenProduct(productNameHandler)
 
   //fullPageProduct.classList.toggle("hidden");
@@ -501,10 +520,43 @@ export function createVideoCard(id, className, { idVideo, title, filename, poste
   cardVideoFull.classList = "hidden cardVideoFull"
 
   const videoFull = document.createElement("video")
-  videoFull.src = `./assets/videos/${filename}`
-  videoFull.setAttribute("controls", "controls")
-  videoFull.setAttribute("preload", "auto")
-  videoFull.classList = "videoFull"
+
+  // videoFull.setAttribute("controls", "controls")
+  // videoFull.setAttribute("preload", "auto")
+  videoFull.setAttribute('data-setup', '{ "inactivityTimeout": 0 , "preload": "auto"}')
+  const videoFullSource = document.createElement("source")
+  videoFullSource.src = `./assets/videos/${filename}`
+  videoFullSource.type = "video/mp4"
+  videoFull.classList = "video-js vjs-theme-forest"
+  videoFull.appendChild(videoFullSource)
+  const IdVideoHandler = "video" + idVideo
+  videoFull.id = IdVideoHandler
+
+
+
+
+  // const playButtonWrapper = document.createElement("div")
+  // playButtonWrapper.classList = "play-button-wrapper"
+
+
+  // playButtonWrapper.addEventListener("click", () => {
+  //   console.log("akuku")
+  // })
+
+  // const playVideo = document.createElement("div")
+  // playVideo.classList = "play-gif"
+  // const IdCircleHandler = "circle-play-b" + idVideo
+  // //playVideo.id = IdCircleHandler
+
+  // const arrowPlayVideo = document.createElement("img")
+  // arrowPlayVideo.src = "./assets/images/obejrzyj.svg"
+  // arrowPlayVideo.className ="arrowPlayVideo"
+  // arrowPlayVideo.id = IdCircleHandler
+  //arrowPlayVideo.setAttribute("viewBox", "0 0 80 80")
+  // arrowPlayVideo.viewBox = "http://www.w3.org/2000/svg"
+
+  //playVideo.addEventListener("click", togglePlay);
+
 
 
   const videoFullDiv = document.createElement("div")
@@ -586,9 +638,35 @@ export function createVideoCard(id, className, { idVideo, title, filename, poste
   cardVideoFull.appendChild(cardVideoTitleDiv)
   cardVideoFull.appendChild(videoFullDiv)
   videoFullDiv.appendChild(videoFull)
+  // videoFullDiv.appendChild(playButtonWrapper)
+  //playButtonWrapper.appendChild(playVideo)
+  // playVideo.appendChild(arrowPlayVideo)
+
+  // const video = document.getElementById(IdVideoHandler);
+  // const circlePlayButton = document.getElementById(IdCircleHandler);
+  // console.log(circlePlayButton)
+
+  // function togglePlay() {
+  //   console.log("click")
+  //   if (video.paused || video.ended) {
+  //     video.play();
+  //   } else {
+  //     video.pause();
+  //   }
+  // }
+
+
+  // video.addEventListener("playing", function () {
+
+  //   circlePlayButton.style.opacity = 0;
+  // });
+  // video.addEventListener("pause", function () {
+  //   circlePlayButton.style.opacity = 1;
+  // });
+
 
   if (listOfVideosLength > 1) {
-   
+
 
     console.log("Length > 1")
     const videoFullPrev = document.createElement("img")
@@ -607,6 +685,7 @@ export function createVideoCard(id, className, { idVideo, title, filename, poste
 
       const collection = document.getElementsByClassName("cardVideoFull").length
       const curentVideo = document.getElementById(idVideo)
+      stopVideo()
 
       if (idVideo == 1) {
         curentVideo.classList.toggle("hidden");
@@ -633,6 +712,8 @@ export function createVideoCard(id, className, { idVideo, title, filename, poste
     videoFullNext.addEventListener("click", () => {
       const collection = document.getElementsByClassName("cardVideoFull").length
       const curentVideo = document.getElementById(idVideo)
+      console.log(curentVideo)
+      stopVideo()
 
       if (idVideo == collection) {
 
@@ -653,6 +734,15 @@ export function createVideoCard(id, className, { idVideo, title, filename, poste
   }
 
 
+  var player = videojs(IdVideoHandler, {
+    controls: true,
+    autoplay: false,
+    preload: 'auto',
+    width: 1064,
+    height: 598
+
+  });
+
 
   //createLogo("./assets/logo/"+logo, "cardVideoLogo", "logoPdf")
 
@@ -664,7 +754,6 @@ export function createVideoCard(id, className, { idVideo, title, filename, poste
 
 
 export function videoOpen() {
-
   const videoClickhandlers = document.querySelectorAll(".clickPoster");
 
   videoClickhandlers.forEach((e) => {
